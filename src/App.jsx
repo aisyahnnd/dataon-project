@@ -1,17 +1,12 @@
-import {} from 'react'
+import { MyTrainingCard } from './components/MyTrainingCard/MyTrainingCard';
+import './App.css';
 
-import './App.css'
-import { DatePicker } from 'antd'
-
-function App () {
+function App() {
   return (
-    <div className="App">
-      <div className="card">
-        <h1>DatePicker</h1>
-        <DatePicker />
-      </div>
-    </div>
-  )
+    <>
+      <MyTrainingCard />
+    </>
+  );
 }
 
-export default App
+export default App;
