@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
-import { DatePicker } from 'antd';
+import {} from 'react'
 
-function App() {
-  const [count, setCount] = useState(0);
+import './App.css'
+import { DatePicker } from 'antd'
 
+function App () {
   return (
     <div className="App">
       <div className="card">
@@ -13,7 +11,7 @@ function App() {
         <DatePicker />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
