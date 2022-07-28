@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Carousel } from 'antd';
+import { Badge, Carousel, Col, Row } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { SingleTrainingCard } from './SingleTrainingCard';
 import dataTraining from '../../dataTraining';
@@ -28,12 +28,20 @@ export const MyTrainingCard = () => {
           dots={false}
           infinite={true}
           slidesToShow={4}
-          slidesToScroll={4}
+          slidesToScroll={1}
           prevArrow={<LeftOutlined />}
           nextArrow={<RightOutlined />}
         >
           {dataTraining.map((item, id) => {
-            return <SingleTrainingCard key={id} item={item} />;
+            return (
+              <Row align="middle" justify="center" gutter={5}>
+                <Col>
+                  <div>
+                    <SingleTrainingCard key={id} item={item} />
+                  </div>
+                </Col>
+              </Row>
+            );
           })}
         </Carousel>
       </div>
