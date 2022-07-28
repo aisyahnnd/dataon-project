@@ -1,17 +1,14 @@
-import {} from 'react'
-
-import './App.css'
-import { DatePicker } from 'antd'
-
+// import { TextInput } from './Components'
+// import { Dashboard } from './Pages'
+import { FilterTrainingEvent } from './Parts'
+// import { FilterTrainingEvent } from './Parts'
+import ReactDOM from 'react-dom'
 function App () {
   return (
-    <div className="App">
-      <div className="card">
-        <h1>DatePicker</h1>
-        <DatePicker />
-      </div>
+    <div>
+      <FilterTrainingEvent></FilterTrainingEvent>
     </div>
   )
 }
-
+ReactDOM.render(<App />, document.getElementById('root'))
 export default App
