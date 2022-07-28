@@ -34,7 +34,12 @@ export const MyTrainingCard = () => {
         >
           {dataTraining.map((item, id) => {
             return (
-              <Row align="middle" justify="center" gutter={5}>
+              <Row
+                key={id}
+                align="middle"
+                justify="center"
+                gutter={5}
+              >
                 <Col>
                   <div>
                     <SingleTrainingCard key={id} item={item} />
