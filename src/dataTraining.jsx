@@ -1,0 +1,68 @@
+const dataTrainingCard = [
+  {
+    id: 1,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 2,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 3,
+    title: 'Training data base',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 4,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 5,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 6,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 7,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+  {
+    id: 8,
+    title: 'Training Angular',
+    description: '6 juni 2022, 16:00-20:00',
+    location: 'Jakarta',
+    author: 'Juwita',
+    img: 'http://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2020/09/beranda-angularjs.jpg',
+  },
+];
+
+export default dataTrainingCard;

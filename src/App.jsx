@@ -1,14 +1,12 @@
-// import { TextInput } from './Components'
-// import { Dashboard } from './Pages'
-import { FilterTrainingEvent } from './Parts'
-// import { FilterTrainingEvent } from './Parts'
-import ReactDOM from 'react-dom'
-function App () {
+import { MyTrainingCard } from './components/MyTrainingCard/MyTrainingCard';
+import './App.css';
+
+function App() {
   return (
-    <div>
-      <FilterTrainingEvent></FilterTrainingEvent>
-    </div>
-  )
+    <>
+      <MyTrainingCard />
+    </>
+  );
 }
-ReactDOM.render(<App />, document.getElementById('root'))
-export default App
+
+export default App;
