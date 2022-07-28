@@ -1,5 +1,4 @@
 .container{
-    background-color: aqua;
     display: flex;
     width: 100vw;
     justify-content: space-between;

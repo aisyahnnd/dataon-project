@@ -1,12 +1,7 @@
-import { MyTrainingCard } from './components/MyTrainingCard/MyTrainingCard';
-import './App.css';
+import { MyTrainingEventTable } from './Parts'
 
-function App() {
-  return (
-    <>
-      <MyTrainingCard />
-    </>
-  );
+const App = () => {
+  return <MyTrainingEventTable/>
 }
 
-export default App;
+export default App

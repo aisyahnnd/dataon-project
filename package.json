@@ -13,13 +13,10 @@
     "antd": "^4.21.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
-=======
+    "slick-carousel": "^1.8.1",
     "react-multi-carousel": "^2.8.2",
     "react-responsive-carousel": "^3.2.23"
->>>>>>> 7f80a39c18854bd0be4978227ec28b13aa220a59
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

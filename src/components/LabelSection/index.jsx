@@ -3,7 +3,6 @@ import './label.css'
 import PropTypes from 'prop-types'
 function LabelSection ({ title, style, dataBadge }) {
   return (
-    <div className='container'>
         <div className="title-event">
           <p>
             {title}
@@ -12,7 +11,6 @@ function LabelSection ({ title, style, dataBadge }) {
               count={dataBadge}
             />
           </p>
-        </div>
       </div>
   )
 }
