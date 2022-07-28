@@ -33,7 +33,7 @@ export const AllTrainingEvent = () => {
             xl: 5,
             xxl: 3,
           }}
-          dataSource={dataTraining}
+          dataSource={dataTraining.slice(0, 5)}
           renderItem={(item, id) => (
             <List.Item>
               <Row justify="center">
