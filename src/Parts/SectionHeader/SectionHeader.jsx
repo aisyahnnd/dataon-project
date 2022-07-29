@@ -1,5 +1,5 @@
 import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Row } from 'antd';
+import { Breadcrumb, Button, Col, Row } from 'antd';
 
 export const SectionHeader = () => {
   return (
@@ -7,7 +7,24 @@ export const SectionHeader = () => {
       <div className="site-card-wrapper">
         <Row>
           <Col
-            span={24}
+            span={12}
+            style={{
+              textAlign: 'left',
+              paddingTop: 5,
+              paddingLeft: 5,
+            }}
+          >
+            <Breadcrumb separator=">">
+              <Breadcrumb.Item>Training</Breadcrumb.Item>
+              <Breadcrumb.Item
+                style={{ fontWeight: 'bold', color: '#1890ff' }}
+              >
+                Training Event
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+          <Col
+            span={12}
             style={{
               textAlign: 'right',
               padding: 0,
