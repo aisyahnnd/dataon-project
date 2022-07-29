@@ -13,8 +13,11 @@
     "antd": "^4.21.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
+=======
+>>>>>>> 3b5753ff1671a956be1b7af2b6493bcb2e795f01
     "react-multi-carousel": "^2.8.2",
     "react-responsive-carousel": "^3.2.23"
   },

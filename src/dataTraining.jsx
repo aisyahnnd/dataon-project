@@ -9,7 +9,7 @@ const dataTrainingCard = [
   },
   {
     id: 2,
-    title: 'Training Angular',
+    title: 'Training Javascript',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -17,7 +17,7 @@ const dataTrainingCard = [
   },
   {
     id: 3,
-    title: 'Training data base',
+    title: 'Training Database',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -25,7 +25,7 @@ const dataTrainingCard = [
   },
   {
     id: 4,
-    title: 'Training Angular',
+    title: 'Training React JS',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -33,7 +33,7 @@ const dataTrainingCard = [
   },
   {
     id: 5,
-    title: 'Training Angular',
+    title: 'Training Vue JS',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -41,7 +41,7 @@ const dataTrainingCard = [
   },
   {
     id: 6,
-    title: 'Training Angular',
+    title: 'Training HTML CSS',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -49,7 +49,7 @@ const dataTrainingCard = [
   },
   {
     id: 7,
-    title: 'Training Angular',
+    title: 'Training Flutter',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',
@@ -57,7 +57,7 @@ const dataTrainingCard = [
   },
   {
     id: 8,
-    title: 'Training Angular',
+    title: 'Training Next JS',
     description: '6 juni 2022, 16:00-20:00',
     location: 'Jakarta',
     author: 'Juwita',

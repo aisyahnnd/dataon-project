@@ -1,10 +1,14 @@
 .container{
+<<<<<<< HEAD
+=======
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+>>>>>>> 3b5753ff1671a956be1b7af2b6493bcb2e795f01
     display: flex;
-    width: 100vw;
     justify-content: space-between;
-    padding: 20px;
     flex-wrap: wrap;
-    border-radius: 20px;
 }
 .switch{
     padding-right: 20px;
