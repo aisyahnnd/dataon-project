@@ -6,6 +6,7 @@ import './App.css';
 import { SectionHeader } from './Parts/SectionHeader/SectionHeader';
 import { TrainingEditPage } from './Pages/TrainingEditPage/TrainingEditPage';
 
+
 const App = () => {
   return (
     <>
