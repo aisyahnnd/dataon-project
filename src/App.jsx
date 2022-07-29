@@ -1,3 +1,4 @@
+import { MyTrainingEventTable } from './Parts'
 import { MyTrainingCard } from './Parts/MyTrainingCard/MyTrainingCard';
 import { AllTrainingEvent } from './Parts/AllTrainingEvent/AllTrainingEvent';
 import FilterTrainingEvent from './Parts/FilterTrainingEvent';
@@ -13,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

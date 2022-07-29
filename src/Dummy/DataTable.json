@@ -1,0 +1,50 @@
+[
+  {
+  "key": "1",
+  "eventName": "test",
+  "eventType": "Prof.",
+  "eventPeriode": 53,
+  "trainerName": "695-577-4376 x22674",
+  "rating": 3.5,
+  "additionalInfo" : "test"
+  }
+  ,
+  {
+    "key": "2",
+    "eventName": "test 123",
+    "eventType": "Prof. A",
+    "eventPeriode": 53,
+    "trainerName": "695-577-4376 x22674",
+    "rating": 5,
+    "additionalInfo" : "test"
+    }
+  ,
+  {
+    "key": "3",
+    "eventName": "test 123",
+    "eventType": "Prof. B",
+    "eventPeriode": 53,
+    "trainerName": "695-577-4376 x22674",
+    "rating": 5,
+    "additionalInfo" : "test"
+    },
+    {
+      "key": "4",
+      "eventName": "test 123",
+      "eventType": "Prof.",
+      "eventPeriode": 53,
+      "trainerName": "695-577-4376 x22674",
+      "rating": 5,
+      "additionalInfo" : "test"
+      }
+    ,
+    {
+      "key": "5",
+      "eventName": "test 123",
+      "eventType": "Prof.",
+      "eventPeriode": 53,
+      "trainerName": "695-577-4376 x22674",
+      "rating": 5,
+      "additionalInfo" : "test"
+    }
+]
