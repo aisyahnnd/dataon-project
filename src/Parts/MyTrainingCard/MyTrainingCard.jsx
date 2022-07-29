@@ -1,9 +1,8 @@
-import React from 'react';
-import { Badge, Carousel, Col, Row } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { SingleTrainingCard } from './SingleTrainingCard';
-import dataTraining from '../../dataTraining';
-import './MyTrainingCard.css';
+import { Badge, Carousel, Col, Row } from 'antd'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { SingleTrainingCard } from './SingleTrainingCard'
+import dataTraining from '../../dataTraining'
+import './MyTrainingCard.css'
 
 export const MyTrainingCard = () => {
   return (
@@ -16,7 +15,7 @@ export const MyTrainingCard = () => {
               style={{
                 backgroundColor: '#e7e7e7',
                 color: '#2db7f5',
-                fontWeight: 'bold',
+                fontWeight: 'bold'
               }}
               count={99}
             />
@@ -46,10 +45,10 @@ export const MyTrainingCard = () => {
                   </div>
                 </Col>
               </Row>
-            );
+            )
           })}
         </Carousel>
       </div>
     </>
-  );
-};
+  )
+}

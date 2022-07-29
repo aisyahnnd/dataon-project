@@ -2,10 +2,11 @@ import LabelSection from '../../Components/LabelSection'
 import TableData from '../../Components/TableData'
 import Data from '../../Dummy/DataTable.json'
 import { Rate } from 'antd'
+import { Link } from '../../Components'
 function MyTrainingEventTable () {
   return (
-    <div>
-          <LabelSection title="My Training Event" dataBadge={50} style={{
+    <div className='site-card-wrapper'>
+          <LabelSection label="My Training Event" dataBadge={50} style={{
             backgroundColor: '#e7e7e7',
             color: '#2db7f5',
             fontWeight: 'bold'
@@ -16,7 +17,8 @@ function MyTrainingEventTable () {
             title: 'EventName',
             dataIndex: 'eventName',
             key: 'eventName',
-            sorter: (a, b) => a.eventName.localeCompare(b.eventName)
+            sorter: (a, b) => a.eventName.localeCompare(b.eventName),
+            render: (eventName) => <Link></Link>
           },
           {
             title: 'Event Type',
