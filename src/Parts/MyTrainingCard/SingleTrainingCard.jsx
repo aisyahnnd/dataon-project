@@ -22,7 +22,6 @@ export const SingleTrainingCard = (props) => {
       style={{
         maxWidth: 400,
         borderRadius: 10,
-        width: 300,
       }}
       bodyStyle={{ padding: '0' }}
       hoverable

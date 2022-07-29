@@ -8,6 +8,7 @@ body {
   /* padding: 2rem; */
   /* text-align: center; */
   background-color: #dddddd;
+  height: fit-content;
 }
 
 .logo {
