@@ -1,11 +1,11 @@
-import { FilterTrainingEvent } from '../../Parts'
+import { FilterTrainingEvent } from "../../Parts";
 
 const Dashboard = () => {
   return (
     <div>
-          <FilterTrainingEvent/>
+      <FilterTrainingEvent />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

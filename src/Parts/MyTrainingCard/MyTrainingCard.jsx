@@ -1,9 +1,8 @@
-import React from 'react';
-import { Badge, Carousel, Col, Row } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { SingleTrainingCard } from './SingleTrainingCard';
-import dataTraining from '../../dataTraining';
-import './MyTrainingCard.css';
+import { Badge, Carousel, Col, Row } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { SingleTrainingCard } from "./SingleTrainingCard";
+import dataTraining from "../../dataTraining";
+import "./MyTrainingCard.css";
 
 export const MyTrainingCard = () => {
   return (
@@ -11,12 +10,12 @@ export const MyTrainingCard = () => {
       <div className="site-card-wrapper">
         <div className="title-event">
           <p>
-            My Training Event{' '}
+            My Training Event{" "}
             <Badge
               style={{
-                backgroundColor: '#e7e7e7',
-                color: '#2db7f5',
-                fontWeight: 'bold',
+                backgroundColor: "#e7e7e7",
+                color: "#2db7f5",
+                fontWeight: "bold",
               }}
               count={99}
             />
@@ -34,12 +33,7 @@ export const MyTrainingCard = () => {
         >
           {dataTraining.map((item, id) => {
             return (
-              <Row
-                key={id}
-                align="middle"
-                justify="center"
-                gutter={5}
-              >
+              <Row key={id} align="middle" justify="center" gutter={5}>
                 <Col>
                   <div>
                     <SingleTrainingCard key={id} item={item} />
