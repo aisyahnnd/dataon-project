@@ -1,11 +1,6 @@
-import {
-  ButtonIcon,
-  SelectBox,
-  TextInput,
-  Toggle,
-} from '../../Components';
-import './filterTrainingEvent.css';
-import { UnorderedListOutlined } from '@ant-design/icons';
+import { ButtonIcon, SelectBox, TextInput, Toggle } from "../../Components";
+import "./filterTrainingEvent.css";
+import { UnorderedListOutlined } from "@ant-design/icons";
 const FilterTrainingEvent = () => {
   return (
     <div className="container">

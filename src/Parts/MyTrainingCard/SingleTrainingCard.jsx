@@ -9,12 +9,19 @@ import {
 } from 'antd';
 import { EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
 import './MyTrainingCard.css';
-
+import PropTypes from 'prop-types';
 const { Text } = Typography;
 
 export const SingleTrainingCard = (props) => {
-  const { item, id } = props;
-
+  const { item, id, location } = props;
+  console.log('test');
+  const openLocation = () => {
+    console.log('test hit');
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}`,
+      '_blank'
+    );
+  };
   return (
     <Card
       key={id}
@@ -65,12 +72,27 @@ export const SingleTrainingCard = (props) => {
             type="primary"
             size="small"
             style={{ fontSize: 12 }}
+            onClick={openLocation}
             icon={<EnvironmentOutlined />}
           >
-            View Location
+            View Locationn
           </Button>
         </Col>
       </Row>
     </Card>
   );
+};
+SingleTrainingCard.propTypes = {
+  url: PropTypes.string,
+  item: PropTypes.object,
+  id: PropTypes.object,
+  location: PropTypes.string.isRequired,
+};
+SingleTrainingCard.defaultProps = {
+  dataBadge: 10,
+  style: '',
+  location: {
+    lat: '28.6139',
+    lng: '77.2090',
+  },
 };
