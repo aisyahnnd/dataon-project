@@ -1,7 +1,11 @@
 import { MyTrainingEventTable } from './Parts'
 
 const App = () => {
-  return <MyTrainingEventTable/>
+  return (
+    <>
+      <MyTrainingEventTable />
+    </>
+  )
 }
 
 export default App
