@@ -2,7 +2,7 @@ import LabelSection from '../../Components/LabelSection'
 import TableData from '../../Components/TableData'
 import Data from '../../Dummy/DataTable.json'
 import { Rate } from 'antd'
-function AllTrainingEventTable () {
+const AllTrainingEventTable = () => {
   return (
       <div className="site-card-wrapper">
           <LabelSection

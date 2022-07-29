@@ -1,5 +1,4 @@
-import FilterTrainingEvent from './FilterTrainingEvent'
-import TrainingEvent from './TrainingEvent'
-import MyTrainingEventTable from './MyTrainingEventTable'
-import AllTrainingEventTable from './AllTrainingEventTable'
-export { FilterTrainingEvent, TrainingEvent, MyTrainingEventTable, AllTrainingEventTable }
+import FilterTrainingEvent from "./FilterTrainingEvent";
+import MyTrainingEventTable from "./MyTrainingEventTable";
+import AllTrainingEventTable from "./AllTrainingEventTable";
+export { FilterTrainingEvent, MyTrainingEventTable, AllTrainingEventTable };

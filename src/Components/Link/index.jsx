@@ -1,15 +1,12 @@
+import PropTypes from "prop-types";
+const Link = ({ title }) => {
+  return <div>{title}</div>;
+};
 
-import PropTypes from 'prop-types'
-function Link ({ title }) {
-  return (
-    <div>{title}</div>
-  )
-}
-
-export default Link
+export default Link;
 Link.propTypes = {
-  title: PropTypes.string
-}
+  title: PropTypes.string,
+};
 Link.defaultProps = {
-  title: 'url'
-}
+  title: "url",
+};
