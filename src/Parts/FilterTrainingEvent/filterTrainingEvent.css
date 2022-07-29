@@ -1,11 +1,8 @@
 .container{
-<<<<<<< HEAD
-=======
     background-color: #fff;
     margin: 10px;
     border-radius: 10px;
     padding: 10px;
->>>>>>> 3b5753ff1671a956be1b7af2b6493bcb2e795f01
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

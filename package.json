@@ -14,10 +14,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
 =======
 >>>>>>> 3b5753ff1671a956be1b7af2b6493bcb2e795f01
+=======
+>>>>>>> 5b71b3f6749da94028153e5e19e812e21891f152
     "react-multi-carousel": "^2.8.2",
     "react-responsive-carousel": "^3.2.23"
   },
