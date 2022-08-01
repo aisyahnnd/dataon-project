@@ -1,15 +1,22 @@
-import React from "react";
-import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
-import { Card, Col, Row, Space, Typography } from "antd";
-import "./AllTrainingEvent.css";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Space, Typography } from 'antd';
+import './AllTrainingEvent.css';
 
 const { Text } = Typography;
 
-export const SingleTrainingEvent = props => {
+export const SingleTrainingEvent = (props) => {
   const { item, id } = props;
+  const navigate = useNavigate();
+
+  const showDetail = () => {
+    navigate(`/training/${item.id}`, { state: item });
+  };
 
   return (
     <Card
+      onClick={showDetail}
       key={id}
       style={{
         maxWidth: 400,
@@ -18,16 +25,20 @@ export const SingleTrainingEvent = props => {
       cover={
         <img
           alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          style={{ borderRadius: "10px 10px 0px 0px" }}
+          src={item.img}
+          style={{ borderRadius: '10px 10px 0px 0px' }}
         />
       }
       hoverable
     >
       <Row justify="space-between">
         <Col>
-          <Space direction="vertical" size={1} style={{ display: "flex" }}>
-            <Text style={{ fontSize: "11px" }}>
+          <Space
+            direction="vertical"
+            size={1}
+            style={{ display: 'flex' }}
+          >
+            <Text style={{ fontSize: '11px' }}>
               <EnvironmentOutlined /> {item.location}
             </Text>
             <Text strong>{item.title}</Text>
@@ -40,12 +51,12 @@ export const SingleTrainingEvent = props => {
             direction="vertical"
             size={1}
             style={{
-              display: "flex",
+              display: 'flex',
               paddingTop: 20,
             }}
           >
             <Text type="secondary">{item.description}</Text>
-            <Text type="secondary" style={{ fontSize: "11px" }}>
+            <Text type="secondary" style={{ fontSize: '11px' }}>
               <UserOutlined /> {item.author}
             </Text>
           </Space>

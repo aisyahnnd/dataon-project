@@ -1,7 +1,14 @@
 import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
 import { Breadcrumb, Button, Col, Row } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 export const SectionHeader = () => {
+  const navigate = useNavigate();
+
+  const handleCreate = () => {
+    navigate('/training/create');
+  };
+
   return (
     <>
       <div className="site-card-wrapper">
@@ -31,6 +38,7 @@ export const SectionHeader = () => {
             }}
           >
             <Button
+              onClick={handleCreate}
               type="primary"
               htmlType="submit"
               style={{ borderRadius: 5, fontWeight: 'bold' }}

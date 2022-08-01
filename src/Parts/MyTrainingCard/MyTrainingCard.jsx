@@ -38,7 +38,7 @@ export const MyTrainingCard = () => {
               <Row key={id} align="middle" justify="center" gutter={5}>
                 <Col>
                   <div>
-                    <SingleTrainingCard key={id} item={item} />
+                    <SingleTrainingCard id={id} item={item} />
                   </div>
                 </Col>
               </Row>

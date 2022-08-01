@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Badge, Col, Row, List, Card } from "antd";
 import { SingleTrainingEvent } from "./SingleTrainingEvent";
+import dataTraining from "../../dataTraining";
 import "./AllTrainingEvent.css";
 import { useContext } from "react";
 import { AppContext } from "../../Context";
 
 export const AllTrainingEvent = () => {
   const { AllTrainingCardContext } = useContext(AppContext);
+  const [data, setData] = useState([]);
+  const getData = async () => {
+    try {
+      setData(dataTraining);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className="site-card-wrapper">
@@ -40,7 +52,7 @@ export const AllTrainingEvent = () => {
             <List.Item>
               <Row justify="center">
                 <Col>
-                  <SingleTrainingEvent key={id} item={item} />
+                  <SingleTrainingEvent id={item.id} item={item} />
                 </Col>
               </Row>
             </List.Item>

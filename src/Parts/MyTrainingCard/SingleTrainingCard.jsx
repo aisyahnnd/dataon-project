@@ -1,12 +1,14 @@
 import { Image, Card, Col, Row, Button, Space, Typography } from "antd";
 import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import "./MyTrainingCard.css";
 import PropTypes from "prop-types";
 const { Text } = Typography;
 
 export const SingleTrainingCard = props => {
   const { item, id, location } = props;
-  console.log("test");
+  const navigate = useNavigate();
+
   const openLocation = () => {
     console.log("test hit");
     window.open(
@@ -14,9 +16,15 @@ export const SingleTrainingCard = props => {
       "_blank"
     );
   };
+
+  const showDetail = () => {
+    navigate(`/mytraining/${item.id}`, { state: item });
+  };
+
   return (
     <Card
       key={id}
+      onClick={showDetail}
       style={{
         maxWidth: 400,
         borderRadius: 10,
