@@ -24,10 +24,9 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
-export const TrainingEditPage = () => {
+export const TrainingCreatePage = () => {
   const [componentSize, setComponentSize] = useState('default');
   const navigate = useNavigate();
-  const location = useLocation();
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
@@ -35,6 +34,10 @@ export const TrainingEditPage = () => {
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
+  };
+
+  const handleBack = () => {
+    navigate('/');
   };
 
   return (
@@ -80,7 +83,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Input defaultValue={location.state.title} />
+            <Input placeholder="Training Course" />
           </Form.Item>
           <Form.Item
             name="event-name"
@@ -200,6 +203,18 @@ export const TrainingEditPage = () => {
                 borderTop: '1px #dddddd solid',
               }}
             >
+              <Button
+                onClick={handleBack}
+                type="secondary"
+                htmlType="submit"
+                style={{
+                  borderRadius: 5,
+                  width: 100,
+                  marginRight: 10,
+                }}
+              >
+                Back
+              </Button>
               <Button
                 type="primary"
                 htmlType="submit"
