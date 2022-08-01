@@ -8,6 +8,7 @@ import { TrainingEditPage } from './Pages/TrainingEditPage/TrainingEditPage';
 import { TrainingDetailPage } from './Pages/TrainingDetailPage/TrainingDetailPage';
 import { TrainingCreatePage } from './Pages/TrainingCreatePage /TrainingCreatePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MissingPage } from './Pages/MissingPage/MissingPage';
 
 const App = () => {
   return (
@@ -43,6 +44,8 @@ const App = () => {
           path="/mytraining/edit/:id"
           element={<TrainingEditPage />}
         />
+        <Route path="*" exact={true} element={<MissingPage />} />
+        <Route path="/missing" element={<MissingPage />} />
       </Routes>
     </BrowserRouter>
   );
