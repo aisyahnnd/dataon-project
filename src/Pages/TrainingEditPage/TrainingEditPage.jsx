@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
 import {
   Form,
   Input,
@@ -7,11 +6,13 @@ import {
   Radio,
   Select,
   DatePicker,
-  Upload,
   Row,
   Col,
+  InputNumber,
 } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
+import dayjs from 'dayjs';
+import moment from 'moment';
 const { RangePicker } = DatePicker;
 
 const normFile = (e) => {
@@ -24,10 +25,52 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
+const options = [
+  {
+    label: 'Internal',
+    value: 'Internal',
+  },
+  {
+    label: 'Open for Registration',
+    value: 'Open for Registration',
+  },
+  {
+    label: 'Closed Registration',
+    value: 'Closed Registration',
+  },
+];
+
 export const TrainingEditPage = () => {
   const [componentSize, setComponentSize] = useState('default');
+  const [data, setData] = useState({
+    eventName: '',
+    startDate: '',
+    endDate: '',
+    image: '',
+    speaker: '',
+    location: '',
+    ratings: '',
+    isOnline: '',
+    isOffline: '',
+    information: '',
+    participant: '',
+    isCompleted: '',
+    date: '',
+    eventType: '',
+  });
+  const [value, setValue] = useState('');
+  const [form] = Form.useForm();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const onChangeRadioButton = ({ target: { value } }) => {
+    console.log('radio button checked', value);
+    setValue(
+      data.isCompleted === true
+        ? 'Closed Registration'
+        : 'Open for Registration'
+    );
+  };
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
@@ -36,6 +79,48 @@ export const TrainingEditPage = () => {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
+
+  const getData = async () => {
+    try {
+      setData({
+        eventName: location.state.eventName,
+        startDate: dayjs(location.state.startDate).format(
+          'YYYY-MM-DD HH:mm'
+        ),
+        endDate: dayjs(location.state.endDate).format(
+          'YYYY-MM-DD HH:mm'
+        ),
+        image: location.state.image,
+        eventType:
+          location.isOffline === true
+            ? 'Offline Class'
+            : 'Online Class',
+        location: location.state.location,
+        speaker: location.state.speaker,
+        ratings: location.state.ratings,
+        information: location.state.information,
+        participant: location.state.participant,
+      });
+    } catch (error) {
+      navigate('/missing');
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  form.setFieldsValue({
+    eventName: data.eventName,
+    date: [moment(data.startDate), moment(data.endDate)],
+    image: data.image,
+    eventType: data.eventType,
+    location: data.location,
+    speaker: data.speaker,
+    ratings: data.ratings,
+    information: data.information,
+    participant: data.participant,
+  });
 
   return (
     <>
@@ -53,13 +138,16 @@ export const TrainingEditPage = () => {
           }}
           onValuesChange={onFormLayoutChange}
           size={componentSize}
+          form={form}
+          style={{ paddingTop: 50 }}
         >
-          <Form.Item name="event-no" label="Event No:">
+          <Form.Item name="eventNo" label="Event No:">
             TREV-YYMM-XXXX
           </Form.Item>
           <Form.Item
-            name="event-type"
+            name="eventType"
             label="Event Type:"
+            value={data.eventType}
             rules={[
               {
                 required: true,
@@ -72,107 +160,62 @@ export const TrainingEditPage = () => {
             </Select>
           </Form.Item>
           <Form.Item
-            name="training-course"
-            label="Training Course:"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input defaultValue={location.state.title} />
-          </Form.Item>
-          <Form.Item
-            name="event-name"
+            name="eventName"
             label="Event Name"
+            value={data.eventName}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input placeholder="Input Event Name" />
+            <Input />
           </Form.Item>
           <Form.Item
-            name="provider-type"
-            label="Provider Type"
+            name="speaker"
+            label="Speaker"
+            value={data.speaker}
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
               },
             ]}
           >
-            <Radio.Group>
-              <Radio.Button value="internal">Internal</Radio.Button>
-              <Radio.Button value="external">External</Radio.Button>
-            </Radio.Group>
+            <Input />
           </Form.Item>
           <Form.Item
-            name="provider"
-            label="Provider"
+            name="location"
+            label="Location"
+            value={data.location}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select
-              placeholder="Select Provider Type"
-              allowClear
-              style={{ width: '92%' }}
-            >
-              <Option value="internal">Internal</Option>
-              <Option value="external">External</Option>
-            </Select>
-            <Button
-              htmlType="button"
-              style={{
-                borderRadius: 3,
-                marginLeft: 5,
-                border: '1px #40a9ff solid',
-                color: '#40a9ff',
-              }}
-            >
-              <PlusOutlined />
-            </Button>
-          </Form.Item>
-          <Form.Item
-            name="event-thumbnail"
-            label="Event Thumbnail"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-            extra="Recommended image resolution is 500x300 (5:3 aspect ratio, max. 2MB, jpg/jpeg)"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Upload
-              name="logo"
-              action="/upload.do"
-              listType="picture"
-            >
-              <Button icon={<UploadOutlined />}>
-                Click to Upload
-              </Button>
-            </Upload>
+            <Input />
           </Form.Item>
           <Form.Item
             name="date"
             label="Date"
+            value={data.date}
             rules={[
-              {
-                required: true,
-              },
+              { required: true, message: 'Please select date!' },
             ]}
           >
-            <RangePicker />
+            <RangePicker
+              format="YYYY-MM-DD HH:mm"
+              defaultPickerValue={[
+                moment(data.startDate),
+                moment(data.endDate),
+              ]}
+              showTime
+            />
           </Form.Item>
           <Form.Item
-            name="status"
+            name="isCompleted"
             label="Status"
+            value={value}
             rules={[
               {
                 required: true,
@@ -180,17 +223,32 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Radio.Group>
-              <Radio.Button value="draf">Internal</Radio.Button>
-              <Radio.Button value="open-for-registration">
-                Open for Registration
-              </Radio.Button>
-              <Radio.Button value="closed-registration">
-                Closed Registration
-              </Radio.Button>
-            </Radio.Group>
+            <Radio.Group
+              options={options}
+              onChange={onChangeRadioButton}
+              optionType="button"
+              defaultValue={
+                data.isCompleted === true
+                  ? 'Closed Registration'
+                  : 'Open for Registration'
+              }
+            />
           </Form.Item>
-
+          <Form.Item
+            name="participant"
+            label="Participant"
+            value={data.participant}
+            rules={[{ required: true }]}
+          >
+            <InputNumber min={1} max={100} type="number" />
+          </Form.Item>
+          <Form.Item
+            name="ratings"
+            label="Ratings"
+            value={data.ratings}
+          >
+            <InputNumber min={1} max={100} type="number" />
+          </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
               span={24}

@@ -30,43 +30,62 @@ export const TrainingDetailPage = () => {
           <Col>
             <Image
               alt="img-detail"
-              src={location.state.img}
+              src={location.state.image}
               width={400}
-              height={200}
+              height={400}
+              style={{ borderRadius: 10 }}
             />
           </Col>
 
           <Col className="training-detail">
             <Space
               direction="vertical"
-              size={5}
+              size={7}
               style={{ display: 'flex' }}
             >
               <Text style={{ fontSize: '16px' }}>
                 <EnvironmentOutlined /> {location.state.location}
               </Text>
-              <Text strong style={{ fontSize: '24px' }}>
-                Training Course : {location.state.title}
+              <Text strong style={{ fontSize: '32px' }}>
+                {location.state.eventName}
               </Text>
               <Text style={{ fontSize: '16px' }}>
                 Event No : TREV-YYMM-XXXX
               </Text>
               <Text style={{ fontSize: '16px' }}>
-                Event Type : Online Class
+                Event Type :{' '}
+                {location.state.isOnline === true
+                  ? 'Online Class'
+                  : 'Offline Class'}
               </Text>
-              <Text style={{ fontSize: '16px' }}>Event Name :</Text>
               <Text style={{ fontSize: '16px' }}>
-                Provider Type : Internal
+                Event Name : {location.state.eventName}
               </Text>
-
               <Text style={{ fontSize: '16px' }}>
-                Status : Open for Registration
+                Status :{' '}
+                {location.state.isCompleted === true
+                  ? 'Close Registration'
+                  : 'Open for Registration'}
+              </Text>
+            </Space>
+            <Space
+              direction="vertical"
+              size={5}
+              style={{ display: 'flex', paddingTop: 50 }}
+            >
+              <Text
+                type="secondary"
+                style={{
+                  fontSize: '16px',
+                }}
+              >
+                Start Date : {location.state.startDate}
               </Text>
               <Text type="secondary" style={{ fontSize: '16px' }}>
-                Date : {location.state.description}
+                End Date : {location.state.endDate}
               </Text>
               <Text type="secondary" style={{ fontSize: '16px' }}>
-                <UserOutlined /> {location.state.author}
+                <UserOutlined /> {location.state.speaker}
               </Text>
             </Space>
           </Col>
