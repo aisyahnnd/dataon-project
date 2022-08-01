@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import LabelSection from "../../Components/LabelSection";
 import TableData from "../../Components/TableData";
-import Data from "../../Dummy/DataTable.json";
-import { Rate } from "antd";
-import { Link } from "../../Components";
+import { AppContext } from "../../Context";
 const MyTrainingEventTable = () => {
+  // const dataTable = useContext(MyTrainingTableDataContext);
+  // const columns = useContext(MyTrainingTableColumnContext);
+  const { MyTrainingTableDataContext } = useContext(AppContext);
+  const { MyTrainingTableColumnContext } = useContext(AppContext);
   return (
     <div className="site-card-wrapper">
       <LabelSection
@@ -16,50 +19,9 @@ const MyTrainingEventTable = () => {
         }}
       />
       <TableData
-        dataTable={Data}
+        dataTable={MyTrainingTableDataContext}
         pagination={{ defaultPageSize: 2 }}
-        columns={[
-          {
-            title: "EventName",
-            dataIndex: "eventName",
-            key: "eventName",
-            sorter: (a, b) => a.eventName.localeCompare(b.eventName),
-            render: eventName => <Link></Link>,
-          },
-          {
-            title: "Event Type",
-            dataIndex: "eventType",
-            key: "eventType",
-            sorter: (a, b) => a.eventType.localeCompare(b.eventType),
-          },
-          {
-            title: "Event Periode",
-            dataIndex: "eventPeriode",
-            key: "eventPeriode",
-            sorter: (a, b) => a.eventPeriode - b.eventPeriode,
-          },
-          {
-            title: "Trainer Name",
-            dataIndex: "trainerName",
-            key: "trainerName",
-            sorter: (a, b) => a.trainerName.localeCompare(b.trainerName),
-          },
-          {
-            title: "Rating",
-            dataIndex: "rating",
-            key: "rating",
-            sorter: (a, b) => a.rating - b.rating,
-            render: rating => (
-              <Rate disabled allowHalf defaultValue={0} value={rating}></Rate>
-            ),
-          },
-          {
-            title: "Additional Info",
-            dataIndex: "additionalInfo",
-            key: "additionalInfo",
-            sorter: (a, b) => a.additionalInfo.localeCompare(b.additionalInfo),
-          },
-        ]}
+        columns={MyTrainingTableColumnContext}
       />
     </div>
   );

@@ -34,5 +34,5 @@ const SelectBox = ({ type, style }) => {
 export default SelectBox;
 SelectBox.propTypes = {
   type: PropTypes.string.isRequired,
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
