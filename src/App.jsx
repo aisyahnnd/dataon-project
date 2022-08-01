@@ -35,7 +35,6 @@ const App = () => {
           path="/training/create"
           element={<TrainingCreatePage />}
         />
-
         <Route
           path="/mytraining/:id"
           element={<TrainingDetailPage />}
