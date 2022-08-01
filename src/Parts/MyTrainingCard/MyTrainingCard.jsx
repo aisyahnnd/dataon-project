@@ -1,10 +1,12 @@
 import { Badge, Carousel, Col, Row } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { SingleTrainingCard } from "./SingleTrainingCard";
-import dataTraining from "../../dataTraining";
 import "./MyTrainingCard.css";
+import { useContext } from "react";
+import { MyTrainingCardContext } from "../../Context";
 
 export const MyTrainingCard = () => {
+  const dataTraining = useContext(MyTrainingCardContext);
   return (
     <>
       <div className="site-card-wrapper">

@@ -3,14 +3,14 @@ import "./filterTrainingEvent.css";
 import { UnorderedListOutlined } from "@ant-design/icons";
 const FilterTrainingEvent = () => {
   return (
-    <div className="container">
+    <div className="container-grid">
       <TextInput
         label="Search Training"
         placeholder="Search Training"
-        style={{ width: 200, borderRadius: 5 }}
+        style={{ width: 230, borderRadius: 5 }}
       />
-      <SelectBox type="event" style={{ width: 250 }} />
-      <SelectBox type="status" style={{ width: 250 }} />
+      <SelectBox type="event" style={{ width: 230 }} />
+      <SelectBox type="status" style={{ width: 230 }} />
       <div className="switch">
         <Toggle label="Related Job Only"></Toggle>
       </div>

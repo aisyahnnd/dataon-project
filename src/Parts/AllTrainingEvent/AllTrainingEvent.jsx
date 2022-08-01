@@ -1,10 +1,12 @@
 import React from "react";
 import { Badge, Col, Row, List, Card } from "antd";
 import { SingleTrainingEvent } from "./SingleTrainingEvent";
-import dataTraining from "../../dataTraining";
 import "./AllTrainingEvent.css";
+import { useContext } from "react";
+import { AllTrainingCardContext } from "../../Context";
 
 export const AllTrainingEvent = () => {
+  const dataTraining = useContext(AllTrainingCardContext);
   return (
     <>
       <div className="site-card-wrapper">
