@@ -3,10 +3,10 @@ import { Badge, Col, Row, List, Card } from "antd";
 import { SingleTrainingEvent } from "./SingleTrainingEvent";
 import "./AllTrainingEvent.css";
 import { useContext } from "react";
-import { AllTrainingCardContext } from "../../Context";
+import { AppContext } from "../../Context";
 
 export const AllTrainingEvent = () => {
-  const dataTraining = useContext(AllTrainingCardContext);
+  const { AllTrainingCardContext } = useContext(AppContext);
   return (
     <>
       <div className="site-card-wrapper">
@@ -35,7 +35,7 @@ export const AllTrainingEvent = () => {
             xl: 5,
             xxl: 3,
           }}
-          dataSource={dataTraining.slice(0, 5)}
+          dataSource={AllTrainingCardContext.slice(0, 5)}
           renderItem={(item, id) => (
             <List.Item>
               <Row justify="center">

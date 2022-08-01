@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import LabelSection from "../../Components/LabelSection";
 import TableData from "../../Components/TableData";
-import {
-  MyTrainingTableColumnContext,
-  MyTrainingTableDataContext,
-} from "../../Context";
-import Data from "../../Dummy/DataTable.json";
+import { AppContext } from "../../Context";
 const MyTrainingEventTable = () => {
-  const dataTable = useContext(MyTrainingTableDataContext);
-  const columns = useContext(MyTrainingTableColumnContext);
+  // const dataTable = useContext(MyTrainingTableDataContext);
+  // const columns = useContext(MyTrainingTableColumnContext);
+  const { MyTrainingTableDataContext } = useContext(AppContext);
+  const { MyTrainingTableColumnContext } = useContext(AppContext);
   return (
     <div className="site-card-wrapper">
       <LabelSection
@@ -21,9 +19,9 @@ const MyTrainingEventTable = () => {
         }}
       />
       <TableData
-        dataTable={dataTable}
+        dataTable={MyTrainingTableDataContext}
         pagination={{ defaultPageSize: 2 }}
-        columns={columns}
+        columns={MyTrainingTableColumnContext}
       />
     </div>
   );

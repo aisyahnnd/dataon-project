@@ -13,8 +13,8 @@ export default ButtonIcon;
 
 ButtonIcon.propTypes = {
   textButton: PropTypes.string.isRequired,
-  style: PropTypes.string,
-  icon: PropTypes.string,
+  style: PropTypes.object,
+  icon: PropTypes.object,
 };
 
 ButtonIcon.defaultProps = {

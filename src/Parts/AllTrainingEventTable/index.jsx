@@ -1,15 +1,11 @@
 import LabelSection from "../../Components/LabelSection";
 import TableData from "../../Components/TableData";
 
-import { useContext, useState } from "react";
-import {
-  AllTrainingTableColumnContext,
-  AllTrainingTableDataContext,
-} from "../../Context";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 const AllTrainingEventTable = () => {
-  const dataTable = useContext(AllTrainingTableDataContext);
-  const columns = useContext(AllTrainingTableColumnContext);
-  const a = useState("a");
+  const { AllTrainingTableDataContext } = useContext(AppContext);
+  const { AllTrainingTableColumnContext } = useContext(AppContext);
   return (
     <div className="site-card-wrapper">
       <LabelSection
@@ -22,9 +18,9 @@ const AllTrainingEventTable = () => {
         }}
       ></LabelSection>
       <TableData
-        dataTable={dataTable}
+        dataTable={AllTrainingTableDataContext}
         pagination={{ defaultPageSize: 2 }}
-        columns={columns}
+        columns={AllTrainingTableColumnContext}
       ></TableData>
     </div>
   );

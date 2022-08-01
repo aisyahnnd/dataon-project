@@ -3,10 +3,10 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { SingleTrainingCard } from "./SingleTrainingCard";
 import "./MyTrainingCard.css";
 import { useContext } from "react";
-import { MyTrainingCardContext } from "../../Context";
+import { AppContext } from "../../Context";
 
 export const MyTrainingCard = () => {
-  const dataTraining = useContext(MyTrainingCardContext);
+  const { MyTrainingCardContext } = useContext(AppContext);
   return (
     <>
       <div className="site-card-wrapper">
@@ -33,7 +33,7 @@ export const MyTrainingCard = () => {
           prevArrow={<LeftOutlined />}
           nextArrow={<RightOutlined />}
         >
-          {dataTraining.map((item, id) => {
+          {MyTrainingCardContext.map((item, id) => {
             return (
               <Row key={id} align="middle" justify="center" gutter={5}>
                 <Col>

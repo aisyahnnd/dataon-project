@@ -17,7 +17,7 @@ TextInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
 TextInput.defaultProps = {
   id: "input-text",
