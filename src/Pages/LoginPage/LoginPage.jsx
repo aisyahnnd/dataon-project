@@ -18,6 +18,11 @@ import { DownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Image1 from '../../assets/Images/example-3.svg';
+import Image2 from '../../assets/Images/example-25.svg';
+import Image3 from '../../assets/Images/example-29.svg';
+import Image4 from '../../assets/Images/example-30.svg';
+import Logo from '../../assets/Images/logo.png';
 
 const menu = (
   <Menu
@@ -78,7 +83,7 @@ export const LoginPage = () => {
           style={{ borderBottom: '1px #dddddd solid' }}
         >
           <Col span={3}>
-            <img alt="logo" src="logo.png" width={150} />
+            <img alt="logo" src={Logo} width={150} />
           </Col>
           <Col
             span={18}
@@ -132,28 +137,28 @@ export const LoginPage = () => {
                     justifyContent: 'center',
                   }}
                   alt="side-1"
-                  src="example-3.svg"
+                  src={Image1}
                 />
               </div>
               <div>
                 <img
                   style={{ width: '500px', justifyContent: 'center' }}
                   alt="side-1"
-                  src="example-25.svg"
+                  src={Image2}
                 />
               </div>
               <div>
                 <img
                   style={{ width: '500px', justifyContent: 'center' }}
                   alt="side-1"
-                  src="example-29.svg"
+                  src={Image3}
                 />
               </div>
               <div>
                 <img
                   style={{ width: '500px', justifyContent: 'center' }}
                   alt="side-1"
-                  src="example-30.svg"
+                  src={Image4}
                 />
               </div>
             </Carousel>
