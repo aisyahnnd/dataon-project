@@ -10,7 +10,10 @@
   font-weight: bold;
   justify-items: left;
 }
-
+.rating {
+  display: flex;
+  justify-content: center;
+}
 .row-top {
   border-bottom: 1px #cccccc solid;
 }
