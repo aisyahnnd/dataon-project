@@ -1,29 +1,29 @@
-import { Badge, Carousel, Col, Row } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { SingleTrainingCard } from './SingleTrainingCard';
-import './MyTrainingCard.css';
-import { useContext } from 'react';
-import { AppContext } from '../../Context';
+import { Badge, Carousel, Col, Row } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { SingleTrainingCard } from "./SingleTrainingCard";
+import "./MyTrainingCard.css";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 
-export const MyTrainingCard = () => {
+const MyTrainingCard = () => {
   const { MyTrainingCardContext } = useContext(AppContext);
   return (
     <>
       <div className="site-card-wrapper">
         <div className="title-event">
-          <p>
-            My Training Event{' '}
+          <p className="title">
+            My Training Event
             <Badge
+              offset={20}
               style={{
-                backgroundColor: '#e7e7e7',
-                color: '#2db7f5',
-                fontWeight: 'bold',
+                backgroundColor: "#e7e7e7",
+                color: "#2db7f5",
+                fontWeight: "bold",
               }}
               count={MyTrainingCardContext.length}
             />
           </p>
         </div>
-
         <Carousel
           arrows
           dots={false}
@@ -35,12 +35,7 @@ export const MyTrainingCard = () => {
         >
           {MyTrainingCardContext.map((item, id) => {
             return (
-              <Row
-                key={id}
-                align="middle"
-                justify="center"
-                gutter={5}
-              >
+              <Row key={id} align="middle" justify="center" gutter={5}>
                 <Col>
                   <div>
                     <SingleTrainingCard id={id} item={item} />
@@ -54,3 +49,5 @@ export const MyTrainingCard = () => {
     </>
   );
 };
+
+export default MyTrainingCard;

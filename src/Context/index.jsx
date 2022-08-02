@@ -5,17 +5,6 @@ import { columnsAllTraining } from "../Utils/ColumnsAllTraining";
 import { columnsMyTraining } from "../Utils/ColumnsMyTraining";
 import { useState } from "react";
 export const AppContext = createContext(null);
-// All Training Event Table Context
-export const AllTrainingTableDataContext = createContext(dataJson);
-export const AllTrainingTableColumnContext = createContext(columnsAllTraining);
-// My Training Event Table Context
-export const MyTrainingTableDataContext = createContext(dataJson);
-export const MyTrainingTableColumnContext = createContext(columnsMyTraining);
-//Data My Training Event Card
-export const MyTrainingCardContext = createContext(dataTraining);
-
-//Data All Training Event Card
-export const AllTrainingCardContext = createContext(dataTraining);
 
 export const ContextWrapper = props => {
   const [AllTrainingTableDataContext] = useState(dataJson);
@@ -24,6 +13,7 @@ export const ContextWrapper = props => {
   const [MyTrainingTableColumnContext] = useState(columnsMyTraining);
   const [MyTrainingCardContext] = useState(dataTraining);
   const [AllTrainingCardContext] = useState(dataTraining);
+  const [view, setView] = useState(false);
   return (
     <AppContext.Provider
       value={{
@@ -33,6 +23,8 @@ export const ContextWrapper = props => {
         MyTrainingTableColumnContext,
         MyTrainingCardContext,
         AllTrainingCardContext,
+        view,
+        setView,
       }}
     >
       {props.children}

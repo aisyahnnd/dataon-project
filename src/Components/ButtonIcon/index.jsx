@@ -1,9 +1,9 @@
 // import { UnorderedListOutlined } from '@ant-design/icons'
 import { Button } from "antd";
 import PropTypes from "prop-types";
-const ButtonIcon = ({ textButton, style, icon }) => {
+const ButtonIcon = ({ textButton, style, icon, onClick }) => {
   return (
-    <Button icon={icon} style={style}>
+    <Button icon={icon} style={style} onClick={onClick}>
       {textButton}
     </Button>
   );

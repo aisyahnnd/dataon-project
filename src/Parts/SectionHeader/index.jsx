@@ -1,12 +1,12 @@
-import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
-import { Breadcrumb, Button, Col, Row } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
+import { Breadcrumb, Button, Col, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
-export const SectionHeader = () => {
+const SectionHeader = () => {
   const navigate = useNavigate();
 
   const handleCreate = () => {
-    navigate('/training/create');
+    navigate("/training/create");
   };
 
   return (
@@ -16,16 +16,14 @@ export const SectionHeader = () => {
           <Col
             span={12}
             style={{
-              textAlign: 'left',
+              textAlign: "left",
               paddingTop: 5,
               paddingLeft: 5,
             }}
           >
             <Breadcrumb separator=">">
               <Breadcrumb.Item>Training</Breadcrumb.Item>
-              <Breadcrumb.Item
-                style={{ fontWeight: 'bold', color: '#1890ff' }}
-              >
+              <Breadcrumb.Item style={{ fontWeight: "bold", color: "#1890ff" }}>
                 Training Event
               </Breadcrumb.Item>
             </Breadcrumb>
@@ -33,7 +31,7 @@ export const SectionHeader = () => {
           <Col
             span={12}
             style={{
-              textAlign: 'right',
+              textAlign: "right",
               padding: 0,
             }}
           >
@@ -41,7 +39,7 @@ export const SectionHeader = () => {
               onClick={handleCreate}
               type="primary"
               htmlType="submit"
-              style={{ borderRadius: 5, fontWeight: 'bold' }}
+              style={{ borderRadius: 5, fontWeight: "bold" }}
             >
               <PlusOutlined /> Create Training Event
             </Button>
@@ -49,7 +47,7 @@ export const SectionHeader = () => {
               type="dashed"
               style={{
                 borderRadius: 5,
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 marginLeft: 10,
                 marginRight: 20,
               }}
@@ -62,3 +60,5 @@ export const SectionHeader = () => {
     </>
   );
 };
+
+export default SectionHeader;

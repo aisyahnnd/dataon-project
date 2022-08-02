@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Badge, Col, Row, List, Card } from 'antd';
-import { SingleTrainingEvent } from './SingleTrainingEvent';
-import dataTraining from '../../dataTraining';
-import './AllTrainingEvent.css';
-import { useContext } from 'react';
-import { AppContext } from '../../Context';
+import React, { useState, useEffect } from "react";
+import { Badge, Col, Row, List, Card } from "antd";
+import { SingleTrainingEvent } from "./SingleTrainingEvent";
+import dataTraining from "../../dataTraining";
+import "./AllTrainingEvent.css";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 
-export const AllTrainingEvent = () => {
+const AllTrainingEvent = () => {
   const { AllTrainingCardContext } = useContext(AppContext);
   const [data, setData] = useState([]);
   const getData = async () => {
@@ -24,12 +24,12 @@ export const AllTrainingEvent = () => {
       <div className="site-card-wrapper">
         <div className="title-event">
           <p>
-            All Training Event{' '}
+            All Training Event{" "}
             <Badge
               style={{
-                backgroundColor: '#e7e7e7',
-                color: '#2db7f5',
-                fontWeight: 'bold',
+                backgroundColor: "#e7e7e7",
+                color: "#2db7f5",
+                fontWeight: "bold",
               }}
               count={AllTrainingCardContext.length}
             />
@@ -62,3 +62,5 @@ export const AllTrainingEvent = () => {
     </>
   );
 };
+
+export default AllTrainingEvent;
