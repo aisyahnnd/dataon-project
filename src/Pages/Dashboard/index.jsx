@@ -20,7 +20,7 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <MyTrainingEventTable /> <AllTrainingEventTable />{" "}
+          <MyTrainingEventTable /> <AllTrainingEventTable />
         </>
       )}
     </>
