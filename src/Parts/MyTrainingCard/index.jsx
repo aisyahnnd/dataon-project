@@ -11,9 +11,10 @@ const MyTrainingCard = () => {
     <>
       <div className="site-card-wrapper">
         <div className="title-event">
-          <p>
-            My Training Event{" "}
+          <p className="title">
+            My Training Event
             <Badge
+              offset={20}
               style={{
                 backgroundColor: "#e7e7e7",
                 color: "#2db7f5",
@@ -23,7 +24,6 @@ const MyTrainingCard = () => {
             />
           </p>
         </div>
-
         <Carousel
           arrows
           dots={false}

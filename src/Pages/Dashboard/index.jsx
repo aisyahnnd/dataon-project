@@ -11,12 +11,19 @@ import {
 const Dashboard = () => {
   const { view } = useContext(AppContext);
   return (
-    <div>
+    <>
       <SectionHeader />
       <FilterTrainingEvent />
-      {view ? <MyTrainingCard /> : <MyTrainingEventTable />}
-      {view ? <AllTrainingEvent /> : <AllTrainingEventTable />}
-    </div>
+      {view ? (
+        <>
+          <MyTrainingCard /> <AllTrainingEvent />
+        </>
+      ) : (
+        <>
+          <MyTrainingEventTable /> <AllTrainingEventTable />{" "}
+        </>
+      )}
+    </>
   );
 };
 
