@@ -6,13 +6,13 @@ import "./MyTrainingCard.css";
 import PropTypes from "prop-types";
 const { Text } = Typography;
 import { Rate } from "antd";
+import { useEffect } from "react";
 
 export const SingleTrainingCard = props => {
   const { item, id, location } = props;
   const navigate = useNavigate();
 
   const openLocation = () => {
-    console.log("test hit");
     window.open(
       `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}`,
       "_blank"
@@ -23,22 +23,28 @@ export const SingleTrainingCard = props => {
   };
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [rate, setRate] = useState(item.ratings);
+  // convert rate to range 1-5 not 0-100
+  const [rate, setRate] = useState(item.ratings / 20);
   const showModal = () => {
+    console.log(rate);
     setVisible(true);
   };
   const onChangeRatings = value => {
-    setRate(value * 20); // convert rate to range 0 - 100 not 1-5
+    setRate(value);
   };
   const handleOk = item => {
     setConfirmLoading(true);
     setTimeout(() => {
       setVisible(false);
       //action update rate
+      // convert rate to range 0 - 100 not 1-5 before update
       setConfirmLoading(false);
     }, 2000);
   };
-
+  //rate will update on modal if value ratings update on db
+  useEffect(() => {
+    setRate(item.ratings);
+  }, [item.ratings]);
   const handleCancel = () => {
     setRate(item.ratings);
     console.log(rate);
@@ -125,10 +131,8 @@ export const SingleTrainingCard = props => {
               </Text>
               <div className="rating">
                 <Rate
-                  allowHalf
-                  defaultValue={0}
-                  // convert rate to range 1-5 not 0-100
-                  value={rate / 5}
+                  defaultValue={item.ratings}
+                  value={rate}
                   onChange={value => onChangeRatings(value)}
                 ></Rate>
               </div>
@@ -142,7 +146,7 @@ export const SingleTrainingCard = props => {
 SingleTrainingCard.propTypes = {
   url: PropTypes.string,
   item: PropTypes.object,
-  id: PropTypes.object,
+  id: PropTypes.number,
   location: PropTypes.object.isRequired,
 };
 SingleTrainingCard.defaultProps = {
