@@ -26,7 +26,6 @@ export const SingleTrainingCard = props => {
   // convert rate to range 1-5 not 0-100
   const [rate, setRate] = useState(item.ratings / 20);
   const showModal = () => {
-    console.log(rate);
     setVisible(true);
   };
   const onChangeRatings = value => {
@@ -47,7 +46,6 @@ export const SingleTrainingCard = props => {
   }, [item.ratings]);
   const handleCancel = () => {
     setRate(item.ratings);
-    console.log(rate);
     setVisible(false);
   };
   return (

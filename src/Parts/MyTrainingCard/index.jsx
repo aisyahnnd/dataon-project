@@ -30,8 +30,8 @@ const MyTrainingCard = () => {
           infinite={true}
           slidesToShow={4}
           slidesToScroll={1}
-          prevArrow={<LeftOutlined />}
-          nextArrow={<RightOutlined />}
+          prevArrow={<SlickButtonLeft />}
+          nextArrow={<SlickButtonRight />}
         >
           {MyTrainingCardContext.map((item, id) => {
             return (
@@ -49,5 +49,10 @@ const MyTrainingCard = () => {
     </>
   );
 };
-
+const SlickButtonLeft = ({ currentSlide, slideCount, children, ...props }) => (
+  <LeftOutlined {...props}>{children}</LeftOutlined>
+);
+const SlickButtonRight = ({ currentSlide, slideCount, children, ...props }) => (
+  <RightOutlined {...props}>{children}</RightOutlined>
+);
 export default MyTrainingCard;

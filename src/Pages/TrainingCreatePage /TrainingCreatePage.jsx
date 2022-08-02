@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Form,
   Input,
@@ -10,13 +10,11 @@ import {
   Upload,
   Row,
   Col,
-} from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
+} from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
 const { RangePicker } = DatePicker;
 
-const normFile = (e) => {
-  console.log('Upload event:', e);
-
+const normFile = e => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -25,19 +23,17 @@ const normFile = (e) => {
 };
 
 export const TrainingCreatePage = () => {
-  const [componentSize, setComponentSize] = useState('default');
+  const [componentSize, setComponentSize] = useState("default");
   const navigate = useNavigate();
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+  const onFinish = values => {};
 
   const handleBack = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -102,7 +98,7 @@ export const TrainingCreatePage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
+                message: "Please pick an item!",
               },
             ]}
           >
@@ -123,7 +119,7 @@ export const TrainingCreatePage = () => {
             <Select
               placeholder="Select Provider Type"
               allowClear
-              style={{ width: '92%' }}
+              style={{ width: "92%" }}
             >
               <Option value="internal">Internal</Option>
               <Option value="external">External</Option>
@@ -133,8 +129,8 @@ export const TrainingCreatePage = () => {
               style={{
                 borderRadius: 3,
                 marginLeft: 5,
-                border: '1px #40a9ff solid',
-                color: '#40a9ff',
+                border: "1px #40a9ff solid",
+                color: "#40a9ff",
               }}
             >
               <PlusOutlined />
@@ -152,14 +148,8 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Upload
-              name="logo"
-              action="/upload.do"
-              listType="picture"
-            >
-              <Button icon={<UploadOutlined />}>
-                Click to Upload
-              </Button>
+            <Upload name="logo" action="/upload.do" listType="picture">
+              <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
           </Form.Item>
           <Form.Item
@@ -179,7 +169,7 @@ export const TrainingCreatePage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
+                message: "Please pick an item!",
               },
             ]}
           >
@@ -198,9 +188,9 @@ export const TrainingCreatePage = () => {
             <Col
               span={24}
               style={{
-                textAlign: 'right',
+                textAlign: "right",
                 padding: 20,
-                borderTop: '1px #dddddd solid',
+                borderTop: "1px #dddddd solid",
               }}
             >
               <Button

@@ -3,8 +3,6 @@ import LabelSection from "../../Components/LabelSection";
 import TableData from "../../Components/TableData";
 import { AppContext } from "../../Context";
 const MyTrainingEventTable = () => {
-  // const dataTable = useContext(MyTrainingTableDataContext);
-  // const columns = useContext(MyTrainingTableColumnContext);
   const { MyTrainingTableDataContext } = useContext(AppContext);
   const { MyTrainingTableColumnContext } = useContext(AppContext);
   return (
