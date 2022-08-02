@@ -13,7 +13,9 @@ export const ContextWrapper = props => {
   const [MyTrainingTableColumnContext] = useState(columnsMyTraining);
   const [MyTrainingCardContext] = useState(dataTraining);
   const [AllTrainingCardContext] = useState(dataTraining);
+  // for toggle switch view
   const [view, setView] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
