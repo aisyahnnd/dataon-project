@@ -4,19 +4,23 @@ import {
   Row,
   Space,
   Typography,
-  Dropdown,
   Menu,
   Button,
   Form,
   Input,
   Carousel,
   Alert,
+  Select,
 } from 'antd';
 import './RegisterPage.css';
-import { DownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Image1 from '../../assets/Images/example-3.svg';
+import Image2 from '../../assets/Images/example-25.svg';
+import Image3 from '../../assets/Images/example-29.svg';
+import Image4 from '../../assets/Images/example-30.svg';
+import Logo from '../../assets/Images/logo.png';
 
 const menu = (
   <Menu
@@ -80,10 +84,10 @@ export const RegisterPage = () => {
             style={{ borderBottom: '1px #dddddd solid' }}
           >
             <Col span={3}>
-              <img alt="logo" src="logo.png" width={150} />
+              <img alt="logo" src={Logo} width={150} />
             </Col>
             <Col
-              span={18}
+              span={17}
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -100,23 +104,23 @@ export const RegisterPage = () => {
               </Space>
             </Col>
             <Col
-              span={3}
+              span={4}
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingTop: 30,
+                paddingTop: 25,
               }}
             >
-              <Dropdown overlay={menu} trigger={['click']}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    <Text style={{ color: 'black' }}>
-                      English (EN)
-                    </Text>
-                    <DownOutlined style={{ color: 'black' }} />
-                  </Space>
-                </a>
-              </Dropdown>
+              <Select
+                defaultValue="English (EN)"
+                style={{
+                  width: 150,
+                }}
+                bordered={false}
+              >
+                <Option value="english">English (EN)</Option>
+                <Option value="indoensia">Indonesia (IDN)</Option>
+              </Select>
             </Col>
           </Row>
           <Row className="content">
@@ -136,7 +140,7 @@ export const RegisterPage = () => {
                       justifyContent: 'center',
                     }}
                     alt="side-1"
-                    src="example-3.svg"
+                    src={Image1}
                   />
                 </div>
                 <div>
@@ -146,7 +150,7 @@ export const RegisterPage = () => {
                       justifyContent: 'center',
                     }}
                     alt="side-1"
-                    src="example-25.svg"
+                    src={Image2}
                   />
                 </div>
                 <div>
@@ -156,7 +160,7 @@ export const RegisterPage = () => {
                       justifyContent: 'center',
                     }}
                     alt="side-1"
-                    src="example-29.svg"
+                    src={Image3}
                   />
                 </div>
                 <div>
@@ -166,7 +170,7 @@ export const RegisterPage = () => {
                       justifyContent: 'center',
                     }}
                     alt="side-1"
-                    src="example-30.svg"
+                    src={Image4}
                   />
                 </div>
               </Carousel>
@@ -227,6 +231,11 @@ export const RegisterPage = () => {
                     {
                       max: 20,
                       message: 'Username must be less than 20',
+                    },
+                    {
+                      pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
+                      message:
+                        'Username must be alphabets and numbers only',
                     },
                   ]}
                 >
