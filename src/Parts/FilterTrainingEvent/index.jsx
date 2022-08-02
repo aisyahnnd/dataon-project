@@ -1,12 +1,16 @@
-import {
-  ButtonIcon,
-  SelectBox,
-  TextInput,
-  Toggle,
-} from '../../Components';
-import './filterTrainingEvent.css';
-import { UnorderedListOutlined } from '@ant-design/icons';
+import { ButtonIcon, SelectBox, TextInput, Toggle } from "../../Components";
+import "./filterTrainingEvent.css";
+import { UnorderedListOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 const FilterTrainingEvent = () => {
+  const { view, setView } = useContext(AppContext);
+  const onClickAsCard = () => {
+    setView(true);
+  };
+  const onClickAsList = () => {
+    setView(false);
+  };
   return (
     <div className="container-grid">
       <TextInput
@@ -21,9 +25,10 @@ const FilterTrainingEvent = () => {
       </div>
       <div className="wrapperButton">
         <ButtonIcon
-          textButton="View All List"
+          textButton={view ? "View All List" : "View as Card"}
           style={{ borderRadius: 5, width: 200 }}
-          icon={<UnorderedListOutlined />}
+          icon={view ? <UnorderedListOutlined /> : <AppstoreOutlined />}
+          onClick={view ? onClickAsList : onClickAsCard}
         />
       </div>
     </div>
