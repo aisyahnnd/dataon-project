@@ -2,7 +2,6 @@ import { Input } from "antd";
 import "./filter.css";
 import PropTypes from "prop-types";
 const TextInput = ({ id, label, placeholder, style }) => {
-  console.log(label);
   return (
     <div>
       {label && <p className="label">{label}</p>}

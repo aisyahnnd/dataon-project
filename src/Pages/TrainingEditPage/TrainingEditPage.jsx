@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Input,
@@ -9,15 +9,13 @@ import {
   Row,
   Col,
   InputNumber,
-} from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
-import dayjs from 'dayjs';
-import moment from 'moment';
+} from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
+import dayjs from "dayjs";
+import moment from "moment";
 const { RangePicker } = DatePicker;
 
-const normFile = (e) => {
-  console.log('Upload event:', e);
-
+const normFile = e => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -27,48 +25,47 @@ const normFile = (e) => {
 
 const options = [
   {
-    label: 'Internal',
-    value: 'Internal',
+    label: "Internal",
+    value: "Internal",
   },
   {
-    label: 'Open for Registration',
-    value: 'Open for Registration',
+    label: "Open for Registration",
+    value: "Open for Registration",
   },
   {
-    label: 'Closed Registration',
-    value: 'Closed Registration',
+    label: "Closed Registration",
+    value: "Closed Registration",
   },
 ];
 
 export const TrainingEditPage = () => {
-  const [componentSize, setComponentSize] = useState('default');
+  const [componentSize, setComponentSize] = useState("default");
   const [data, setData] = useState({
-    eventName: '',
-    startDate: '',
-    endDate: '',
-    image: '',
-    speaker: '',
-    location: '',
-    ratings: '',
-    isOnline: '',
-    isOffline: '',
-    information: '',
-    participant: '',
-    isCompleted: '',
-    date: '',
-    eventType: '',
+    eventName: "",
+    startDate: "",
+    endDate: "",
+    image: "",
+    speaker: "",
+    location: "",
+    ratings: "",
+    isOnline: "",
+    isOffline: "",
+    information: "",
+    participant: "",
+    isCompleted: "",
+    date: "",
+    eventType: "",
   });
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const location = useLocation();
 
   const onChangeRadioButton = ({ target: { value } }) => {
-    console.log('radio button checked', value);
     setValue(
       data.isCompleted === true
-        ? 'Closed Registration'
-        : 'Open for Registration'
+        ? "Closed Registration"
+        : "Open for Registration"
     );
   };
 
@@ -76,25 +73,17 @@ export const TrainingEditPage = () => {
     setComponentSize(size);
   };
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+  const onFinish = values => {};
 
   const getData = async () => {
     try {
       setData({
         eventName: location.state.eventName,
-        startDate: dayjs(location.state.startDate).format(
-          'YYYY-MM-DD HH:mm'
-        ),
-        endDate: dayjs(location.state.endDate).format(
-          'YYYY-MM-DD HH:mm'
-        ),
+        startDate: dayjs(location.state.startDate).format("YYYY-MM-DD HH:mm"),
+        endDate: dayjs(location.state.endDate).format("YYYY-MM-DD HH:mm"),
         image: location.state.image,
         eventType:
-          location.isOffline === true
-            ? 'Offline Class'
-            : 'Online Class',
+          location.isOffline === true ? "Offline Class" : "Online Class",
         location: location.state.location,
         speaker: location.state.speaker,
         ratings: location.state.ratings,
@@ -102,7 +91,7 @@ export const TrainingEditPage = () => {
         participant: location.state.participant,
       });
     } catch (error) {
-      navigate('/missing');
+      navigate("/missing");
     }
   };
 
@@ -199,9 +188,7 @@ export const TrainingEditPage = () => {
             name="date"
             label="Date"
             value={data.date}
-            rules={[
-              { required: true, message: 'Please select date!' },
-            ]}
+            rules={[{ required: true, message: "Please select date!" }]}
           >
             <RangePicker
               format="YYYY-MM-DD HH:mm"
@@ -219,7 +206,7 @@ export const TrainingEditPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
+                message: "Please pick an item!",
               },
             ]}
           >
@@ -229,8 +216,8 @@ export const TrainingEditPage = () => {
               optionType="button"
               defaultValue={
                 data.isCompleted === true
-                  ? 'Closed Registration'
-                  : 'Open for Registration'
+                  ? "Closed Registration"
+                  : "Open for Registration"
               }
             />
           </Form.Item>
@@ -242,20 +229,16 @@ export const TrainingEditPage = () => {
           >
             <InputNumber min={1} max={100} type="number" />
           </Form.Item>
-          <Form.Item
-            name="ratings"
-            label="Ratings"
-            value={data.ratings}
-          >
+          <Form.Item name="ratings" label="Ratings" value={data.ratings}>
             <InputNumber min={1} max={100} type="number" />
           </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
               span={24}
               style={{
-                textAlign: 'right',
+                textAlign: "right",
                 padding: 20,
-                borderTop: '1px #dddddd solid',
+                borderTop: "1px #dddddd solid",
               }}
             >
               <Button
