@@ -12,6 +12,7 @@ import {
   Col,
 } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
+import { SectionHeader } from "../../Components";
 const { RangePicker } = DatePicker;
 
 const normFile = e => {
@@ -38,6 +39,7 @@ export const TrainingCreatePage = () => {
 
   return (
     <>
+      <SectionHeader></SectionHeader>
       <div className="site-card-wrapper">
         <Form
           labelCol={{

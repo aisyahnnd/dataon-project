@@ -1,18 +1,14 @@
-import { EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Col, Image, Row, Space, Typography } from 'antd';
-import {
-  useNavigate,
-  useParams,
-  useLocation,
-} from 'react-router-dom';
-import './TrainingDetailPage.css';
+import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Col, Image, Row, Space, Typography } from "antd";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { SectionHeader } from "../../Components";
+import "./TrainingDetailPage.css";
 const { Text } = Typography;
 
 export const TrainingDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-
   const handleEdit = () => {
     navigate(`/mytraining/edit/${params.id}`, {
       state: location.state,
@@ -20,12 +16,13 @@ export const TrainingDetailPage = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
-    <div className="site-card-wrapper" key={params.id}>
-      <>
+    <>
+      <SectionHeader></SectionHeader>
+      <div className="site-card-wrapper" key={params.id}>
         <Row>
           <Col>
             <Image
@@ -38,53 +35,49 @@ export const TrainingDetailPage = () => {
           </Col>
 
           <Col className="training-detail">
-            <Space
-              direction="vertical"
-              size={7}
-              style={{ display: 'flex' }}
-            >
-              <Text style={{ fontSize: '16px' }}>
+            <Space direction="vertical" size={7} style={{ display: "flex" }}>
+              <Text style={{ fontSize: "16px" }}>
                 <EnvironmentOutlined /> {location.state.location}
               </Text>
-              <Text strong style={{ fontSize: '32px' }}>
+              <Text strong style={{ fontSize: "32px" }}>
                 {location.state.eventName}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
+              <Text style={{ fontSize: "16px" }}>
                 Event No : TREV-YYMM-XXXX
               </Text>
-              <Text style={{ fontSize: '16px' }}>
-                Event Type :{' '}
+              <Text style={{ fontSize: "16px" }}>
+                Event Type :{" "}
                 {location.state.isOnline === true
-                  ? 'Online Class'
-                  : 'Offline Class'}
+                  ? "Online Class"
+                  : "Offline Class"}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
+              <Text style={{ fontSize: "16px" }}>
                 Event Name : {location.state.eventName}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
-                Status :{' '}
+              <Text style={{ fontSize: "16px" }}>
+                Status :{" "}
                 {location.state.isCompleted === true
-                  ? 'Close Registration'
-                  : 'Open for Registration'}
+                  ? "Close Registration"
+                  : "Open for Registration"}
               </Text>
             </Space>
             <Space
               direction="vertical"
               size={5}
-              style={{ display: 'flex', paddingTop: 50 }}
+              style={{ display: "flex", paddingTop: 50 }}
             >
               <Text
                 type="secondary"
                 style={{
-                  fontSize: '16px',
+                  fontSize: "16px",
                 }}
               >
                 Start Date : {location.state.startDate}
               </Text>
-              <Text type="secondary" style={{ fontSize: '16px' }}>
+              <Text type="secondary" style={{ fontSize: "16px" }}>
                 End Date : {location.state.endDate}
               </Text>
-              <Text type="secondary" style={{ fontSize: '16px' }}>
+              <Text type="secondary" style={{ fontSize: "16px" }}>
                 <UserOutlined /> {location.state.speaker}
               </Text>
             </Space>
@@ -95,9 +88,9 @@ export const TrainingDetailPage = () => {
           <Col
             span={24}
             style={{
-              textAlign: 'right',
+              textAlign: "right",
               padding: 20,
-              borderTop: '1px #dddddd solid',
+              borderTop: "1px #dddddd solid",
             }}
           >
             <Button
@@ -124,7 +117,7 @@ export const TrainingDetailPage = () => {
             ) : null}
           </Col>
         </Row>
-      </>
-    </div>
+      </div>
+    </>
   );
 };
