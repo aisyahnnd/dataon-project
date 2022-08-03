@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 1,
+    "username": "aisyah",
+    "role": "user"
+  },
+  "token": "test123",
+  "message": "Login success",
+  "code": 200
+}

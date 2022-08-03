@@ -4,7 +4,6 @@ import {
   Row,
   Space,
   Typography,
-  Menu,
   Button,
   Form,
   Input,
@@ -22,24 +21,6 @@ import Image3 from "../../assets/Images/example-29.svg";
 import Image4 from "../../assets/Images/example-30.svg";
 import Logo from "../../assets/Images/logo.png";
 import { SectionHeader } from "../../Components";
-
-const menu = (
-  <Menu
-    items={[
-      {
-        type: "divider",
-      },
-      {
-        label: "English (EN)",
-        key: "1",
-      },
-      {
-        label: "Indonesia (IDN)",
-        key: "2",
-      },
-    ]}
-  />
-);
 
 const { Text } = Typography;
 
@@ -189,7 +170,7 @@ export const RegisterPage = () => {
               <Form
                 name="basic"
                 wrapperCol={{
-                  span: 18,
+                  span: 24,
                 }}
                 initialValues={{
                   remember: true,
@@ -211,6 +192,7 @@ export const RegisterPage = () => {
                   ]}
                 >
                   <Input
+                    style={{ width: 400 }}
                     placeholder="Enter your name here"
                     onChange={event => setName(event.target.value)}
                   />
@@ -235,6 +217,7 @@ export const RegisterPage = () => {
                   ]}
                 >
                   <Input
+                    style={{ width: 400 }}
                     placeholder="Enter your username here"
                     onChange={event => setUsername(event.target.value)}
                   />
@@ -255,6 +238,7 @@ export const RegisterPage = () => {
                   ]}
                 >
                   <Input.Password
+                    style={{ width: 400 }}
                     placeholder="Password"
                     onChange={event => setPassword(event.target.value)}
                   />

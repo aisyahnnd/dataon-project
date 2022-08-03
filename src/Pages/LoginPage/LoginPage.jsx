@@ -4,18 +4,16 @@ import {
   Row,
   Space,
   Typography,
-  Dropdown,
-  Menu,
   Button,
   Checkbox,
   Form,
-  Input,
   Carousel,
   Alert,
+  Select,
+  Input,
 } from 'antd';
 import './LoginPage.css';
-import { DownOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Image1 from '../../assets/Images/example-3.svg';
@@ -23,51 +21,57 @@ import Image2 from '../../assets/Images/example-25.svg';
 import Image3 from '../../assets/Images/example-29.svg';
 import Image4 from '../../assets/Images/example-30.svg';
 import Logo from '../../assets/Images/logo.png';
-
-const menu = (
-  <Menu
-    items={[
-      {
-        type: 'divider',
-      },
-      {
-        label: 'English (EN)',
-        key: '1',
-      },
-      {
-        label: 'Indonesia (IDN)',
-        key: '2',
-      },
-    ]}
-  />
-);
+import PropTypes from 'prop-types';
 
 const { Text } = Typography;
 
-export const LoginPage = () => {
-  const [usernameLog, setUsernameLog] = useState('');
-  const [passwordLog, setPasswordLog] = useState('');
+export const LoginPage = ({ setToken }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
 
-  const onFinish = (values) => {
-    let username = localStorage.getItem('Username').replace(/"/g, '');
-    let password = localStorage.getItem('Password').replace(/"/g, '');
-
-    if (!usernameLog || !passwordLog) {
-      setFlag(true);
-      console.log('empty');
-    } else if (username !== usernameLog || password !== passwordLog) {
-      setFlag(true);
-    } else {
-      navigate('/');
-      setFlag(false);
-    }
-    console.log('Success:', values);
-  };
-
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('user-info')) {
+      navigate('/');
+    }
+  }, []);
+
+  const handleSubmit = async () => {
+    console.warn(username, password);
+    let item = {
+      username: username,
+      password: password,
+    };
+
+    if (username === 'aisyah' && password === '12345678') {
+      try {
+        let result = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          body: JSON.stringify(item),
+        });
+        result = await result.json();
+        console.log(result);
+
+        localStorage.setItem(
+          'user-info',
+          JSON.stringify(result.data)
+        );
+        localStorage.setItem('token', JSON.stringify(result.token));
+        setToken(JSON.stringify(result.token));
+        alert('Login Success');
+        navigate('/');
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setFlag(true);
+      return false;
+    }
   };
 
   return (
@@ -86,7 +90,7 @@ export const LoginPage = () => {
             <img alt="logo" src={Logo} width={150} />
           </Col>
           <Col
-            span={18}
+            span={17}
             style={{
               alignItems: 'center',
               justifyContent: 'center',
@@ -103,21 +107,23 @@ export const LoginPage = () => {
             </Space>
           </Col>
           <Col
-            span={3}
+            span={4}
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              paddingTop: 30,
+              paddingTop: 25,
             }}
           >
-            <Dropdown overlay={menu} trigger={['click']}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>
-                  <Text style={{ color: 'black' }}>English (EN)</Text>
-                  <DownOutlined style={{ color: 'black' }} />
-                </Space>
-              </a>
-            </Dropdown>
+            <Select
+              defaultValue="English (EN)"
+              style={{
+                width: 150,
+              }}
+              bordered={false}
+            >
+              <Option value="english">English (EN)</Option>
+              <Option value="indoensia">Indonesia (IDN)</Option>
+            </Select>
           </Col>
         </Row>
         <Row className="content">
@@ -181,12 +187,11 @@ export const LoginPage = () => {
             <Form
               name="basic"
               wrapperCol={{
-                span: 18,
+                span: 24,
               }}
               initialValues={{
                 remember: true,
               }}
-              onFinish={onFinish}
               onFinishFailed={onFinishFailed}
               autoComplete="off"
               layout="vertical"
@@ -195,11 +200,27 @@ export const LoginPage = () => {
                 style={{ fontWeight: 'bold' }}
                 label="Username"
                 name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your username!',
+                  },
+                  {
+                    max: 20,
+                    message: 'Username must be less than 20',
+                  },
+                  {
+                    pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
+                    message:
+                      'Username must be alphabets and numbers only',
+                  },
+                ]}
               >
                 <Input
+                  style={{ width: 400 }}
                   placeholder="Enter your username here"
                   onChange={(event) =>
-                    setUsernameLog(event.target.value)
+                    setUsername(event.target.value)
                   }
                 />
               </Form.Item>
@@ -207,11 +228,23 @@ export const LoginPage = () => {
                 style={{ fontWeight: 'bold' }}
                 label="Password"
                 name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password!',
+                  },
+                  {
+                    min: 8,
+                    message:
+                      'Passwords must be at least 8 characters',
+                  },
+                ]}
               >
                 <Input.Password
+                  style={{ width: 400 }}
                   placeholder="Password"
                   onChange={(event) =>
-                    setPasswordLog(event.target.value)
+                    setPassword(event.target.value)
                   }
                 />
               </Form.Item>
@@ -252,6 +285,7 @@ export const LoginPage = () => {
                   style={{ width: 100 }}
                   type="primary"
                   htmlType="submit"
+                  onClick={handleSubmit}
                 >
                   Login
                 </Button>
@@ -287,4 +321,8 @@ export const LoginPage = () => {
       </Card>
     </Card>
   );
+};
+
+LoginPage.propTypes = {
+  setToken: PropTypes.func.isRequired,
 };
