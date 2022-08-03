@@ -26,10 +26,7 @@ const SectionHeader = ({ viewButton }) => {
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return (
-      <Breadcrumb.Item key={url}>
-        {/* <Link to={url}>{breadcrumbNameMaps[url]}</Link> //disable link because route not dynamic */}
-        {breadcrumbNameMaps[url]}
-      </Breadcrumb.Item>
+      <Breadcrumb.Item key={url}>{breadcrumbNameMaps[url]}</Breadcrumb.Item>
     );
   });
   const breadcrumbItems = [
