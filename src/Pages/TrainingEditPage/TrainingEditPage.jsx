@@ -13,6 +13,7 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import dayjs from "dayjs";
 import moment from "moment";
+import { SectionHeader } from "../../Components";
 const { RangePicker } = DatePicker;
 
 const normFile = e => {
@@ -113,6 +114,7 @@ export const TrainingEditPage = () => {
 
   return (
     <>
+      <SectionHeader></SectionHeader>
       <div className="site-card-wrapper">
         <Form
           labelCol={{

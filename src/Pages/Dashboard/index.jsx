@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import {
   FilterTrainingEvent,
@@ -6,13 +7,12 @@ import {
   AllTrainingEventTable,
   MyTrainingEventTable,
   AllTrainingEvent,
-  SectionHeader,
 } from "../../Parts";
 const Dashboard = () => {
   const { view } = useContext(AppContext);
   return (
     <>
-      <SectionHeader />
+      <SectionHeader viewButton></SectionHeader>
       <FilterTrainingEvent />
       {view ? (
         <>

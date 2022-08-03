@@ -4,4 +4,13 @@ import ButtonIcon from "./ButtonIcon";
 import Toggle from "./Toogle";
 import CardEvent from "./CardEvent";
 import Link from "./Link";
-export { TextInput, SelectBox, ButtonIcon, Toggle, CardEvent, Link };
+import SectionHeader from "./SectionHeader";
+export {
+  TextInput,
+  SelectBox,
+  ButtonIcon,
+  Toggle,
+  CardEvent,
+  Link,
+  SectionHeader,
+};
