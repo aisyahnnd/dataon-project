@@ -1,9 +1,10 @@
 import { Rate } from "antd";
+import CoverDate from "../CoverDate";
 export const columnsAllTraining = [
   {
-    title: "Number",
-    dataIndex: "key",
-    key: "key",
+    title: "#",
+    key: "index",
+    render: (text, record, index) => index + 1,
   },
   {
     title: "EventName",
@@ -12,30 +13,34 @@ export const columnsAllTraining = [
     sorter: (a, b) => a.eventName.localeCompare(b.eventName),
   },
   {
-    title: "Event Type",
-    dataIndex: "eventType",
+    title: "Training Type",
+    dataIndex: "isOnline",
     key: "eventType",
-    sorter: (a, b) => a.eventType.localeCompare(b.eventType),
+
+    render: text => {
+      return <span>{text ? "Online Class" : "Offline Class"}</span>;
+    },
   },
   {
-    title: "Event Periode",
-    dataIndex: "eventPeriode",
-    key: "eventPeriode",
-    sorter: (a, b) => a.eventPeriode - b.eventPeriode,
+    title: "Event Period",
+    dataIndex: "startDate",
+    key: "eventPeriod",
+    sorter: (a, b) => new Date(a.startdate) - new Date(b.StartDate),
+    render: CoverDate,
   },
   {
     title: "Trainer Name",
-    dataIndex: "trainerName",
-    key: "trainerName",
-    sorter: (a, b) => a.trainerName.localeCompare(b.trainerName),
+    dataIndex: "trainer",
+    key: "trainer",
+    sorter: (a, b) => a.trainer.localeCompare(b.trainer),
   },
   {
-    title: "Rating",
-    dataIndex: "rating",
-    key: "rating",
-    sorter: (a, b) => a.rating - b.rating,
-    render: rating => (
-      <Rate disabled allowHalf defaultValue={0} value={rating}></Rate>
+    title: "Ratings",
+    dataIndex: "ratings",
+    key: "ratings",
+    sorter: (a, b) => a.ratings - b.ratings,
+    render: ratings => (
+      <Rate disabled allowHalf defaultValue={0} value={ratings}></Rate>
     ),
   },
   {

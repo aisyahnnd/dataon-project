@@ -4,6 +4,7 @@ import dataTraining from "../dataTraining";
 import { columnsAllTraining } from "../Utils/ColumnsAllTraining";
 import { columnsMyTraining } from "../Utils/ColumnsMyTraining";
 import { useState } from "react";
+import Axios from "../Utils/Axios";
 export const AppContext = createContext(null);
 
 export const ContextWrapper = props => {
@@ -15,6 +16,18 @@ export const ContextWrapper = props => {
   const [AllTrainingCardContext] = useState(dataTraining);
   // for toggle switch view
   const [view, setView] = useState(false);
+
+  //for get data all training
+  const [DataAllTrainings, setDataAllTrainings] = useState([]);
+  const GetAllTraining = async () => {
+    const response = await Axios.get("/trainings");
+    console.log("noh response", response.data);
+    setDataAllTrainings(response.data);
+    console.log("nih data all trainings", DataAllTrainings);
+  };
+
+  //for get data my training
+
   return (
     <AppContext.Provider
       value={{
@@ -26,6 +39,8 @@ export const ContextWrapper = props => {
         AllTrainingCardContext,
         view,
         setView,
+        GetAllTraining,
+        DataAllTrainings,
       }}
     >
       {props.children}

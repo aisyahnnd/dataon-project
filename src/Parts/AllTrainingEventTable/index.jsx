@@ -1,11 +1,14 @@
 import LabelSection from "../../Components/LabelSection";
 import TableData from "../../Components/TableData";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../../Context";
 const AllTrainingEventTable = () => {
-  const { AllTrainingTableDataContext } = useContext(AppContext);
-  const { AllTrainingTableColumnContext } = useContext(AppContext);
+  const { GetAllTraining, DataAllTrainings, AllTrainingTableColumnContext } =
+    useContext(AppContext);
+  useEffect(() => {
+    GetAllTraining();
+  }, []);
   return (
     <div className="site-card-wrapper">
       <LabelSection
@@ -18,8 +21,8 @@ const AllTrainingEventTable = () => {
         }}
       ></LabelSection>
       <TableData
-        dataTable={AllTrainingTableDataContext}
-        pagination={{ defaultPageSize: 2 }}
+        dataTable={DataAllTrainings.data}
+        pagination={{ defaultPageSize: 10 }}
         columns={AllTrainingTableColumnContext}
       ></TableData>
     </div>
