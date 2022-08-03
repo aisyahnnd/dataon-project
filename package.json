@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mock": "json-mock-api --port 3000 --directory -c /"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.21.7",
+    "axios": "^0.27.2",
+    "json-mock-api": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
