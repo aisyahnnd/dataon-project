@@ -1,3 +1,3 @@
 import Axios from "./Axios";
-
-export { Axios };
+import CoverDate from "./CoverDate";
+export { Axios, CoverDate };
