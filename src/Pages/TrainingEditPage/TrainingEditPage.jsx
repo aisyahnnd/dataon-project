@@ -74,7 +74,9 @@ export const TrainingEditPage = () => {
     setComponentSize(size);
   };
 
-  const onFinish = values => {};
+  const onFinish = values => {
+    console.log(values);
+  };
 
   const getData = async () => {
     try {

@@ -5,6 +5,7 @@ import Toggle from "./Toogle";
 import CardEvent from "./CardEvent";
 import Link from "./Link";
 import SectionHeader from "./SectionHeader";
+import Notification from "./Notification";
 export {
   TextInput,
   SelectBox,
@@ -13,4 +14,5 @@ export {
   CardEvent,
   Link,
   SectionHeader,
+  Notification,
 };
