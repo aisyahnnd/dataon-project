@@ -5,6 +5,7 @@ import { columnsAllTraining } from "../Utils/ColumnsAllTraining";
 import { columnsMyTraining } from "../Utils/ColumnsMyTraining";
 import { useState } from "react";
 import Axios from "../Utils/Axios";
+import { Notification } from "../Components";
 export const AppContext = createContext(null);
 
 export const ContextWrapper = props => {
@@ -21,12 +22,20 @@ export const ContextWrapper = props => {
   const [DataAllTrainings, setDataAllTrainings] = useState([]);
   const GetAllTraining = async () => {
     const response = await Axios.get("/trainings");
-    console.log("noh response", response.data);
     setDataAllTrainings(response.data);
-    console.log("nih data all trainings", DataAllTrainings);
   };
 
   //for get data my training
+
+  //for create data training
+  const CreateDataTraining = async data => {
+    try {
+      const response = await Axios.post("/trainings", data);
+      Notification();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -41,6 +50,7 @@ export const ContextWrapper = props => {
         setView,
         GetAllTraining,
         DataAllTrainings,
+        CreateDataTraining,
       }}
     >
       {props.children}

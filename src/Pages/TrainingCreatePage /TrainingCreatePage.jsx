@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
+import "./TrainingCreatePage.css";
 import {
   Form,
   Input,
@@ -13,8 +14,10 @@ import {
 } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SectionHeader } from "../../Components";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 const { RangePicker } = DatePicker;
-
+const { Option, OptGroup } = Select;
 const normFile = e => {
   if (Array.isArray(e)) {
     return e;
@@ -24,6 +27,8 @@ const normFile = e => {
 };
 
 export const TrainingCreatePage = () => {
+  const [form] = Form.useForm();
+  const { CreateDataTraining } = useContext(AppContext);
   const [componentSize, setComponentSize] = useState("default");
   const navigate = useNavigate();
 
@@ -31,17 +36,45 @@ export const TrainingCreatePage = () => {
     setComponentSize(size);
   };
 
-  const onFinish = values => {};
-
   const handleBack = () => {
     navigate("/");
+  };
+
+  //format date
+  const rangeConfig = {
+    rules: [
+      {
+        type: "array",
+        required: true,
+        message: "Please select time!",
+      },
+    ],
+  };
+  //post data
+  const onFinish = values => {
+    const starDate = values.date[0].format("YYYY-MM-DD");
+    const endDate = values.date[1].format("YYYY-MM-DD");
+    const data = {
+      eventName: values.eventName,
+      isOnlineClass: values.isOnlineClass,
+      startDate: starDate,
+      endDate: endDate,
+      location: { lat: values.latitude, long: values.longitude },
+      isComplete: values.status,
+      trainer: values.trainer,
+      additionalInfo: values.additionalInfo,
+    };
+    CreateDataTraining(data);
+    form.resetFields();
   };
 
   return (
     <>
       <SectionHeader></SectionHeader>
+
       <div className="site-card-wrapper">
         <Form
+          onFinish={onFinish}
           labelCol={{
             span: 7,
           }}
@@ -54,12 +87,10 @@ export const TrainingCreatePage = () => {
           }}
           onValuesChange={onFormLayoutChange}
           size={componentSize}
+          form={form}
         >
-          <Form.Item name="event-no" label="Event No:">
-            TREV-YYMM-XXXX
-          </Form.Item>
           <Form.Item
-            name="event-type"
+            name="isOnlineClass"
             label="Event Type:"
             rules={[
               {
@@ -67,24 +98,19 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Select placeholder="Select Event Type" allowClear>
-              <Option value="online-class">Online Class</Option>
-              <Option value="offline-class">Offline Class</Option>
+            <Select
+              placeholder="Select Event Type"
+              optionFilterProp="children"
+              allowClear
+            >
+              <OptGroup label="Type">
+                <Option value={true}>Online Class</Option>
+                <Option value={false}>Offline Class</Option>
+              </OptGroup>
             </Select>
           </Form.Item>
           <Form.Item
-            name="training-course"
-            label="Training Course:"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input placeholder="Training Course" />
-          </Form.Item>
-          <Form.Item
-            name="event-name"
+            name="eventName"
             label="Event Name"
             rules={[
               {
@@ -95,51 +121,7 @@ export const TrainingCreatePage = () => {
             <Input placeholder="Input Event Name" />
           </Form.Item>
           <Form.Item
-            name="provider-type"
-            label="Provider Type"
-            rules={[
-              {
-                required: true,
-                message: "Please pick an item!",
-              },
-            ]}
-          >
-            <Radio.Group>
-              <Radio.Button value="internal">Internal</Radio.Button>
-              <Radio.Button value="external">External</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item
-            name="provider"
-            label="Provider"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Select
-              placeholder="Select Provider Type"
-              allowClear
-              style={{ width: "92%" }}
-            >
-              <Option value="internal">Internal</Option>
-              <Option value="external">External</Option>
-            </Select>
-            <Button
-              htmlType="button"
-              style={{
-                borderRadius: 3,
-                marginLeft: 5,
-                border: "1px #40a9ff solid",
-                color: "#40a9ff",
-              }}
-            >
-              <PlusOutlined />
-            </Button>
-          </Form.Item>
-          <Form.Item
-            name="event-thumbnail"
+            name="thumbnail"
             label="Event Thumbnail"
             valuePropName="fileList"
             getValueFromEvent={normFile}
@@ -157,6 +139,7 @@ export const TrainingCreatePage = () => {
           <Form.Item
             name="date"
             label="Date"
+            {...rangeConfig}
             rules={[
               {
                 required: true,
@@ -176,16 +159,56 @@ export const TrainingCreatePage = () => {
             ]}
           >
             <Radio.Group>
-              <Radio.Button value="draf">Internal</Radio.Button>
-              <Radio.Button value="open-for-registration">
-                Open for Registration
-              </Radio.Button>
-              <Radio.Button value="closed-registration">
-                Closed Registration
-              </Radio.Button>
+              <Radio.Button value={true}>Open for Registration</Radio.Button>
+              <Radio.Button value={false}>Closed Registration</Radio.Button>
             </Radio.Group>
           </Form.Item>
+          <Form.Item
+            name="trainer"
+            label="Trainer Name"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input placeholder="Input Trainer Name" />
+          </Form.Item>
 
+          <Form.Item label="Location based Latitude and Longitude">
+            <Form.Item
+              name="latitude"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input name="latitude" placeholder="latitude" />
+            </Form.Item>
+            <Form.Item
+              name="longitude"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input placeholder="longitude" />
+            </Form.Item>
+          </Form.Item>
+
+          <Form.Item
+            name="additionalInfo"
+            label="Infromation"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input placeholder="Input Information Event" />
+          </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
               span={24}
