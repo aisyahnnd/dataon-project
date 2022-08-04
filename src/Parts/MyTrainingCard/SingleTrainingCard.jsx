@@ -17,7 +17,6 @@ const { Text } = Typography;
 import { Rate } from 'antd';
 import { useEffect } from 'react';
 import Axios from '../../Utils/Axios';
-import useItems from 'antd/lib/menu/hooks/useItems';
 
 export const SingleTrainingCard = (props) => {
   const { item, id, location } = props;

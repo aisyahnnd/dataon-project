@@ -17,7 +17,6 @@ const Dashboard = () => {
     GetAllTraining();
   }, []);
 
-  console.log({ view });
   return (
     <>
       <SectionHeader viewButton></SectionHeader>

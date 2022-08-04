@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Badge, Col, Row, List, Card } from 'antd';
+import { Badge, Col, Row, List } from 'antd';
 import { SingleTrainingEvent } from './SingleTrainingEvent';
 import { useContext } from 'react';
 import { AppContext } from '../../Context';
@@ -18,7 +18,6 @@ const AllTrainingEvent = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(777, data);
 
   return (
     <>

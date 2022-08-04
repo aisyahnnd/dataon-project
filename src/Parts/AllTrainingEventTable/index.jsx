@@ -1,17 +1,10 @@
 import LabelSection from '../../Components/LabelSection';
 import TableData from '../../Components/TableData';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../Context';
 const AllTrainingEventTable = () => {
-  const {
-    GetAllTraining,
-    DataAllTrainings,
-    AllTrainingTableColumnContext,
-  } = useContext(AppContext);
-
-  // useEffect(() => {
-  //   GetAllTraining();
-  // }, []);
+  const { DataAllTrainings, AllTrainingTableColumnContext } =
+    useContext(AppContext);
 
   return (
     <div className="site-card-wrapper">

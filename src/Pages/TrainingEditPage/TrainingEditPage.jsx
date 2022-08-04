@@ -16,14 +16,6 @@ import moment from 'moment';
 import { SectionHeader } from '../../Components';
 const { RangePicker } = DatePicker;
 
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-
-  return e?.fileList;
-};
-
 const options = [
   {
     label: 'Internal',
@@ -72,8 +64,6 @@ export const TrainingEditPage = () => {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
-
-  const onFinish = (values) => {};
 
   const getData = async () => {
     try {

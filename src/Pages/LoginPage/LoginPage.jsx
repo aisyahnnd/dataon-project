@@ -55,7 +55,6 @@ export const LoginPage = ({ setToken }) => {
           body: JSON.stringify(item),
         });
         result = await result.json();
-        console.log(result);
 
         localStorage.setItem(
           'user-info',

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { UploadOutlined } from "@ant-design/icons";
-import "./TrainingCreatePage.css";
+import React, { useState } from 'react';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Form,
   Input,
@@ -11,14 +10,14 @@ import {
   Upload,
   Row,
   Col,
-} from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
-import { SectionHeader } from "../../Components";
-import { useContext } from "react";
-import { AppContext } from "../../Context";
+} from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { SectionHeader } from '../../Components';
+import { useContext } from 'react';
+import { AppContext } from '../../Context';
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
-const normFile = e => {
+const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -29,7 +28,7 @@ const normFile = e => {
 export const TrainingCreatePage = () => {
   const [form] = Form.useForm();
   const { CreateDataTraining } = useContext(AppContext);
-  const [componentSize, setComponentSize] = useState("default");
+  const [componentSize, setComponentSize] = useState('default');
   const navigate = useNavigate();
 
   const onFormLayoutChange = ({ size }) => {
@@ -37,23 +36,23 @@ export const TrainingCreatePage = () => {
   };
 
   const handleBack = () => {
-    navigate("/");
+    navigate('/');
   };
 
   //format date
   const rangeConfig = {
     rules: [
       {
-        type: "array",
+        type: 'array',
         required: true,
-        message: "Please select time!",
+        message: 'Please select time!',
       },
     ],
   };
   //post data
-  const onFinish = values => {
-    const starDate = values.date[0].format("YYYY-MM-DD");
-    const endDate = values.date[1].format("YYYY-MM-DD");
+  const onFinish = (values) => {
+    const starDate = values.date[0].format('YYYY-MM-DD');
+    const endDate = values.date[1].format('YYYY-MM-DD');
     const data = {
       eventName: values.eventName,
       isOnlineClass: values.isOnlineClass,
@@ -121,7 +120,51 @@ export const TrainingCreatePage = () => {
             <Input placeholder="Input Event Name" />
           </Form.Item>
           <Form.Item
-            name="thumbnail"
+            name="provider-type"
+            label="Provider Type"
+            rules={[
+              {
+                required: true,
+                message: 'Please pick an item!',
+              },
+            ]}
+          >
+            <Radio.Group>
+              <Radio.Button value="internal">Internal</Radio.Button>
+              <Radio.Button value="external">External</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item
+            name="provider"
+            label="Provider"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select Provider Type"
+              allowClear
+              style={{ width: '92%' }}
+            >
+              <Option value="internal">Internal</Option>
+              <Option value="external">External</Option>
+            </Select>
+            <Button
+              htmlType="button"
+              style={{
+                borderRadius: 3,
+                marginLeft: 5,
+                border: '1px #40a9ff solid',
+                color: '#40a9ff',
+              }}
+            >
+              <PlusOutlined />
+            </Button>
+          </Form.Item>
+          <Form.Item
+            name="event-thumbnail"
             label="Event Thumbnail"
             valuePropName="fileList"
             getValueFromEvent={normFile}
@@ -132,8 +175,14 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            <Upload
+              name="logo"
+              action="/upload.do"
+              listType="picture"
+            >
+              <Button icon={<UploadOutlined />}>
+                Click to Upload
+              </Button>
             </Upload>
           </Form.Item>
           <Form.Item
@@ -154,13 +203,17 @@ export const TrainingCreatePage = () => {
             rules={[
               {
                 required: true,
-                message: "Please pick an item!",
+                message: 'Please pick an item!',
               },
             ]}
           >
             <Radio.Group>
-              <Radio.Button value={true}>Open for Registration</Radio.Button>
-              <Radio.Button value={false}>Closed Registration</Radio.Button>
+              <Radio.Button value={true}>
+                Open for Registration
+              </Radio.Button>
+              <Radio.Button value={false}>
+                Closed Registration
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
           <Form.Item
@@ -213,9 +266,9 @@ export const TrainingCreatePage = () => {
             <Col
               span={24}
               style={{
-                textAlign: "right",
+                textAlign: 'right',
                 padding: 20,
-                borderTop: "1px #dddddd solid",
+                borderTop: '1px #dddddd solid',
               }}
             >
               <Button
