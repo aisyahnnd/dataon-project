@@ -40,7 +40,7 @@ const MyTrainingCard = () => {
         <Carousel
           arrows
           dots={false}
-          infinite={true}
+          infinite={data.length > 3 ? true : false}
           slidesToShow={3}
           slidesToScroll={1}
           prevArrow={<SlickButtonLeft />}
