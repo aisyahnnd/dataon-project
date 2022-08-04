@@ -113,14 +113,30 @@ export const TrainingDetailPage = () => {
               Back
             </Button>
             {location.pathname === `/mytraining/${params.id}` ? (
-              <Button
-                onClick={handleEdit}
-                type="primary"
-                htmlType="submit"
-                style={{ borderRadius: 5, width: 100 }}
-              >
-                Edit
-              </Button>
+              <>
+                <Button
+                  onClick={handleEdit}
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    borderRadius: 5,
+                    width: 100,
+                    marginRight: 10,
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  type="primary"
+                  danger
+                  style={{
+                    borderRadius: 5,
+                    width: 100,
+                  }}
+                >
+                  Delete
+                </Button>
+              </>
             ) : null}
           </Col>
         </Row>
