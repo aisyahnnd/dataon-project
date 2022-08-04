@@ -1,12 +1,24 @@
-import { Badge, Carousel, Col, Row } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { SingleTrainingCard } from "./SingleTrainingCard";
-import "./MyTrainingCard.css";
-import { useContext } from "react";
-import { AppContext } from "../../Context";
+import { Badge, Carousel, Col, Row } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { SingleTrainingCard } from './SingleTrainingCard';
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../Context';
+import './MyTrainingCard.css';
 
 const MyTrainingCard = () => {
-  const { MyTrainingCardContext } = useContext(AppContext);
+  const { DataMyTraining } = useContext(AppContext);
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      setData(DataMyTraining.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className="site-card-wrapper">
@@ -16,11 +28,12 @@ const MyTrainingCard = () => {
             <Badge
               offset={20}
               style={{
-                backgroundColor: "#e7e7e7",
-                color: "#2db7f5",
-                fontWeight: "bold",
+                marginLeft: 5,
+                backgroundColor: '#e7e7e7',
+                color: '#2db7f5',
+                fontWeight: 'bold',
               }}
-              count={MyTrainingCardContext.length}
+              count={data.length}
             />
           </p>
         </div>
@@ -28,17 +41,22 @@ const MyTrainingCard = () => {
           arrows
           dots={false}
           infinite={true}
-          slidesToShow={4}
+          slidesToShow={3}
           slidesToScroll={1}
           prevArrow={<SlickButtonLeft />}
           nextArrow={<SlickButtonRight />}
         >
-          {MyTrainingCardContext.map((item, id) => {
+          {data.map((item, id) => {
             return (
-              <Row key={id} align="middle" justify="center" gutter={5}>
+              <Row
+                key={item.id}
+                align="middle"
+                justify="center"
+                gutter={5}
+              >
                 <Col>
                   <div>
-                    <SingleTrainingCard id={id} item={item} />
+                    <SingleTrainingCard id={item.id} item={item} />
                   </div>
                 </Col>
               </Row>
@@ -49,10 +67,16 @@ const MyTrainingCard = () => {
     </>
   );
 };
-const SlickButtonLeft = ({ currentSlide, slideCount, children, ...props }) => (
-  <LeftOutlined {...props}>{children}</LeftOutlined>
-);
-const SlickButtonRight = ({ currentSlide, slideCount, children, ...props }) => (
-  <RightOutlined {...props}>{children}</RightOutlined>
-);
+const SlickButtonLeft = ({
+  currentSlide,
+  slideCount,
+  children,
+  ...props
+}) => <LeftOutlined {...props}>{children}</LeftOutlined>;
+const SlickButtonRight = ({
+  currentSlide,
+  slideCount,
+  children,
+  ...props
+}) => <RightOutlined {...props}>{children}</RightOutlined>;
 export default MyTrainingCard;
