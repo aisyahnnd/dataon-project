@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Badge, Col, Row, List, Card } from "antd";
-import { SingleTrainingEvent } from "./SingleTrainingEvent";
-import dataTraining from "../../dataTraining";
-import "./AllTrainingEvent.css";
-import { useContext } from "react";
-import { AppContext } from "../../Context";
+import React, { useState, useEffect } from 'react';
+import { Badge, Col, Row, List } from 'antd';
+import { SingleTrainingEvent } from './SingleTrainingEvent';
+import { useContext } from 'react';
+import { AppContext } from '../../Context';
+import './AllTrainingEvent.css';
 
 const AllTrainingEvent = () => {
-  const { AllTrainingCardContext } = useContext(AppContext);
+  const { DataAllTrainings } = useContext(AppContext);
   const [data, setData] = useState([]);
+
   const getData = async () => {
     try {
-      setData(dataTraining);
+      setData(DataAllTrainings.data);
     } catch (error) {}
   };
 
@@ -24,14 +24,15 @@ const AllTrainingEvent = () => {
       <div className="site-card-wrapper">
         <div className="title-event">
           <p>
-            All Training Event{" "}
+            All Training Event
             <Badge
               style={{
-                backgroundColor: "#e7e7e7",
-                color: "#2db7f5",
-                fontWeight: "bold",
+                marginLeft: 5,
+                backgroundColor: '#e7e7e7',
+                color: '#2db7f5',
+                fontWeight: 'bold',
               }}
-              count={AllTrainingCardContext.length}
+              count={data.length}
             />
           </p>
         </div>
@@ -47,7 +48,7 @@ const AllTrainingEvent = () => {
             xl: 5,
             xxl: 3,
           }}
-          dataSource={AllTrainingCardContext.slice(0, 5)}
+          dataSource={data.slice(0, 5)}
           renderItem={(item, id) => (
             <List.Item>
               <Row justify="center">

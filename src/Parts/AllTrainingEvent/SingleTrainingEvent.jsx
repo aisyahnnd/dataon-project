@@ -25,7 +25,7 @@ export const SingleTrainingEvent = (props) => {
       cover={
         <img
           alt="example"
-          src={item.image}
+          src={item.thumbnail}
           style={{ borderRadius: '10px 10px 0px 0px' }}
         />
       }
@@ -39,9 +39,11 @@ export const SingleTrainingEvent = (props) => {
             style={{ display: 'flex' }}
           >
             <Text style={{ fontSize: '11px' }}>
-              <EnvironmentOutlined /> {item.location}
+              <EnvironmentOutlined /> {item.trainer}
             </Text>
-            <Text strong>{item.eventName}</Text>
+            <Text style={{ fontSize: '12px' }} strong>
+              {item.eventName}
+            </Text>
           </Space>
         </Col>
       </Row>
@@ -57,7 +59,7 @@ export const SingleTrainingEvent = (props) => {
           >
             <Text type="secondary">{item.startDate}</Text>
             <Text type="secondary" style={{ fontSize: '11px' }}>
-              <UserOutlined /> {item.speaker}
+              <UserOutlined /> {item.trainer}
             </Text>
           </Space>
         </Col>

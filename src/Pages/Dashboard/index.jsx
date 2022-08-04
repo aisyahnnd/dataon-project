@@ -1,15 +1,22 @@
-import { useContext } from "react";
-import { SectionHeader } from "../../Components";
-import { AppContext } from "../../Context";
+import { useContext, useEffect } from 'react';
+import { SectionHeader } from '../../Components';
+import { AppContext } from '../../Context';
 import {
   FilterTrainingEvent,
   MyTrainingCard,
   AllTrainingEventTable,
   MyTrainingEventTable,
   AllTrainingEvent,
-} from "../../Parts";
+} from '../../Parts';
 const Dashboard = () => {
-  const { view } = useContext(AppContext);
+  const { GetAllTraining, GetMyTraining, view } =
+    useContext(AppContext);
+
+  useEffect(() => {
+    GetMyTraining();
+    GetAllTraining();
+  }, []);
+
   return (
     <>
       <SectionHeader viewButton></SectionHeader>
