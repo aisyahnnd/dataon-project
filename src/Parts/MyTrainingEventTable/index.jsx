@@ -1,27 +1,23 @@
-import { useContext, useEffect } from 'react';
-import LabelSection from '../../Components/LabelSection';
-import TableData from '../../Components/TableData';
-import { AppContext } from '../../Context';
-const MyTrainingEventTable = () => {
-  const { DataMyTraining, MyTrainingTableColumnContext } =
-    useContext(AppContext);
-
+import { useContext, useEffect } from "react";
+import LabelSection from "../../Components/LabelSection";
+import TableData from "../../Components/TableData";
+const MyTrainingEventTable = ({ dataTable, columns }) => {
   return (
     <div className="site-card-wrapper">
       <LabelSection
         label="My Training Event"
         dataBadge={50}
         style={{
-          backgroundColor: '#e7e7e7',
-          color: '#2db7f5',
-          fontWeight: 'bold',
+          backgroundColor: "#e7e7e7",
+          color: "#2db7f5",
+          fontWeight: "bold",
         }}
       />
       <TableData
-        key={DataMyTraining.id}
-        dataTable={DataMyTraining.data}
+        key={dataTable.id}
+        dataTable={dataTable.data}
         pagination={{ defaultPageSize: 2 }}
-        columns={MyTrainingTableColumnContext}
+        columns={columns}
       />
     </div>
   );

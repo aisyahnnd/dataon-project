@@ -123,19 +123,19 @@ export const SingleTrainingCard = props => {
               type="primary"
               size="small"
               style={{ fontSize: 12 }}
-              onClick={openLocation}
-              icon={<EnvironmentOutlined />}
+              onClick={showModal}
             >
-              View Location
+              Give Feedback
             </Button>
           ) : (
             <Button
               type="primary"
               size="small"
               style={{ fontSize: 12 }}
-              onClick={showModal}
+              onClick={openLocation}
+              icon={<EnvironmentOutlined />}
             >
-              Give Feedback
+              View Location
             </Button>
           )}
           <Modal

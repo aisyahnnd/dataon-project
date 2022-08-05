@@ -8,22 +8,24 @@ import {
   MyTrainingEventTable,
   AllTrainingEvent,
 } from "../../Parts";
-
 const Dashboard = () => {
   const {
-    valueCardTraining,
-    SearchCardTraining,
     GetAllTraining,
     GetMyTraining,
     view,
+    valueInputSearching,
+    GetDataSearching,
+    DataAllTrainings,
+    AllTrainingTableColumnContext,
+    MyTrainingTableColumnContext,
+    DataMyTraining,
     deleteStatus,
   } = useContext(AppContext);
-
   useEffect(() => {
-    GetMyTraining();
     GetAllTraining();
-    SearchCardTraining(valueCardTraining);
-  }, [deleteStatus, valueCardTraining]);
+    GetMyTraining();
+    GetDataSearching(valueInputSearching);
+  }, [valueInputSearching, deleteStatus]);
 
   return (
     <>
@@ -31,13 +33,18 @@ const Dashboard = () => {
       <FilterTrainingEvent />
       {view ? (
         <>
-          <MyTrainingCard />
-          <AllTrainingEvent />
+          <MyTrainingCard /> <AllTrainingEvent item={DataAllTrainings} />
         </>
       ) : (
         <>
-          <MyTrainingEventTable />
-          <AllTrainingEventTable />
+          <MyTrainingEventTable
+            dataTable={DataMyTraining}
+            columns={MyTrainingTableColumnContext}
+          />
+          <AllTrainingEventTable
+            dataTable={DataAllTrainings.data}
+            columns={AllTrainingTableColumnContext}
+          />
         </>
       )}
     </>

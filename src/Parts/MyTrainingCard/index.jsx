@@ -6,8 +6,7 @@ import { AppContext } from "../../Context";
 import "./MyTrainingCard.css";
 
 const MyTrainingCard = () => {
-  const { DataMyTraining, valueCardTraining } =
-    useContext(AppContext);
+  const { DataMyTraining, valueCardTraining } = useContext(AppContext);
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -49,12 +48,7 @@ const MyTrainingCard = () => {
         >
           {data.map((item, id) => {
             return (
-              <Row
-                key={item.id}
-                align="middle"
-                justify="center"
-                gutter={5}
-              >
+              <Row key={item.id} align="middle" justify="center" gutter={5}>
                 <Col>
                   <div>
                     <SingleTrainingCard id={item.id} item={item} />
@@ -64,23 +58,15 @@ const MyTrainingCard = () => {
             );
           })}
         </Carousel>
-        {data.length === 0 && (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        )}
+        {data.length === 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
       </div>
     </>
   );
 };
-const SlickButtonLeft = ({
-  currentSlide,
-  slideCount,
-  children,
-  ...props
-}) => <LeftOutlined {...props}>{children}</LeftOutlined>;
-const SlickButtonRight = ({
-  currentSlide,
-  slideCount,
-  children,
-  ...props
-}) => <RightOutlined {...props}>{children}</RightOutlined>;
+const SlickButtonLeft = ({ currentSlide, slideCount, children, ...props }) => (
+  <LeftOutlined {...props}>{children}</LeftOutlined>
+);
+const SlickButtonRight = ({ currentSlide, slideCount, children, ...props }) => (
+  <RightOutlined {...props}>{children}</RightOutlined>
+);
 export default MyTrainingCard;
