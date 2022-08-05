@@ -1,21 +1,31 @@
-import { useContext, useEffect } from 'react';
-import { SectionHeader } from '../../Components';
-import { AppContext } from '../../Context';
+import { useContext, useEffect } from "react";
+import { SectionHeader } from "../../Components";
+import { AppContext } from "../../Context";
 import {
   FilterTrainingEvent,
   MyTrainingCard,
   AllTrainingEventTable,
   MyTrainingEventTable,
   AllTrainingEvent,
-} from '../../Parts';
+} from "../../Parts";
 const Dashboard = () => {
-  const { GetAllTraining, GetMyTraining, view } =
-    useContext(AppContext);
-
+  const {
+    GetAllTraining,
+    GetMyTraining,
+    view,
+    valueInputSearching,
+    GetDataSearching,
+    DataAllTrainings,
+    AllTrainingTableColumnContext,
+    MyTrainingTableColumnContext,
+    DataMyTraining,
+  } = useContext(AppContext);
+  var totalData = null;
   useEffect(() => {
-    GetMyTraining();
     GetAllTraining();
-  }, []);
+    GetMyTraining();
+    GetDataSearching(valueInputSearching);
+  }, [valueInputSearching]);
 
   return (
     <>
@@ -23,11 +33,18 @@ const Dashboard = () => {
       <FilterTrainingEvent />
       {view ? (
         <>
-          <MyTrainingCard /> <AllTrainingEvent />
+          <MyTrainingCard /> <AllTrainingEvent item={DataAllTrainings} />
         </>
       ) : (
         <>
-          <MyTrainingEventTable /> <AllTrainingEventTable />
+          <MyTrainingEventTable
+            dataTable={DataMyTraining}
+            columns={MyTrainingTableColumnContext}
+          />
+          <AllTrainingEventTable
+            dataTable={DataAllTrainings.data}
+            columns={AllTrainingTableColumnContext}
+          />
         </>
       )}
     </>

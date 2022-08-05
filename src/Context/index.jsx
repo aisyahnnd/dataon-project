@@ -53,6 +53,23 @@ export const ContextWrapper = props => {
       console.log(error);
     }
   };
+
+  //for searching input filter
+  const [valueInputSearching, setValueInputSearching] = useState("");
+  //get data searching
+  const GetDataSearching = async valueInputSearching => {
+    console.log(2424, valueInputSearching);
+    let endpoints = [
+      `/users/1/trainings?search=${valueInputSearching}`,
+      `/trainings?search=${valueInputSearching}`,
+    ];
+    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+      ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
+        setDataAllTrainings(dataAllTraining);
+        setDataMyTraining(dataUserTraining);
+      }
+    );
+  };
   return (
     <AppContext.Provider
       value={{
@@ -68,6 +85,9 @@ export const ContextWrapper = props => {
         CreateDataTraining,
         DataMyTraining,
         EditDataTraining,
+        valueInputSearching,
+        setValueInputSearching,
+        GetDataSearching,
       }}
     >
       {props.children}

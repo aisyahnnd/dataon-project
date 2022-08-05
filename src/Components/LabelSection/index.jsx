@@ -1,6 +1,6 @@
-import { Badge } from 'antd';
-import './label.css';
-import PropTypes from 'prop-types';
+import { Badge } from "antd";
+import "./label.css";
+import PropTypes from "prop-types";
 const LabelSection = ({ dataBadge, style, label }) => {
   return (
     <div className="title-event">
@@ -20,6 +20,6 @@ LabelSection.propTypes = {
 };
 LabelSection.defaultProps = {
   dataBadge: 10,
-  style: '',
-  label: 'test',
+  style: "",
+  label: "test",
 };

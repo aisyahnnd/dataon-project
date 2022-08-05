@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Badge, Col, Row, List } from 'antd';
-import { SingleTrainingEvent } from './SingleTrainingEvent';
-import { useContext } from 'react';
-import { AppContext } from '../../Context';
-import './AllTrainingEvent.css';
+import React, { useState, useEffect } from "react";
+import { Badge, Col, Row, List } from "antd";
+import { SingleTrainingEvent } from "./SingleTrainingEvent";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
+import "./AllTrainingEvent.css";
 
 const AllTrainingEvent = () => {
   const { DataAllTrainings } = useContext(AppContext);
@@ -17,7 +17,7 @@ const AllTrainingEvent = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [DataAllTrainings]);
 
   return (
     <>
@@ -28,9 +28,9 @@ const AllTrainingEvent = () => {
             <Badge
               style={{
                 marginLeft: 5,
-                backgroundColor: '#e7e7e7',
-                color: '#2db7f5',
-                fontWeight: 'bold',
+                backgroundColor: "#e7e7e7",
+                color: "#2db7f5",
+                fontWeight: "bold",
               }}
               count={data.length}
             />
