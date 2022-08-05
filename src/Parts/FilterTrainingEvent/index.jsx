@@ -5,8 +5,7 @@ import { UnorderedListOutlined, AppstoreOutlined } from "@ant-design/icons";
 import { useContext, useCallback, useEffect } from "react";
 import { AppContext } from "../../Context";
 const FilterTrainingEvent = () => {
-  const { view, setView, valueInputSearching, setValueInputSearching } =
-    useContext(AppContext);
+  const { view, setView, setValueInputSearching } = useContext(AppContext);
   const onClickAsCard = () => {
     setView(true);
   };
@@ -36,6 +35,7 @@ const FilterTrainingEvent = () => {
   return (
     <div className="container-grid">
       <TextInput
+        type="search"
         label="Search Training"
         placeholder="Search Training"
         style={{ width: 230, borderRadius: 5 }}

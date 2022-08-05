@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import dataJson from "../Dummy/DataTable.json";
-import dataTraining from "../dataTraining";
 import { columnsAllTraining } from "../Utils/ColumnsAllTraining";
 import { columnsMyTraining } from "../Utils/ColumnsMyTraining";
 import { useState } from "react";
@@ -40,6 +39,7 @@ export const ContextWrapper = props => {
       console.log(error);
     }
   };
+
   //for edit data my training
   const EditDataTraining = async (dataEdit, paramsId, userId) => {
     try {
@@ -70,6 +70,38 @@ export const ContextWrapper = props => {
       }
     );
   };
+  //for delete data my training
+  const [deleteStatus, setDeleteStatus] = useState(false);
+  const DeleteDataMyTraining = async id => {
+    await Axios.delete(`/users/1/trainings/${id}`)
+      .then(res => {
+        console.log(res.data);
+        setDeleteStatus(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  //for search card training
+  const [valueCardTraining, setValueCardTraining] = useState("");
+  const SearchCardTraining = async valueCardTraining => {
+    const myTraining = await Axios.get(
+      `/users/1/trainings?search=${valueCardTraining}`
+    );
+    const allTraining = await Axios.get(
+      `/trainings?search=${valueCardTraining}`
+    );
+
+    Promise.all([myTraining, allTraining]).then(
+      ([{ data: dataMyTraining }, { data: dataAllTraining }]) => {
+        setDataMyTraining(dataMyTraining);
+        setDataAllTrainings(dataAllTraining);
+        setValueCardTraining(valueCardTraining);
+      }
+    );
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -88,6 +120,12 @@ export const ContextWrapper = props => {
         valueInputSearching,
         setValueInputSearching,
         GetDataSearching,
+        deleteStatus,
+        setDeleteStatus,
+        DeleteDataMyTraining,
+        SearchCardTraining,
+        valueCardTraining,
+        setValueCardTraining,
       }}
     >
       {props.children}

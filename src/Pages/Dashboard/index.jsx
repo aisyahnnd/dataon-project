@@ -19,13 +19,13 @@ const Dashboard = () => {
     AllTrainingTableColumnContext,
     MyTrainingTableColumnContext,
     DataMyTraining,
+    deleteStatus,
   } = useContext(AppContext);
-  var totalData = null;
   useEffect(() => {
     GetAllTraining();
     GetMyTraining();
     GetDataSearching(valueInputSearching);
-  }, [valueInputSearching]);
+  }, [valueInputSearching, deleteStatus]);
 
   return (
     <>

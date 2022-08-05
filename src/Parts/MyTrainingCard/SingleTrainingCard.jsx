@@ -75,6 +75,7 @@ export const SingleTrainingCard = props => {
       style={{
         maxWidth: 400,
         borderRadius: 10,
+        margin: '0px auto',
       }}
       bodyStyle={{ padding: "0" }}
       hoverable

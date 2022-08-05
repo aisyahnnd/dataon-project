@@ -1,4 +1,4 @@
-import { Badge, Carousel, Col, Row } from "antd";
+import { Badge, Carousel, Col, Row, Empty } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { SingleTrainingCard } from "./SingleTrainingCard";
 import { useContext, useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import { AppContext } from "../../Context";
 import "./MyTrainingCard.css";
 
 const MyTrainingCard = () => {
-  const { DataMyTraining } = useContext(AppContext);
+  const { DataMyTraining, valueCardTraining } = useContext(AppContext);
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -58,6 +58,7 @@ const MyTrainingCard = () => {
             );
           })}
         </Carousel>
+        {data.length === 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
       </div>
     </>
   );
