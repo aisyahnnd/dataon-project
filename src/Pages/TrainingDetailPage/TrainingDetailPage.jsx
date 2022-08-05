@@ -1,15 +1,32 @@
-import { EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Col, Image, Row, Space, Typography } from 'antd';
+import {
+  EnvironmentOutlined,
+  ExclamationCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import {
+  Button,
+  Col,
+  Image,
+  Modal,
+  Row,
+  Space,
+  Typography,
+} from "antd";
+import { useContext, useEffect, useState } from "react";
 import {
   useNavigate,
   useParams,
   useLocation,
-} from 'react-router-dom';
-import { SectionHeader } from '../../Components';
-import './TrainingDetailPage.css';
+} from "react-router-dom";
+import { SectionHeader } from "../../Components";
+import { AppContext } from "../../Context";
+import "./TrainingDetailPage.css";
+const { confirm } = Modal;
 const { Text } = Typography;
 
 export const TrainingDetailPage = () => {
+  const { deleteStatus, setDeleteStatus, DeleteDataMyTraining } =
+    useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -21,7 +38,34 @@ export const TrainingDetailPage = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (deleteStatus) {
+      navigate("/");
+      setDeleteStatus(false);
+    }
+  }, [deleteStatus]);
+
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Are you sure to delete this training?",
+      icon: <ExclamationCircleOutlined />,
+      content: "When clicked the OK button, data will be deleted",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "Cancel",
+
+      onOk() {
+        return new Promise((resolve, reject) => {
+          DeleteDataMyTraining(params.id);
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log("Oops errors!"));
+      },
+
+      onCancel() {},
+    });
   };
 
   return (
@@ -42,50 +86,50 @@ export const TrainingDetailPage = () => {
             <Space
               direction="vertical"
               size={7}
-              style={{ display: 'flex' }}
+              style={{ display: "flex" }}
             >
-              <Text style={{ fontSize: '16px' }}>
+              <Text style={{ fontSize: "16px" }}>
                 <EnvironmentOutlined /> {location.state.trainer}
               </Text>
-              <Text strong style={{ fontSize: '32px' }}>
+              <Text strong style={{ fontSize: "32px" }}>
                 {location.state.eventName}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
+              <Text style={{ fontSize: "16px" }}>
                 Event No : TREV-YYMM-XXXX
               </Text>
-              <Text style={{ fontSize: '16px' }}>
-                Event Type :{' '}
+              <Text style={{ fontSize: "16px" }}>
+                Event Type :{" "}
                 {location.state.isOnlineClass === true
-                  ? 'Online Class'
-                  : 'Offline Class'}
+                  ? "Online Class"
+                  : "Offline Class"}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
+              <Text style={{ fontSize: "16px" }}>
                 Event Name : {location.state.eventName}
               </Text>
-              <Text style={{ fontSize: '16px' }}>
-                Status :{' '}
+              <Text style={{ fontSize: "16px" }}>
+                Status :{" "}
                 {location.state.isComplete === true
-                  ? 'Close Registration'
-                  : 'Open for Registration'}
+                  ? "Close Registration"
+                  : "Open for Registration"}
               </Text>
             </Space>
             <Space
               direction="vertical"
               size={5}
-              style={{ display: 'flex', paddingTop: 50 }}
+              style={{ display: "flex", paddingTop: 50 }}
             >
               <Text
                 type="secondary"
                 style={{
-                  fontSize: '16px',
+                  fontSize: "16px",
                 }}
               >
                 Start Date : {location.state.startDate}
               </Text>
-              <Text type="secondary" style={{ fontSize: '16px' }}>
+              <Text type="secondary" style={{ fontSize: "16px" }}>
                 End Date : {location.state.endDate}
               </Text>
-              <Text type="secondary" style={{ fontSize: '16px' }}>
+              <Text type="secondary" style={{ fontSize: "16px" }}>
                 <UserOutlined /> {location.state.trainer}
               </Text>
             </Space>
@@ -95,9 +139,9 @@ export const TrainingDetailPage = () => {
           <Col
             span={24}
             style={{
-              textAlign: 'right',
+              textAlign: "right",
               padding: 20,
-              borderTop: '1px #dddddd solid',
+              borderTop: "1px #dddddd solid",
             }}
           >
             <Button
@@ -127,6 +171,7 @@ export const TrainingDetailPage = () => {
                   Edit
                 </Button>
                 <Button
+                  onClick={showDeleteConfirm}
                   type="primary"
                   danger
                   style={{

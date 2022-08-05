@@ -1,21 +1,21 @@
-import { useContext, useEffect } from 'react';
-import { SectionHeader } from '../../Components';
-import { AppContext } from '../../Context';
+import { useContext, useEffect, useState } from "react";
+import { SectionHeader } from "../../Components";
+import { AppContext } from "../../Context";
 import {
   FilterTrainingEvent,
   MyTrainingCard,
   AllTrainingEventTable,
   MyTrainingEventTable,
   AllTrainingEvent,
-} from '../../Parts';
+} from "../../Parts";
 const Dashboard = () => {
-  const { GetAllTraining, GetMyTraining, view } =
+  const { GetAllTraining, GetMyTraining, view, deleteStatus } =
     useContext(AppContext);
 
   useEffect(() => {
     GetMyTraining();
     GetAllTraining();
-  }, []);
+  }, [deleteStatus]);
 
   return (
     <>
@@ -23,11 +23,13 @@ const Dashboard = () => {
       <FilterTrainingEvent />
       {view ? (
         <>
-          <MyTrainingCard /> <AllTrainingEvent />
+          <MyTrainingCard />
+          <AllTrainingEvent />
         </>
       ) : (
         <>
-          <MyTrainingEventTable /> <AllTrainingEventTable />
+          <MyTrainingEventTable />
+          <AllTrainingEventTable />
         </>
       )}
     </>
