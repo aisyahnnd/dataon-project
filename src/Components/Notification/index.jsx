@@ -1,10 +1,10 @@
 import React from "react";
 import { SmileOutlined } from "@ant-design/icons";
 import { notification } from "antd";
-const Notification = () => {
+function Notification(messages) {
   notification.open({
     message: "Succes",
-    description: "Event successfully created ",
+    description: messages,
     icon: (
       <SmileOutlined
         style={{
@@ -13,6 +13,6 @@ const Notification = () => {
       />
     ),
   });
-};
+}
 
 export default Notification;

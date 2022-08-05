@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Input,
@@ -9,58 +9,34 @@ import {
   Row,
   Col,
   InputNumber,
-} from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
-import dayjs from 'dayjs';
-import moment from 'moment';
-import { SectionHeader } from '../../Components';
+} from "antd";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import moment from "moment";
+import { SectionHeader } from "../../Components";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 const { RangePicker } = DatePicker;
-
-const options = [
-  {
-    label: 'Internal',
-    value: 'Internal',
-  },
-  {
-    label: 'Open for Registration',
-    value: 'Open for Registration',
-  },
-  {
-    label: 'Closed Registration',
-    value: 'Closed Registration',
-  },
-];
-
 export const TrainingEditPage = () => {
-  const [componentSize, setComponentSize] = useState('default');
+  const { EditDataTraining } = useContext(AppContext);
+  const [componentSize, setComponentSize] = useState("default");
   const [data, setData] = useState({
-    eventName: '',
-    startDate: '',
-    endDate: '',
-    image: '',
-    speaker: '',
-    location: '',
-    ratings: '',
-    isOnline: '',
-    isOffline: '',
-    information: '',
-    isCompleted: '',
-    date: '',
-    eventType: '',
+    eventName: "",
+    startDate: "",
+    endDate: "",
+    image: "",
+    trainer: "",
+    location: "",
+    ratings: "",
+    isOnlineClass: "",
+    additionalInfo: "",
+    isComplete: "",
+    date: "",
   });
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const onChangeRadioButton = ({ target: { value } }) => {
-    setValue(
-      data.isComplete === true
-        ? 'Closed Registration'
-        : 'Open for Registration'
-    );
-  };
-
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
@@ -69,24 +45,18 @@ export const TrainingEditPage = () => {
     try {
       setData({
         eventName: location.state.eventName,
-        startDate: dayjs(location.state.startDate).format(
-          'YYYY-MM-DD HH:mm'
-        ),
-        endDate: dayjs(location.state.endDate).format(
-          'YYYY-MM-DD HH:mm'
-        ),
+        startDate: dayjs(location.state.startDate).format("YYYY-MM-DD HH:mm"),
+        endDate: dayjs(location.state.endDate).format("YYYY-MM-DD HH:mm"),
         image: location.state.thumbnail,
-        eventType:
-          location.isOnlineClass === true
-            ? 'Online Class'
-            : 'Offline Class',
+        isOnlineClass:
+          location.isOnlineClass === true ? "Online Class" : "Offline Class",
         location: location.state.trainer,
-        speaker: location.state.trainer,
+        trainer: location.state.trainer,
         ratings: location.state.ratings,
-        information: location.state.additionalInfo,
+        additionalInfo: location.state.additionalInfo,
       });
     } catch (error) {
-      navigate('/missing');
+      navigate("/missing");
     }
   };
 
@@ -98,18 +68,42 @@ export const TrainingEditPage = () => {
     eventName: data.eventName,
     date: [moment(data.startDate), moment(data.endDate)],
     image: data.image,
-    eventType: data.eventType,
+    isOnlineClass: data.isOnlineClass,
     location: data.location,
-    speaker: data.speaker,
+    trainer: data.trainer,
     ratings: data.ratings,
-    information: data.information,
+    additionalInfo: data.additionalInfo,
   });
-
+  //update data to database
+  const params = useParams();
+  const onFinish = values => {
+    var user = JSON.parse(localStorage.getItem("user-info"));
+    const starDate = values.date[0].format("YYYY-MM-DD");
+    const endDate = values.date[1].format("YYYY-MM-DD");
+    const dataEdit = {
+      eventName: values.eventName,
+      isOnlineClass: values.isOnlineClass === "Online Class" ? true : false,
+      startDate: starDate,
+      endDate: endDate,
+      location: { lat: values.latitude, long: values.longitude },
+      isComplete: values.isComplete,
+      trainer: values.trainer,
+      additionalInfo: values.additionalInfo,
+      ratings: values.ratings,
+    };
+    EditDataTraining(dataEdit, params.id, user.id);
+  };
+  const onChangeRatings = value => {
+    form.setFieldsValue({
+      ratings: value,
+    });
+  };
   return (
     <>
       <SectionHeader></SectionHeader>
       <div className="site-card-wrapper">
         <Form
+          onFinish={onFinish}
           labelCol={{
             span: 7,
           }}
@@ -125,22 +119,22 @@ export const TrainingEditPage = () => {
           form={form}
           style={{ paddingTop: 50 }}
         >
-          <Form.Item name="eventNo" label="Event No:">
-            TREV-YYMM-XXXX
-          </Form.Item>
           <Form.Item
-            name="eventType"
+            name="isOnlineClass"
             label="Event Type:"
-            value={data.eventType}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select placeholder="Select Event Type" allowClear>
-              <Option value="online-class">Online Class</Option>
-              <Option value="offline-class">Offline Class</Option>
+            <Select placeholder="Select Event Type" value={data.isOnlineClass}>
+              <Option name="true" value="Online Class">
+                Online Class
+              </Option>
+              <Option name="false" value="Offline Class">
+                Offline Class
+              </Option>
             </Select>
           </Form.Item>
           <Form.Item
@@ -156,9 +150,9 @@ export const TrainingEditPage = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            name="speaker"
-            label="Speaker"
-            value={data.speaker}
+            name="trainer"
+            label="Trainer Name"
+            value={data.trainer}
             rules={[
               {
                 required: true,
@@ -183,9 +177,7 @@ export const TrainingEditPage = () => {
             name="date"
             label="Date"
             value={data.date}
-            rules={[
-              { required: true, message: 'Please select date!' },
-            ]}
+            rules={[{ required: true, message: "Please select date!" }]}
           >
             <RangePicker
               format="YYYY-MM-DD HH:mm"
@@ -197,41 +189,64 @@ export const TrainingEditPage = () => {
             />
           </Form.Item>
           <Form.Item
-            name="isCompleted"
+            name="isComplete"
             label="Status"
-            value={value}
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
+                message: "Please pick an item!",
               },
             ]}
           >
-            <Radio.Group
-              options={options}
-              onChange={onChangeRadioButton}
-              optionType="button"
-              defaultValue={
-                data.isCompleted === true
-                  ? 'Closed Registration'
-                  : 'Open for Registration'
-              }
+            <Radio.Group value={value}>
+              <Radio.Button value={false}>Open for Registration</Radio.Button>
+              <Radio.Button value={true}>Closed Registration</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item name="ratings" label="Ratings" value={data.ratings}>
+            <InputNumber
+              min={1}
+              onChange={value => onChangeRatings(value)}
+              max={100}
+              type="number"
             />
           </Form.Item>
+          <Form.Item label="Location based Latitude and Longitude">
+            <Form.Item
+              name="latitude"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input name="latitude" placeholder="latitude" />
+            </Form.Item>
+            <Form.Item
+              name="longitude"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input placeholder="longitude" />
+            </Form.Item>
+          </Form.Item>
           <Form.Item
-            name="ratings"
-            label="Ratings"
-            value={data.ratings}
+            name="additionalInfo"
+            label="information"
+            value={data.additionalInfo}
           >
-            <InputNumber min={1} max={100} type="number" />
+            <Input />
           </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
               span={24}
               style={{
-                textAlign: 'right',
+                textAlign: "right",
                 padding: 20,
-                borderTop: '1px #dddddd solid',
+                borderTop: "1px #dddddd solid",
               }}
             >
               <Button

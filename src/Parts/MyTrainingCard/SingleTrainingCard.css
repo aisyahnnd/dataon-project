@@ -1,0 +1,4 @@
+.modal .ant-modal-content,
+.modal .ant-modal-content .ant-modal-header {
+  border-radius: 20px 20px 20px 20px;
+}
