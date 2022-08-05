@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import {
@@ -8,14 +8,22 @@ import {
   MyTrainingEventTable,
   AllTrainingEvent,
 } from "../../Parts";
+
 const Dashboard = () => {
-  const { GetAllTraining, GetMyTraining, view, deleteStatus } =
-    useContext(AppContext);
+  const {
+    valueCardTraining,
+    SearchCardTraining,
+    GetAllTraining,
+    GetMyTraining,
+    view,
+    deleteStatus,
+  } = useContext(AppContext);
 
   useEffect(() => {
     GetMyTraining();
     GetAllTraining();
-  }, [deleteStatus]);
+    SearchCardTraining(valueCardTraining);
+  }, [deleteStatus, valueCardTraining]);
 
   return (
     <>
