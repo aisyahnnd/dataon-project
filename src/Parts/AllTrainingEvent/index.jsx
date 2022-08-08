@@ -7,9 +7,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./AllTrainingEvent.css";
 
 const AllTrainingEvent = () => {
-  const { DataAllTrainings, GetAllTraining } = useContext(AppContext);
+  let x = window.matchMedia("(max-width: 1024px)");
+  const { DataAllTrainings } = useContext(AppContext);
   const [data, setData] = useState([]);
-  const [item, setItem] = useState(Array.from({ length: 5 }));
+  const [item, setItem] = useState(
+    Array.from({ length: x.matches ? 4 : 5 })
+  );
 
   const getData = async () => {
     try {
@@ -23,7 +26,7 @@ const AllTrainingEvent = () => {
 
   const AllTraining = () => {
     setTimeout(() => {
-      setItem(item.concat(Array.from({ length: 5 })));
+      setItem(item.concat(Array.from({ length: x.matches ? 4 : 5 })));
     }, 1500);
   };
 
