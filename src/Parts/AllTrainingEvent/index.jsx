@@ -3,11 +3,13 @@ import { Badge, Col, Row, List } from "antd";
 import { SingleTrainingEvent } from "./SingleTrainingEvent";
 import { useContext } from "react";
 import { AppContext } from "../../Context";
+import InfiniteScroll from "react-infinite-scroll-component";
 import "./AllTrainingEvent.css";
 
 const AllTrainingEvent = () => {
-  const { DataAllTrainings } = useContext(AppContext);
+  const { DataAllTrainings, GetAllTraining } = useContext(AppContext);
   const [data, setData] = useState([]);
+  const [item, setItem] = useState(Array.from({ length: 5 }));
 
   const getData = async () => {
     try {
@@ -18,6 +20,12 @@ const AllTrainingEvent = () => {
   useEffect(() => {
     getData();
   }, [DataAllTrainings]);
+
+  const AllTraining = () => {
+    setTimeout(() => {
+      setItem(item.concat(Array.from({ length: 5 })));
+    }, 1500);
+  };
 
   return (
     <>
@@ -37,28 +45,35 @@ const AllTrainingEvent = () => {
           </p>
         </div>
 
-        <List
-          grid={{
-            gutter: 16,
-            column: 5,
-            xs: 1,
-            sm: 2,
-            md: 4,
-            lg: 4,
-            xl: 5,
-            xxl: 3,
-          }}
-          dataSource={data.slice(0, 5)}
-          renderItem={(item, id) => (
-            <List.Item>
-              <Row justify="center">
-                <Col>
-                  <SingleTrainingEvent id={item.id} item={item} />
-                </Col>
-              </Row>
-            </List.Item>
-          )}
-        />
+        <InfiniteScroll
+          dataLength={item.length}
+          next={AllTraining}
+          hasMore={item.length >= data.length ? false : true}
+          loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
+        >
+          <List
+            grid={{
+              gutter: 16,
+              column: 5,
+              xs: 1,
+              sm: 2,
+              md: 4,
+              lg: 4,
+              xl: 5,
+              xxl: 3,
+            }}
+            dataSource={data.slice(0, item.length)} //
+            renderItem={(item, id) => (
+              <List.Item>
+                <Row justify="center">
+                  <Col>
+                    <SingleTrainingEvent id={item.id} item={item} />
+                  </Col>
+                </Row>
+              </List.Item>
+            )}
+          />
+        </InfiniteScroll>
       </div>
     </>
   );
