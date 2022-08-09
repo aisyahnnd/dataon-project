@@ -8,23 +8,26 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import {
-  Avatar,
   Button,
-  Card,
   Col,
   Image,
   Modal,
   Row,
   Space,
   Typography,
+  Card,
 } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { ButtonIcon, SectionHeader } from "../../Components";
+import {
+  useNavigate,
+  useParams,
+  useLocation,
+} from "react-router-dom";
+import { Avatar, ButtonIcon, SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import "./TrainingDetailPage.css";
 const { confirm } = Modal;
-const { Text, Title } = Typography;
+const { Text, Title, Title } = Typography;
 
 export const TrainingDetailPage = () => {
   const { deleteStatus, setDeleteStatus, DeleteDataMyTraining } =
@@ -108,7 +111,8 @@ export const TrainingDetailPage = () => {
                   width: "100%",
                   borderRadius: "16px",
                   marginRight: "24px",
-                  boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
+                  boxShadow:
+                    "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                 }}
               >
                 <Row>
@@ -155,9 +159,16 @@ export const TrainingDetailPage = () => {
                   <Col span={12}>
                     <div className="inviteWrapper">
                       <PlusOutlined
-                        style={{ color: "#cccccc", paddingTop: "5px" }}
+                        style={{
+                          color: "#cccccc",
+                          paddingTop: "5px",
+                        }}
                       ></PlusOutlined>
-                      <Text className="textInvite" strong type="secondary">
+                      <Text
+                        className="textInvite"
+                        strong
+                        type="secondary"
+                      >
                         Invite Others
                       </Text>
                     </div>
@@ -183,7 +194,8 @@ export const TrainingDetailPage = () => {
                     {location.state.isOnlineClass === true
                       ? "Online Class"
                       : "Offline Class"}
-                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5 Person
+                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5
+                    Person
                   </Text>
                   <Text
                     style={{
@@ -200,7 +212,9 @@ export const TrainingDetailPage = () => {
                       style={{ marginTop: "15px" }}
                     />
                     <Space direction="vertical" size={-5}>
-                      <Text style={{ fontWeight: 700, paddingLeft: 10 }}>
+                      <Text
+                        style={{ fontWeight: 700, paddingLeft: 10 }}
+                      >
                         {location.state.trainer}
                       </Text>
                       <Text
@@ -242,8 +256,12 @@ export const TrainingDetailPage = () => {
                       size={6}
                       style={{ display: "flex", padding: 10 }}
                     >
-                      <Text style={{ fontSize: "16px", fontWeight: 700 }}>
-                        <SolutionOutlined style={{ marginRight: 5 }} />
+                      <Text
+                        style={{ fontSize: "16px", fontWeight: 700 }}
+                      >
+                        <SolutionOutlined
+                          style={{ marginRight: 5 }}
+                        />
                         {location.state.isOnlineClass === true
                           ? "Online Class "
                           : "Offline Class "}
@@ -265,7 +283,9 @@ export const TrainingDetailPage = () => {
                       >
                         TREV-YYMM-XXXX
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Date
                       </Text>
                       <Text
@@ -276,7 +296,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.startDate}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Location
                       </Text>
                       <Text
@@ -287,7 +309,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.trainer}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Status
                       </Text>
                       <Text
@@ -300,7 +324,9 @@ export const TrainingDetailPage = () => {
                           ? "Close Registration"
                           : "Open for Registration"}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         End Date
                       </Text>
                       <Text
@@ -311,7 +337,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.endDate}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Trainer
                       </Text>
                       <Text

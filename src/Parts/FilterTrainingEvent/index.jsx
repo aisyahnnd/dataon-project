@@ -27,7 +27,7 @@ const FilterTrainingEvent = () => {
   const debounceFunc = useCallback(debounce(onChangeSearching, 1000), []);
 
   return (
-    <div className="container-grid">
+    <div className="container-gridd">
       <TextInput
         type="search"
         label="Search Training"
