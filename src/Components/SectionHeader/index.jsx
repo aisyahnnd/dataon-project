@@ -1,37 +1,37 @@
-import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
-import { Breadcrumb, Button, Col, Dropdown, Menu, Row } from 'antd';
+import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
+import { Breadcrumb, Button, Col, Dropdown, Menu, Row } from "antd";
 import {
   useNavigate,
   Link,
   useLocation,
   useParams,
-} from 'react-router-dom';
-import { useContext } from 'react';
-import { AppContext } from '../../Context';
+} from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../Context";
 
 const SectionHeader = ({ viewButton }) => {
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
-  let user = JSON.parse(localStorage.getItem('user-info'));
+  let user = JSON.parse(localStorage.getItem("user-info"));
   const handleCreate = () => {
-    navigate('/training/create');
+    navigate("/training/create");
   };
   //breadcumb
-  const pathSnippets = location.pathname.split('/').filter((i) => i);
+  const pathSnippets = location.pathname.split("/").filter((i) => i);
   const breadcrumbNameMaps = {
-    '/': 'Dashboard',
-    '/register': 'Register',
-    '/training': 'Training',
-    ['/training/' + params.id]: 'My Training',
-    '/training/create': 'Create Training',
-    ['/mytraining/' + params.id]: 'Detail Page',
-    '/mytraining/edit': 'Edit',
-    ['/mytraining/edit/' + params.id]: 'Edit Detail',
-    '/mytraining': 'My Training',
+    "/": "Dashboard",
+    "/register": "Register",
+    "/training": "Training",
+    ["/training/" + params.id]: "Training Event Detail",
+    "/training/create": "Create Training",
+    ["/mytraining/" + params.id]: "Detail Page",
+    "/mytraining/edit": "Edit",
+    ["/mytraining/edit/" + params.id]: "Edit Detail",
+    "/mytraining": "My Training",
   };
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+    const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return (
       <Breadcrumb.Item key={url}>
         {breadcrumbNameMaps[url]}
@@ -39,18 +39,18 @@ const SectionHeader = ({ viewButton }) => {
     );
   });
   const breadcrumbItems = [
-    <Breadcrumb.Item key={'/'}>
+    <Breadcrumb.Item key={"/"}>
       <Link to="/">Dashboard</Link>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems);
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const menuLogout = (
@@ -58,8 +58,8 @@ const SectionHeader = ({ viewButton }) => {
       onClick={handleLogout}
       items={[
         {
-          label: 'Logout',
-          key: '1',
+          label: "Logout",
+          key: "1",
         },
       ]}
     />
@@ -70,8 +70,8 @@ const SectionHeader = ({ viewButton }) => {
       onClick={handleLogin}
       items={[
         {
-          label: 'Login',
-          key: '1',
+          label: "Login",
+          key: "1",
         },
       ]}
     />
@@ -84,7 +84,7 @@ const SectionHeader = ({ viewButton }) => {
           <Col
             span={12}
             style={{
-              textAlign: 'left',
+              textAlign: "left",
               paddingTop: 5,
               paddingLeft: 5,
             }}
@@ -94,7 +94,7 @@ const SectionHeader = ({ viewButton }) => {
           <Col
             span={12}
             style={{
-              textAlign: 'right',
+              textAlign: "right",
               padding: 0,
             }}
           >
@@ -104,7 +104,7 @@ const SectionHeader = ({ viewButton }) => {
                   onClick={handleCreate}
                   type="primary"
                   htmlType="submit"
-                  style={{ borderRadius: 5, fontWeight: 'bold' }}
+                  style={{ borderRadius: 5, fontWeight: "bold" }}
                 >
                   <PlusOutlined /> Create Training Event
                 </Button>
@@ -112,19 +112,19 @@ const SectionHeader = ({ viewButton }) => {
                   type="dashed"
                   style={{
                     borderRadius: 5,
-                    fontWeight: 'bold',
+                    fontWeight: "bold",
                     marginLeft: 10,
                     marginRight: 20,
                   }}
                   overlay={
-                    localStorage.getItem('user-info')
+                    localStorage.getItem("user-info")
                       ? menuLogout
                       : menuLogin
                   }
-                  trigger={['click']}
+                  trigger={["click"]}
                   icon={<MoreOutlined />}
                 >
-                  {user ? `Hi, ${user.username}` : 'More'}
+                  {user ? `Hi, ${user.username}` : "More"}
                 </Dropdown.Button>
               </>
             )}
