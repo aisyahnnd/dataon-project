@@ -1,10 +1,16 @@
 import {
+  CalendarOutlined,
   EnvironmentOutlined,
   ExclamationCircleOutlined,
+  InfoCircleOutlined,
+  PlusOutlined,
+  SolutionOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import {
+  Avatar,
   Button,
+  Card,
   Col,
   Image,
   Modal,
@@ -72,15 +78,72 @@ export const TrainingDetailPage = () => {
     <>
       <SectionHeader></SectionHeader>
       <div className="site-card-wrapper" key={params.id}>
-        <Row>
+        <Row className="training-card-detail">
           <Col>
+            <Space
+              direction="vertical"
+              size={7}
+              style={{ display: "flex" }}
+            >
+              <Text strong style={{ fontSize: "24px" }}>
+                {location.state.eventName}
+              </Text>
+              <Text style={{ fontSize: "16px", color: "#bbbbbb" }}>
+                {location.state.trainer}
+              </Text>
+            </Space>
             <Image
               alt="img-detail"
               src={location.state.thumbnail}
               width={400}
-              height={400}
-              style={{ borderRadius: 10 }}
+              height={200}
+              style={{ borderRadius: 10, marginTop: 15 }}
             />
+            <Card
+              style={{
+                marginTop: "25px",
+                borderRadius: "10px",
+                border: "2px solid rgba(191,191,191, .2)",
+              }}
+              bodyStyle={{ padding: "15px" }}
+            >
+              <Button
+                type="primary"
+                style={{
+                  borderRadius: "5px",
+                  fontWeight: 700,
+                  width: "100%",
+                }}
+              >
+                Join Class
+              </Button>
+              <Row justify="space-between">
+                <Col
+                  span={6}
+                  style={{ paddingTop: "10px", fontWeight: 700 }}
+                >
+                  Joined Team
+                </Col>
+                <Col span={10}>
+                  <Avatar.Group style={{ marginTop: "5px" }}>
+                    <Avatar src="https://iconape.com/wp-content/png_logo_vector/dataon-corporation.png" />
+                    <Avatar src="https://joeschmoe.io/api/v1/random" />
+                  </Avatar.Group>
+                </Col>
+                <Col span={8}>
+                  <Button
+                    style={{
+                      border: "none",
+                      color: "#959595",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    <PlusOutlined style={{ fontSize: "12px" }} />{" "}
+                    Invite Others
+                  </Button>
+                </Col>
+              </Row>
+            </Card>
           </Col>
           <Col className="training-detail">
             <Space
@@ -88,50 +151,160 @@ export const TrainingDetailPage = () => {
               size={7}
               style={{ display: "flex" }}
             >
-              <Text style={{ fontSize: "16px" }}>
-                <EnvironmentOutlined /> {location.state.trainer}
+              <Text style={{ fontSize: "16px", fontWeight: 700 }}>
+                <SolutionOutlined /> Overview
               </Text>
-              <Text strong style={{ fontSize: "32px" }}>
-                {location.state.eventName}
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event No : TREV-YYMM-XXXX
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event Type :{" "}
+              <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                <CalendarOutlined /> {location.state.startDate}
+                <InfoCircleOutlined
+                  style={{ marginLeft: 20, marginRight: 5 }}
+                />
                 {location.state.isOnlineClass === true
                   ? "Online Class"
                   : "Offline Class"}
+                <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5
+                Person
               </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event Name : {location.state.eventName}
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Status :{" "}
-                {location.state.isComplete === true
-                  ? "Close Registration"
-                  : "Open for Registration"}
-              </Text>
-            </Space>
-            <Space
-              direction="vertical"
-              size={5}
-              style={{ display: "flex", paddingTop: 50 }}
-            >
               <Text
-                type="secondary"
                 style={{
-                  fontSize: "16px",
+                  fontSize: "14px",
+                  fontWeight: 700,
                 }}
               >
-                Start Date : {location.state.startDate}
+                Instructor
               </Text>
-              <Text type="secondary" style={{ fontSize: "16px" }}>
-                End Date : {location.state.endDate}
-              </Text>
-              <Text type="secondary" style={{ fontSize: "16px" }}>
-                <UserOutlined /> {location.state.trainer}
-              </Text>
+              <div>
+                <Avatar
+                  size="large"
+                  src="https://joeschmoe.io/api/v1/random"
+                  style={{ marginTop: "15px" }}
+                />
+                <Space direction="vertical" size={-5}>
+                  <Text style={{ fontWeight: 700, paddingLeft: 10 }}>
+                    {location.state.trainer}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "12px",
+                      paddingLeft: 10,
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.additionalInfo}
+                  </Text>
+                </Space>
+              </div>
+
+              <Card
+                bodyStyle={{ padding: 0 }}
+                style={{
+                  borderRadius: 10,
+                  width: 850,
+                  marginTop: 20,
+                }}
+              >
+                <Row>
+                  <Col
+                    style={{
+                      padding: 10,
+                      borderBottom: "#cccccc solid 1px",
+                      width: "100%",
+                      backgroundColor: "#399af5",
+                      borderRadius: "10px 10px 0 0",
+                      color: "white",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Resources
+                  </Col>
+                </Row>
+                <Space
+                  direction="vertical"
+                  size={6}
+                  style={{ display: "flex", padding: 10 }}
+                >
+                  <Text style={{ fontSize: "16px", fontWeight: 700 }}>
+                    <SolutionOutlined style={{ marginRight: 5 }} />
+                    {location.state.isOnlineClass === true
+                      ? "Online Class "
+                      : "Offline Class "}
+                    Detail
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Event Number
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    TREV-YYMM-XXXX
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    Date
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.startDate}
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    Location
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.trainer}
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    Status
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.isComplete === true
+                      ? "Close Registration"
+                      : "Open for Registration"}
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    End Date
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.endDate}
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    Trainer
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      color: "#8e8e8e",
+                    }}
+                  >
+                    {location.state.trainer}
+                  </Text>
+                </Space>
+              </Card>
             </Space>
           </Col>
         </Row>
