@@ -1,8 +1,8 @@
 import { Button } from "antd";
 import PropTypes from "prop-types";
-const ButtonIcon = ({ textButton, style, icon, onClick }) => {
+const ButtonIcon = ({ textButton, style, icon, onClick, type }) => {
   return (
-    <Button icon={icon} style={style} onClick={onClick}>
+    <Button icon={icon} style={style} type={type} onClick={onClick}>
       {textButton}
     </Button>
   );

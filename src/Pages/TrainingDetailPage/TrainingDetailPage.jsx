@@ -1,28 +1,20 @@
 import {
+  CalendarOutlined,
   EnvironmentOutlined,
   ExclamationCircleOutlined,
+  InfoCircleOutlined,
+  PlusOutlined,
+  SolutionOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  Image,
-  Modal,
-  Row,
-  Space,
-  Typography,
-} from "antd";
+import { Button, Col, Image, Modal, Row, Space, Typography, Card } from "antd";
 import { useContext, useEffect, useState } from "react";
-import {
-  useNavigate,
-  useParams,
-  useLocation,
-} from "react-router-dom";
-import { SectionHeader } from "../../Components";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { Avatar, ButtonIcon, SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import "./TrainingDetailPage.css";
 const { confirm } = Modal;
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 export const TrainingDetailPage = () => {
   const { deleteStatus, setDeleteStatus, DeleteDataMyTraining } =
@@ -71,70 +63,262 @@ export const TrainingDetailPage = () => {
   return (
     <>
       <SectionHeader></SectionHeader>
-      <div className="site-card-wrapper" key={params.id}>
-        <Row>
-          <Col>
-            <Image
-              alt="img-detail"
-              src={location.state.thumbnail}
-              width={400}
-              height={400}
-              style={{ borderRadius: 10 }}
-            />
-          </Col>
-          <Col className="training-detail">
-            <Space
-              direction="vertical"
-              size={7}
-              style={{ display: "flex" }}
-            >
-              <Text style={{ fontSize: "16px" }}>
-                <EnvironmentOutlined /> {location.state.trainer}
-              </Text>
-              <Text strong style={{ fontSize: "32px" }}>
-                {location.state.eventName}
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event No : TREV-YYMM-XXXX
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event Type :{" "}
-                {location.state.isOnlineClass === true
-                  ? "Online Class"
-                  : "Offline Class"}
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Event Name : {location.state.eventName}
-              </Text>
-              <Text style={{ fontSize: "16px" }}>
-                Status :{" "}
-                {location.state.isComplete === true
-                  ? "Close Registration"
-                  : "Open for Registration"}
-              </Text>
-            </Space>
-            <Space
-              direction="vertical"
-              size={5}
-              style={{ display: "flex", paddingTop: 50 }}
-            >
-              <Text
-                type="secondary"
+      <div className="container-grid">
+        <div className="content">
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Title strong level={2}>
+                  {location.state.eventName}
+                </Title>
+              </Row>
+              <Row>
+                <Title strong level={4} type="secondary">
+                  Footbal Course
+                </Title>
+              </Row>
+            </Col>
+          </Row>
+          <div className="row">
+            <div className="column-1">
+              <Image
                 style={{
-                  fontSize: "16px",
+                  width: 500,
+                  paddingLeft: 0,
+                  marginBottom: 20,
+                  marginTop: 20,
+                  paddingRight: 0,
+                  borderRadius: "20px",
+                  height: 250,
+                }}
+                src={location.state.thumbnail}
+              />
+              <Card
+                style={{
+                  width: "100%",
+                  borderRadius: "16px",
+                  marginRight: "24px",
+                  boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                 }}
               >
-                Start Date : {location.state.startDate}
-              </Text>
-              <Text type="secondary" style={{ fontSize: "16px" }}>
-                End Date : {location.state.endDate}
-              </Text>
-              <Text type="secondary" style={{ fontSize: "16px" }}>
-                <UserOutlined /> {location.state.trainer}
-              </Text>
-            </Space>
-          </Col>
-        </Row>
+                <Row>
+                  <Col span={24}>
+                    <ButtonIcon
+                      textButton="Join Class"
+                      style={{ borderRadius: 5, width: "100%" }}
+                      type={"primary"}
+                    ></ButtonIcon>
+                  </Col>
+                </Row>
+                <Row style={{ paddingTop: 20 }}>
+                  <Col span={12}>
+                    <div className="joinedTeamWrapper">
+                      <Text className="textJoined" strong>
+                        Joined Team
+                      </Text>
+                      <Avatar
+                        className="avatar"
+                        src={
+                          <Image
+                            style={{
+                              width: 32,
+                              height: 32,
+                            }}
+                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                          />
+                        }
+                      ></Avatar>
+                      <Avatar
+                        className="avatar"
+                        src={
+                          <Image
+                            style={{
+                              width: 32,
+                              height: 32,
+                            }}
+                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                          />
+                        }
+                      ></Avatar>
+                    </div>
+                  </Col>
+                  <Col span={12}>
+                    <div className="inviteWrapper">
+                      <PlusOutlined
+                        style={{ color: "#cccccc", paddingTop: "5px" }}
+                      ></PlusOutlined>
+                      <Text className="textInvite" strong type="secondary">
+                        Invite Others
+                      </Text>
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
+            </div>
+            <div className="column-2">
+              <Col span={24} className="training-detail">
+                <Space
+                  direction="vertical"
+                  size={7}
+                  style={{ display: "flex" }}
+                >
+                  <Text style={{ fontSize: "16px", fontWeight: 700 }}>
+                    <SolutionOutlined /> Overview
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                    <CalendarOutlined /> {location.state.startDate}
+                    <InfoCircleOutlined
+                      style={{ marginLeft: 20, marginRight: 5 }}
+                    />
+                    {location.state.isOnlineClass === true
+                      ? "Online Class"
+                      : "Offline Class"}
+                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5 Person
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Instructor
+                  </Text>
+                  <div>
+                    <Avatar
+                      size="large"
+                      src="https://joeschmoe.io/api/v1/random"
+                      style={{ marginTop: "15px" }}
+                    />
+                    <Space direction="vertical" size={-5}>
+                      <Text style={{ fontWeight: 700, paddingLeft: 10 }}>
+                        {location.state.trainer}
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "12px",
+                          paddingLeft: 10,
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.additionalInfo}
+                      </Text>
+                    </Space>
+                  </div>
+                  <Card
+                    bodyStyle={{ padding: 0 }}
+                    style={{
+                      borderRadius: 10,
+                      width: "100%",
+                      marginTop: 20,
+                    }}
+                  >
+                    <Row>
+                      <Col
+                        style={{
+                          padding: 10,
+                          borderBottom: "#cccccc solid 1px",
+                          width: "100%",
+                          backgroundColor: "#399af5",
+                          borderRadius: "10px 10px 0 0",
+                          color: "white",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Resources
+                      </Col>
+                    </Row>
+                    <Space
+                      direction="vertical"
+                      size={6}
+                      style={{ display: "flex", padding: 10 }}
+                    >
+                      <Text style={{ fontSize: "16px", fontWeight: 700 }}>
+                        <SolutionOutlined style={{ marginRight: 5 }} />
+                        {location.state.isOnlineClass === true
+                          ? "Online Class "
+                          : "Offline Class "}
+                        Detail
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Event Number
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        TREV-YYMM-XXXX
+                      </Text>
+                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                        Date
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.startDate}
+                      </Text>
+                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                        Location
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.trainer}
+                      </Text>
+                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                        Status
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.isComplete === true
+                          ? "Close Registration"
+                          : "Open for Registration"}
+                      </Text>
+                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                        End Date
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.endDate}
+                      </Text>
+                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                        Trainer
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: "14px",
+                          color: "#8e8e8e",
+                        }}
+                      >
+                        {location.state.trainer}
+                      </Text>
+                    </Space>
+                  </Card>
+                </Space>
+              </Col>
+            </div>
+          </div>
+        </div>
         <Row style={{ paddingTop: 20 }}>
           <Col
             span={24}
