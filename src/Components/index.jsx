@@ -6,6 +6,7 @@ import CardEvent from "./CardEvent";
 import Link from "./Link";
 import SectionHeader from "./SectionHeader";
 import Notification from "./Notification";
+import Avatar from "antd/lib/avatar/avatar";
 export {
   TextInput,
   SelectBox,
@@ -15,4 +16,5 @@ export {
   Link,
   SectionHeader,
   Notification,
+  Avatar,
 };

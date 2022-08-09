@@ -22,8 +22,8 @@ const Dashboard = () => {
     deleteStatus,
   } = useContext(AppContext);
   useEffect(() => {
-    GetAllTraining();
-    GetMyTraining();
+    // GetAllTraining();
+    // GetMyTraining();
     GetDataSearching(valueInputSearching);
   }, [valueInputSearching, deleteStatus]);
 
