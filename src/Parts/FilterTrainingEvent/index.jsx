@@ -29,6 +29,7 @@ const FilterTrainingEvent = () => {
 
   const onChangeSearching = (value) => {
     setValueCardTraining(value);
+    setValueInputSearching(value);
   };
 
   const debounceFunc = useCallback(
@@ -37,7 +38,7 @@ const FilterTrainingEvent = () => {
   );
 
   return (
-    <div className="container-grid">
+    <div className="container-gridd">
       <TextInput
         type="search"
         label="Search Training"
