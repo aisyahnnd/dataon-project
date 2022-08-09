@@ -7,10 +7,20 @@ import {
   SolutionOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Col, Image, Modal, Row, Space, Typography, Card } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  Col,
+  Image,
+  Modal,
+  Row,
+  Space,
+  Typography,
+} from "antd";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { Avatar, ButtonIcon, SectionHeader } from "../../Components";
+import { ButtonIcon, SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import "./TrainingDetailPage.css";
 const { confirm } = Modal;
