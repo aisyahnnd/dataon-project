@@ -27,7 +27,7 @@ import { Avatar, ButtonIcon, SectionHeader } from "../../Components";
 import { AppContext } from "../../Context";
 import "./TrainingDetailPage.css";
 const { confirm } = Modal;
-const { Text, Title, Title } = Typography;
+const { Text, Title } = Typography;
 
 export const TrainingDetailPage = () => {
   const { deleteStatus, setDeleteStatus, DeleteDataMyTraining } =
