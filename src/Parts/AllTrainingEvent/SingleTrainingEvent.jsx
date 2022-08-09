@@ -65,7 +65,9 @@ export const SingleTrainingEvent = (props) => {
         key={id}
         style={{
           maxWidth: 400,
+          height: 350,
           borderRadius: 10,
+          margin: "0px auto",
         }}
         cover={
           <img
