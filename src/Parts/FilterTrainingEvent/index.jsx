@@ -26,13 +26,17 @@ const FilterTrainingEvent = () => {
 
   const onChangeSearching = value => {
     // setValueCardTraining(value);
+    setEventStatus("");
+    setEventType("");
     setValueInputSearching(value);
   };
   const eventChange = value => {
+    setValueInputSearching("");
     setEventStatus("");
     setEventType(value);
   };
   const statusChange = value => {
+    setValueInputSearching("");
     setEventType("");
     setEventStatus(value);
   };
