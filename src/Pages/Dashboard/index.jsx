@@ -20,13 +20,20 @@ const Dashboard = () => {
     MyTrainingTableColumnContext,
     DataMyTraining,
     deleteStatus,
+    eventType,
+    eventStatus,
+    GetDataSelectEventType,
+    GetDataSelectEventStatus,
   } = useContext(AppContext);
   useEffect(() => {
-    // GetAllTraining();
-    // GetMyTraining();
     GetDataSearching(valueInputSearching);
   }, [valueInputSearching, deleteStatus]);
-
+  useEffect(() => {
+    GetDataSelectEventType(eventType);
+  }, [deleteStatus, eventType]);
+  useEffect(() => {
+    GetDataSelectEventStatus(eventStatus);
+  }, [deleteStatus, eventStatus]);
   return (
     <>
       <SectionHeader viewButton></SectionHeader>

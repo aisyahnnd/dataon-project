@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import "./filter.css";
 import PropTypes from "prop-types";
-const TextInput = ({ id, label, placeholder, style, onChange }) => {
+const TextInput = ({ id, label, placeholder, style, onChange, value }) => {
   return (
     <div>
       {label && <p className="label">{label}</p>}
@@ -10,6 +10,7 @@ const TextInput = ({ id, label, placeholder, style, onChange }) => {
         style={style}
         placeholder={placeholder}
         onChange={onChange}
+        value={value}
       ></Input>
     </div>
   );

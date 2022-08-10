@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import PropTypes from "prop-types";
 import "./Select.css";
-const SelectBox = ({ type, style }) => {
+const SelectBox = ({ type, style, onChange, value, defaultValue }) => {
   const { Option } = Select;
   const label = {
     event: "Event Type",
@@ -13,18 +13,29 @@ const SelectBox = ({ type, style }) => {
       <p className="label">{type === "status" ? label.status : label.event}</p>
       <div>
         <Select
+          onChange={onChange}
           showSearch
           optionFilterProp="children"
           style={style}
+          value={value}
+          defaultValue={defaultValue}
           placeholder={
             type === "status"
               ? `Select ${label.status}`
               : `Select ${label.event}`
           }
         >
-          <Option value="jack">Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="tom">Tom</Option>
+          {type === "status" ? (
+            <>
+              <Option value="true">Finish</Option>
+              <Option value="false">On Going</Option>
+            </>
+          ) : (
+            <>
+              <Option value="true">Online</Option>
+              <Option value="false">Offline</Option>
+            </>
+          )}
         </Select>
       </div>
     </div>

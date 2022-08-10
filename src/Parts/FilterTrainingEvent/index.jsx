@@ -11,6 +11,11 @@ const FilterTrainingEvent = () => {
     setValueInputSearching,
     setValueCardTraining,
     debounce,
+    eventType,
+    setEventType,
+    eventStatus,
+    setEventStatus,
+    valueInputSearching,
   } = useContext(AppContext);
   const onClickAsCard = () => {
     setView(true);
@@ -20,12 +25,18 @@ const FilterTrainingEvent = () => {
   };
 
   const onChangeSearching = value => {
-    setValueCardTraining(value);
+    // setValueCardTraining(value);
     setValueInputSearching(value);
   };
-
+  const eventChange = value => {
+    setEventStatus("");
+    setEventType(value);
+  };
+  const statusChange = value => {
+    setEventType("");
+    setEventStatus(value);
+  };
   const debounceFunc = useCallback(debounce(onChangeSearching, 1000), []);
-
   return (
     <div className="container-gridd">
       <TextInput
@@ -35,8 +46,18 @@ const FilterTrainingEvent = () => {
         style={{ width: 230, borderRadius: 5 }}
         onChange={value => debounceFunc(value.target.value)}
       />
-      <SelectBox type="event" style={{ width: 230 }} />
-      <SelectBox type="status" style={{ width: 230 }} />
+      <SelectBox
+        type="event"
+        style={{ width: 230 }}
+        onChange={eventChange}
+        value={eventType}
+      ></SelectBox>
+      <SelectBox
+        type="status"
+        style={{ width: 230 }}
+        onChange={statusChange}
+        value={eventStatus}
+      ></SelectBox>
       <div className="switch">
         <Toggle label="Related Job Only"></Toggle>
       </div>
