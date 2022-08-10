@@ -14,8 +14,8 @@ export const columnsAllTraining = [
   },
   {
     title: "Training Type",
-    dataIndex: "isOnline",
-    key: "eventType",
+    dataIndex: "isOnlineClass",
+    key: "isOnlineClass",
 
     render: text => {
       return <span>{text ? "Online Class" : "Offline Class"}</span>;
@@ -48,5 +48,14 @@ export const columnsAllTraining = [
     dataIndex: "additionalInfo",
     key: "additionalInfo",
     sorter: (a, b) => a.additionalInfo.localeCompare(b.additionalInfo),
+  },
+  {
+    title: "Training Status",
+    dataIndex: "isComplete",
+    key: "isComplete",
+
+    render: text => {
+      return <span>{text ? "Finish" : "On Going"}</span>;
+    },
   },
 ];

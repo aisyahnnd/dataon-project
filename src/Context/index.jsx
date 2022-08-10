@@ -56,12 +56,40 @@ export const ContextWrapper = props => {
 
   //for searching input filter
   const [valueInputSearching, setValueInputSearching] = useState("");
+  //for filter event status
+  const [eventStatus, setEventStatus] = useState("");
+  //for filter event status
+  const [eventType, setEventType] = useState("");
   //get data searching
   const GetDataSearching = async valueInputSearching => {
-    console.log(2424, valueInputSearching);
     let endpoints = [
-      `/users/1/trainings?search=${valueInputSearching}`,
+      `/users/1/trainings?search=${valueInputSearching}/`,
       `/trainings?search=${valueInputSearching}`,
+    ];
+    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+      ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
+        setDataAllTrainings(dataAllTraining);
+        setDataMyTraining(dataUserTraining);
+      }
+    );
+  };
+  //for filter select type event
+  const GetDataSelectEventType = async eventType => {
+    let endpoints = [
+      `/users/1/trainings?isOnlineClass=${eventType}`,
+      `/trainings?isOnlineClass=${eventType}`,
+    ];
+    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+      ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
+        setDataAllTrainings(dataAllTraining);
+        setDataMyTraining(dataUserTraining);
+      }
+    );
+  };
+  const GetDataSelectEventStatus = async eventStatus => {
+    let endpoints = [
+      `/users/1/trainings?isComplete=${eventStatus}`,
+      `/trainings?isComplete=${eventStatus}`,
     ];
     await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
@@ -140,6 +168,12 @@ export const ContextWrapper = props => {
         valueCardTraining,
         setValueCardTraining,
         debounce,
+        eventStatus,
+        setEventStatus,
+        eventType,
+        setEventType,
+        GetDataSelectEventType,
+        GetDataSelectEventStatus,
       }}
     >
       {props.children}
