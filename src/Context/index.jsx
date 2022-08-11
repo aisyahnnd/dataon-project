@@ -36,7 +36,6 @@ export const ContextWrapper = props => {
       const response = await Axios.post("/trainings", data);
       Notification(messages, "success");
     } catch (error) {
-      console.log(21111, error);
       Notification(error.message, "warn");
     }
   };
@@ -51,7 +50,6 @@ export const ContextWrapper = props => {
       );
       Notification(messages, "success");
     } catch (error) {
-      console.log(12222, error);
       Notification(error.message, "warn");
     }
   };

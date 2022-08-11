@@ -64,7 +64,6 @@ export const LoginPage = ({ setToken }) => {
         Notification(messages, "success");
         navigate("/");
       } catch (error) {
-        console.log(error);
         Notification(error.message, "warn");
       }
     } else {
