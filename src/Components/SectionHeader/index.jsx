@@ -6,8 +6,6 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { useContext } from "react";
-import { AppContext } from "../../Context";
 
 const SectionHeader = ({ viewButton }) => {
   const navigate = useNavigate();
@@ -46,6 +44,7 @@ const SectionHeader = ({ viewButton }) => {
 
   const handleLogout = () => {
     localStorage.clear();
+    sessionStorage.clear();
     navigate("/login");
   };
 
@@ -100,14 +99,16 @@ const SectionHeader = ({ viewButton }) => {
           >
             {viewButton && (
               <>
-                <Button
-                  onClick={handleCreate}
-                  type="primary"
-                  htmlType="submit"
-                  style={{ borderRadius: 5, fontWeight: "bold" }}
-                >
-                  <PlusOutlined /> Create Training Event
-                </Button>
+                {user.role === "admin" ? (
+                  <Button
+                    onClick={handleCreate}
+                    type="primary"
+                    htmlType="submit"
+                    style={{ borderRadius: 5, fontWeight: "bold" }}
+                  >
+                    <PlusOutlined /> Create Training Event
+                  </Button>
+                ) : null}
                 <Dropdown.Button
                   type="dashed"
                   style={{

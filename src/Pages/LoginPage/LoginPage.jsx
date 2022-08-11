@@ -13,7 +13,7 @@ import {
   Input,
 } from "antd";
 import "./LoginPage.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Image1 from "../../assets/Images/example-3.svg";
@@ -27,21 +27,14 @@ import { Notification } from "../../Components";
 const { Text } = Typography;
 
 export const LoginPage = ({ setToken }) => {
-  var message = "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("user-info")) {
-      navigate("/");
-    }
-  }, []);
 
   const handleSubmit = async () => {
     console.warn(username, password);
@@ -50,16 +43,27 @@ export const LoginPage = ({ setToken }) => {
       password: password,
     };
 
-    if (username === "aisyah" && password === "12345678") {
+    if (username && password) {
       try {
-        let result = await fetch("http://localhost:3000/api/login", {
+        let result = await fetch("../../../api/login.post.json", {
           method: "POST",
           body: JSON.stringify(item),
         });
         result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result.data));
-        localStorage.setItem("token", JSON.stringify(result.token));
-        setToken(JSON.stringify(result.token));
+        let data = result.find((item) => {
+          if (
+            username === item.data.username &&
+            password === item.data.password
+          ) {
+            return item;
+          } else {
+            console.log("User not found!");
+          }
+        });
+        localStorage.setItem("user-info", JSON.stringify(data.data));
+        localStorage.setItem("role", JSON.stringify(data.data.role));
+        localStorage.setItem("token", JSON.stringify(data.token));
+        setToken(JSON.stringify(data.token));
         var messages = "Login success";
         Notification(messages, "success");
         navigate("/");
@@ -80,7 +84,10 @@ export const LoginPage = ({ setToken }) => {
         }}
         style={{ borderRadius: 10 }}
       >
-        <Row className="header" style={{ borderBottom: "1px #dddddd solid" }}>
+        <Row
+          className="header"
+          style={{ borderBottom: "1px #dddddd solid" }}
+        >
           <Col span={3}>
             <img alt="logo" src={Logo} width={150} />
           </Col>
@@ -121,7 +128,7 @@ export const LoginPage = ({ setToken }) => {
             </Select>
           </Col>
         </Row>
-        <Row className="content">
+        <Row>
           <Col span={14}>
             <Carousel
               style={{
@@ -164,8 +171,12 @@ export const LoginPage = ({ setToken }) => {
               </div>
             </Carousel>
           </Col>
+
           <Col span={10} style={{ padding: 20 }}>
-            <Space size={3} style={{ paddingRight: 30, paddingBottom: 30 }}>
+            <Space
+              size={3}
+              style={{ paddingRight: 30, paddingBottom: 30 }}
+            >
               <Text
                 style={{
                   fontSize: "36px",
@@ -203,14 +214,17 @@ export const LoginPage = ({ setToken }) => {
                   },
                   {
                     pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
-                    message: "Username must be alphabets and numbers only",
+                    message:
+                      "Username must be alphabets and numbers only",
                   },
                 ]}
               >
                 <Input
                   style={{ width: 400 }}
                   placeholder="Enter your username here"
-                  onChange={event => setUsername(event.target.value)}
+                  onChange={(event) =>
+                    setUsername(event.target.value)
+                  }
                 />
               </Form.Item>
               <Form.Item
@@ -224,14 +238,17 @@ export const LoginPage = ({ setToken }) => {
                   },
                   {
                     min: 8,
-                    message: "Passwords must be at least 8 characters",
+                    message:
+                      "Passwords must be at least 8 characters",
                   },
                 ]}
               >
                 <Input.Password
                   style={{ width: 400 }}
                   placeholder="Password"
-                  onChange={event => setPassword(event.target.value)}
+                  onChange={(event) =>
+                    setPassword(event.target.value)
+                  }
                 />
               </Form.Item>
               <Form.Item
@@ -262,7 +279,8 @@ export const LoginPage = ({ setToken }) => {
                 <Row>
                   <Col span={24}>
                     <p>
-                      Haven't account? <Link to="/register">Register</Link>
+                      Haven't account?{" "}
+                      <Link to="/register">Register</Link>
                     </p>
                   </Col>
                 </Row>
@@ -276,20 +294,30 @@ export const LoginPage = ({ setToken }) => {
                 </Button>
               </Form.Item>
               {flag && (
-                <Alert message="Wrong username/password!" type="warning" />
+                <Alert
+                  message="Wrong username/password!"
+                  type="warning"
+                />
               )}
             </Form>
           </Col>
         </Row>
         <Row className="footer">
-          <Col span={24} style={{ textAlign: "center", paddingTop: 20 }}>
+          <Col
+            span={24}
+            style={{ textAlign: "center", paddingTop: 20 }}
+          >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
               This product is licensed for Dataon Corporation
             </Text>
           </Col>
-          <Col span={24} style={{ textAlign: "center", paddingBottom: 20 }}>
+          <Col
+            span={24}
+            style={{ textAlign: "center", paddingBottom: 20 }}
+          >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
-              &copy; 1999 - 2022 DataOn Technology. All Rights Reserved
+              &copy; 1999 - 2022 DataOn Technology. All Rights
+              Reserved
             </Text>
           </Col>
         </Row>
@@ -299,5 +327,5 @@ export const LoginPage = ({ setToken }) => {
 };
 
 LoginPage.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setToken: PropTypes.string.isRequired,
 };

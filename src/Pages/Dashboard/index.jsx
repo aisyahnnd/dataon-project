@@ -8,10 +8,9 @@ import {
   MyTrainingEventTable,
   AllTrainingEvent,
 } from "../../Parts";
+
 const Dashboard = () => {
   const {
-    GetAllTraining,
-    GetMyTraining,
     view,
     valueInputSearching,
     GetDataSearching,
@@ -40,7 +39,8 @@ const Dashboard = () => {
       <FilterTrainingEvent />
       {view ? (
         <>
-          <MyTrainingCard /> <AllTrainingEvent item={DataAllTrainings} />
+          <MyTrainingCard />
+          <AllTrainingEvent item={DataAllTrainings} />
         </>
       ) : (
         <>
