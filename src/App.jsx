@@ -13,35 +13,25 @@ import { LoginPage } from "./Pages/LoginPage/LoginPage";
 import { RegisterPage } from "./Pages/RegisterPage/RegisterPage";
 import Dashboard from "./Pages/Dashboard";
 import { Navigate, Outlet } from "react-router-dom";
+import Role from "./Utils/Role";
+import Token from "./Utils/Token";
 
 const setToken = (userToken) => {
   sessionStorage.setItem("token", JSON.stringify(userToken));
 };
 
-const getToken = () => {
-  const tokenString = sessionStorage.getItem("token");
-  const userToken = JSON.parse(tokenString);
-  return userToken;
-};
-
-const getRole = () => {
-  const roleString = localStorage.getItem("role");
-  const role = JSON.parse(roleString);
-  return role;
-};
-
 const App = () => {
-  const token = getToken();
-  const role = getRole();
+  const token = Token();
+  const role = Role();
 
   const ProtectedRoute = ({
-    tokenAvaliable,
+    tokenAvailable,
     redirectPath = "/login",
   }) => {
     const location = useLocation();
-    tokenAvaliable = !!JSON.parse(localStorage.getItem("token"));
+    tokenAvailable = !!JSON.parse(localStorage.getItem("token"));
 
-    return tokenAvaliable ? (
+    return tokenAvailable ? (
       <Outlet />
     ) : (
       <Navigate
@@ -52,11 +42,11 @@ const App = () => {
     );
   };
 
-  const ProtectedLogin = ({ tokenAvaliable, redirectPath = "/" }) => {
+  const ProtectedLogin = ({ tokenAvailable, redirectPath = "/" }) => {
     const location = useLocation();
-    tokenAvaliable = !!JSON.parse(localStorage.getItem("token"));
+    tokenAvailable = !!JSON.parse(localStorage.getItem("token"));
 
-    return tokenAvaliable ? (
+    return tokenAvailable ? (
       <Navigate
         to={redirectPath}
         replace
@@ -85,7 +75,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<ProtectedRoute tokenAvaliable={token} />}>
+        <Route element={<ProtectedRoute tokenAvailable={token} />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route
@@ -109,7 +99,7 @@ const App = () => {
         </Route>
         <Route path="*" exact={true} element={<MissingPage />} />
         <Route path="/missing" element={<MissingPage />} />
-        <Route element={<ProtectedLogin tokenAvaliable={token} />}>
+        <Route element={<ProtectedLogin tokenAvailable={token} />}>
           <Route
             path="/login"
             element={<LoginPage setToken={setToken} />}
