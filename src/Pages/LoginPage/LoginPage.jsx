@@ -61,10 +61,11 @@ export const LoginPage = ({ setToken }) => {
         localStorage.setItem("token", JSON.stringify(result.token));
         setToken(JSON.stringify(result.token));
         var messages = "Login success";
-        Notification(messages);
+        Notification(messages, "success");
         navigate("/");
       } catch (error) {
         console.log(error);
+        Notification(error.message, "warn");
       }
     } else {
       setFlag(true);

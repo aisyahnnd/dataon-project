@@ -34,9 +34,10 @@ export const ContextWrapper = props => {
     try {
       var messages = "Event successfully created";
       const response = await Axios.post("/trainings", data);
-      Notification(messages);
+      Notification(messages, "success");
     } catch (error) {
-      console.log(error);
+      console.log(21111, error);
+      Notification(error.message, "warn");
     }
   };
 
@@ -48,9 +49,10 @@ export const ContextWrapper = props => {
         `users/${userId}/trainings/${paramsId}`,
         dataEdit
       );
-      Notification(messages);
+      Notification(messages, "success");
     } catch (error) {
-      console.log(error);
+      console.log(12222, error);
+      Notification(error.message, "warn");
     }
   };
 
