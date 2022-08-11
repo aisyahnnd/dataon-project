@@ -2,13 +2,19 @@ import "./App.css";
 import { TrainingEditPage } from "./Pages/TrainingEditPage/TrainingEditPage";
 import { TrainingDetailPage } from "./Pages/TrainingDetailPage/TrainingDetailPage";
 import { TrainingCreatePage } from "./Pages/TrainingCreatePage /TrainingCreatePage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { MissingPage } from "./Pages/MissingPage/MissingPage";
 import { LoginPage } from "./Pages/LoginPage/LoginPage";
 import { RegisterPage } from "./Pages/RegisterPage/RegisterPage";
 import Dashboard from "./Pages/Dashboard";
+import { Navigate, Outlet } from "react-router-dom";
 
-const setToken = userToken => {
+const setToken = (userToken) => {
   sessionStorage.setItem("token", JSON.stringify(userToken));
 };
 
@@ -18,21 +24,98 @@ const getToken = () => {
   return userToken;
 };
 
+const getRole = () => {
+  const roleString = localStorage.getItem("role");
+  const role = JSON.parse(roleString);
+  return role;
+};
+
 const App = () => {
   const token = getToken();
+  const role = getRole();
+
+  const ProtectedRoute = ({
+    tokenAvaliable,
+    redirectPath = "/login",
+  }) => {
+    const location = useLocation();
+    tokenAvaliable = !!JSON.parse(localStorage.getItem("token"));
+
+    return tokenAvaliable ? (
+      <Outlet />
+    ) : (
+      <Navigate
+        to={redirectPath}
+        replace
+        state={{ from: location }}
+      />
+    );
+  };
+
+  const ProtectedLogin = ({ tokenAvaliable, redirectPath = "/" }) => {
+    const location = useLocation();
+    tokenAvaliable = !!JSON.parse(localStorage.getItem("token"));
+
+    return tokenAvaliable ? (
+      <Navigate
+        to={redirectPath}
+        replace
+        state={{ from: location }}
+      />
+    ) : (
+      <Outlet />
+    );
+  };
+
+  const ProtectedAdmin = ({ roleAdmin, redirectPath = "/" }) => {
+    const location = useLocation();
+    roleAdmin = JSON.parse(localStorage.getItem("role"));
+
+    return roleAdmin === "admin" ? (
+      <Outlet />
+    ) : (
+      <Navigate
+        to={redirectPath}
+        replace
+        state={{ from: location }}
+      />
+    );
+  };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/training/:id" element={<TrainingDetailPage />} />
-        <Route path="/training/create" element={<TrainingCreatePage />} />
-        <Route path="/mytraining/:id" element={<TrainingDetailPage />} />
-        <Route path="/mytraining/edit/:id" element={<TrainingEditPage />} />
+        <Route element={<ProtectedRoute tokenAvaliable={token} />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/training/:id"
+            element={<TrainingDetailPage />}
+          />
+          <Route
+            path="/mytraining/:id"
+            element={<TrainingDetailPage />}
+          />
+          <Route element={<ProtectedAdmin roleAdmin={role} />}>
+            <Route
+              path="/training/create"
+              element={<TrainingCreatePage />}
+            />
+            <Route
+              path="/mytraining/edit/:id"
+              element={<TrainingEditPage />}
+            />
+          </Route>
+        </Route>
         <Route path="*" exact={true} element={<MissingPage />} />
         <Route path="/missing" element={<MissingPage />} />
-        <Route path="/login" element={<LoginPage setToken={setToken} />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route element={<ProtectedLogin tokenAvaliable={token} />}>
+          <Route
+            path="/login"
+            element={<LoginPage setToken={setToken} />}
+          />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

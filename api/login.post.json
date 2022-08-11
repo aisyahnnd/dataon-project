@@ -1,10 +1,24 @@
-{
-  "data": {
-    "id": 1,
-    "username": "aisyah",
-    "role": "user"
+[
+  {
+    "data": {
+      "id": 1,
+      "username": "user",
+      "password": "user1234",
+      "role": "user"
+    },
+    "token": "user123",
+    "message": "Login success",
+    "code": 200
   },
-  "token": "test123",
-  "message": "Login success",
-  "code": 200
-}
+  {
+    "data": {
+      "id": 2,
+      "username": "admin",
+      "password": "admin1234",
+      "role": "admin"
+    },
+    "token": "admin123",
+    "message": "Login success",
+    "code": 200
+  }
+]
