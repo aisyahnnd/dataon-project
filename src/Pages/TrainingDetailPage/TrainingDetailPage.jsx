@@ -35,6 +35,7 @@ export const TrainingDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
+  let user = JSON.parse(localStorage.getItem("user-info"));
 
   const handleEdit = () => {
     navigate(`/mytraining/edit/${params.id}`, {
@@ -378,7 +379,8 @@ export const TrainingDetailPage = () => {
             >
               Back
             </Button>
-            {location.pathname === `/mytraining/${params.id}` ? (
+            {location.pathname === `/mytraining/${params.id}` &&
+            user.role === "admin" ? (
               <>
                 <Button
                   onClick={handleEdit}

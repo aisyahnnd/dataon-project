@@ -32,7 +32,7 @@ export const RegisterPage = () => {
 
   let navigate = useNavigate();
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     if (!name || !username || !password) {
       setFlag(true);
     } else {
@@ -48,21 +48,23 @@ export const RegisterPage = () => {
     console.log("Success:", values);
   };
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   return (
     <>
       <Card bodyStyle={{ backgroundColor: "#bac6f2" }}>
-        <SectionHeader></SectionHeader>
         <Card
           bodyStyle={{
             padding: "0px",
           }}
           style={{ borderRadius: 10 }}
         >
-          <Row className="header" style={{ borderBottom: "1px #dddddd solid" }}>
+          <Row
+            className="header"
+            style={{ borderBottom: "1px #dddddd solid" }}
+          >
             <Col span={3}>
               <img alt="logo" src={Logo} width={150} />
             </Col>
@@ -103,7 +105,7 @@ export const RegisterPage = () => {
               </Select>
             </Col>
           </Row>
-          <Row className="content">
+          <Row>
             <Col span={14}>
               <Carousel
                 style={{
@@ -156,7 +158,10 @@ export const RegisterPage = () => {
               </Carousel>
             </Col>
             <Col span={10} style={{ padding: 20 }}>
-              <Space size={3} style={{ paddingRight: 30, paddingBottom: 30 }}>
+              <Space
+                size={3}
+                style={{ paddingRight: 30, paddingBottom: 30 }}
+              >
                 <Text
                   style={{
                     fontSize: "36px",
@@ -194,7 +199,7 @@ export const RegisterPage = () => {
                   <Input
                     style={{ width: 400 }}
                     placeholder="Enter your name here"
-                    onChange={event => setName(event.target.value)}
+                    onChange={(event) => setName(event.target.value)}
                   />
                 </Form.Item>
                 <Form.Item
@@ -212,14 +217,17 @@ export const RegisterPage = () => {
                     },
                     {
                       pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
-                      message: "Username must be alphabets and numbers only",
+                      message:
+                        "Username must be alphabets and numbers only",
                     },
                   ]}
                 >
                   <Input
                     style={{ width: 400 }}
                     placeholder="Enter your username here"
-                    onChange={event => setUsername(event.target.value)}
+                    onChange={(event) =>
+                      setUsername(event.target.value)
+                    }
                   />
                 </Form.Item>
                 <Form.Item
@@ -233,14 +241,17 @@ export const RegisterPage = () => {
                     },
                     {
                       min: 8,
-                      message: "Passwords must be at least 8 characters",
+                      message:
+                        "Passwords must be at least 8 characters",
                     },
                   ]}
                 >
                   <Input.Password
                     style={{ width: 400 }}
                     placeholder="Password"
-                    onChange={event => setPassword(event.target.value)}
+                    onChange={(event) =>
+                      setPassword(event.target.value)
+                    }
                   />
                 </Form.Item>
                 <Form.Item
@@ -252,7 +263,8 @@ export const RegisterPage = () => {
                   <Row>
                     <Col span={24}>
                       <p>
-                        Have an account? <Link to="/login">Login</Link>
+                        Have an account?{" "}
+                        <Link to="/login">Login</Link>
                       </p>
                     </Col>
                   </Row>
@@ -266,20 +278,30 @@ export const RegisterPage = () => {
                 </Form.Item>
 
                 {flag && (
-                  <Alert message="Please fill every field!" type="warning" />
+                  <Alert
+                    message="Please fill every field!"
+                    type="warning"
+                  />
                 )}
               </Form>
             </Col>
           </Row>
           <Row className="footer">
-            <Col span={24} style={{ textAlign: "center", paddingTop: 20 }}>
+            <Col
+              span={24}
+              style={{ textAlign: "center", paddingTop: 20 }}
+            >
               <Text style={{ fontSize: "16px", color: "#888888" }}>
                 This product is licensed for Dataon Corporation
               </Text>
             </Col>
-            <Col span={24} style={{ textAlign: "center", paddingBottom: 20 }}>
+            <Col
+              span={24}
+              style={{ textAlign: "center", paddingBottom: 20 }}
+            >
               <Text style={{ fontSize: "16px", color: "#888888" }}>
-                &copy; 1999 - 2022 DataOn Technology. All Rights Reserved
+                &copy; 1999 - 2022 DataOn Technology. All Rights
+                Reserved
               </Text>
             </Col>
           </Row>
