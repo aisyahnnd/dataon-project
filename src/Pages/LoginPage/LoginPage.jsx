@@ -45,7 +45,7 @@ export const LoginPage = ({ setToken }) => {
 
     if (username && password) {
       try {
-        let result = await fetch("http://localhost:3000/api/login", {
+        let result = await fetch("../../../api/login.post.json", {
           method: "POST",
           body: JSON.stringify(item),
         });
