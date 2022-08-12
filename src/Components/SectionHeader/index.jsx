@@ -1,11 +1,6 @@
 import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Col, Dropdown, Menu, Row } from "antd";
-import {
-  useNavigate,
-  Link,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, Link, useLocation, useParams } from "react-router-dom";
 
 const SectionHeader = ({ viewButton }) => {
   const navigate = useNavigate();
@@ -16,7 +11,7 @@ const SectionHeader = ({ viewButton }) => {
     navigate("/training/create");
   };
   //breadcumb
-  const pathSnippets = location.pathname.split("/").filter((i) => i);
+  const pathSnippets = location.pathname.split("/").filter(i => i);
   const breadcrumbNameMaps = {
     "/": "Dashboard",
     "/register": "Register",
@@ -31,9 +26,7 @@ const SectionHeader = ({ viewButton }) => {
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return (
-      <Breadcrumb.Item key={url}>
-        {breadcrumbNameMaps[url]}
-      </Breadcrumb.Item>
+      <Breadcrumb.Item key={url}>{breadcrumbNameMaps[url]}</Breadcrumb.Item>
     );
   });
   const breadcrumbItems = [
@@ -78,19 +71,13 @@ const SectionHeader = ({ viewButton }) => {
 
   return (
     <>
-      <div className="site-card-wrapper">
-        <Row>
-          <Col
-            span={12}
-            style={{
-              textAlign: "left",
-              paddingTop: 5,
-              paddingLeft: 5,
-            }}
-          >
+      <div className="bg-card rounded-[10px]  p-5 m-5 flex sm:block sm:flex-wrap">
+        <div className="row sm:flex sm:flex-wrap sm:block">
+          <div className="basis-1/2">
             <Breadcrumb separator=">">{breadcrumbItems}</Breadcrumb>
-          </Col>
-          <Col
+          </div>
+          <div
+            className="basis-1/2"
             span={12}
             style={{
               textAlign: "right",
@@ -118,9 +105,7 @@ const SectionHeader = ({ viewButton }) => {
                     marginRight: 20,
                   }}
                   overlay={
-                    localStorage.getItem("user-info")
-                      ? menuLogout
-                      : menuLogin
+                    localStorage.getItem("user-info") ? menuLogout : menuLogin
                   }
                   trigger={["click"]}
                   icon={<MoreOutlined />}
@@ -129,8 +114,8 @@ const SectionHeader = ({ viewButton }) => {
                 </Dropdown.Button>
               </>
             )}
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </>
   );

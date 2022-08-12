@@ -10,11 +10,7 @@ import {
   Col,
   InputNumber,
 } from "antd";
-import {
-  useNavigate,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import moment from "moment";
 import { SectionHeader } from "@/Components";
@@ -49,17 +45,11 @@ export const TrainingEditPage = () => {
     try {
       setData({
         eventName: location.state.eventName,
-        startDate: dayjs(location.state.startDate).format(
-          "YYYY-MM-DD HH:mm"
-        ),
-        endDate: dayjs(location.state.endDate).format(
-          "YYYY-MM-DD HH:mm"
-        ),
+        startDate: dayjs(location.state.startDate).format("YYYY-MM-DD HH:mm"),
+        endDate: dayjs(location.state.endDate).format("YYYY-MM-DD HH:mm"),
         image: location.state.thumbnail,
         isOnlineClass:
-          location.isOnlineClass === true
-            ? "Online Class"
-            : "Offline Class",
+          location.isOnlineClass === true ? "Online Class" : "Offline Class",
         location: location.state.trainer,
         trainer: location.state.trainer,
         ratings: location.state.ratings,
@@ -86,14 +76,13 @@ export const TrainingEditPage = () => {
   });
   //update data to database
   const params = useParams();
-  const onFinish = (values) => {
+  const onFinish = values => {
     var user = JSON.parse(localStorage.getItem("user-info"));
     const starDate = values.date[0].format("YYYY-MM-DD");
     const endDate = values.date[1].format("YYYY-MM-DD");
     const dataEdit = {
       eventName: values.eventName,
-      isOnlineClass:
-        values.isOnlineClass === "Online Class" ? true : false,
+      isOnlineClass: values.isOnlineClass === "Online Class" ? true : false,
       startDate: starDate,
       endDate: endDate,
       location: { lat: values.latitude, long: values.longitude },
@@ -104,7 +93,7 @@ export const TrainingEditPage = () => {
     };
     EditDataTraining(dataEdit, params.id, user.id);
   };
-  const onChangeRatings = (value) => {
+  const onChangeRatings = value => {
     form.setFieldsValue({
       ratings: value,
     });
@@ -112,7 +101,7 @@ export const TrainingEditPage = () => {
   return (
     <>
       <SectionHeader></SectionHeader>
-      <div className="site-card-wrapper">
+      <div className="bg-card rounded-[10px] p-5 m-5">
         <Form
           onFinish={onFinish}
           labelCol={{
@@ -139,10 +128,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Select
-              placeholder="Select Event Type"
-              value={data.isOnlineClass}
-            >
+            <Select placeholder="Select Event Type" value={data.isOnlineClass}>
               <Option name="true" value="Online Class">
                 Online Class
               </Option>
@@ -191,9 +177,7 @@ export const TrainingEditPage = () => {
             name="date"
             label="Date"
             value={data.date}
-            rules={[
-              { required: true, message: "Please select date!" },
-            ]}
+            rules={[{ required: true, message: "Please select date!" }]}
           >
             <RangePicker
               format="YYYY-MM-DD HH:mm"
@@ -215,22 +199,14 @@ export const TrainingEditPage = () => {
             ]}
           >
             <Radio.Group value={value}>
-              <Radio.Button value={false}>
-                Open for Registration
-              </Radio.Button>
-              <Radio.Button value={true}>
-                Closed Registration
-              </Radio.Button>
+              <Radio.Button value={false}>Open for Registration</Radio.Button>
+              <Radio.Button value={true}>Closed Registration</Radio.Button>
             </Radio.Group>
           </Form.Item>
-          <Form.Item
-            name="ratings"
-            label="Ratings"
-            value={data.ratings}
-          >
+          <Form.Item name="ratings" label="Ratings" value={data.ratings}>
             <InputNumber
               min={1}
-              onChange={(value) => onChangeRatings(value)}
+              onChange={value => onChangeRatings(value)}
               max={100}
               type="number"
             />
