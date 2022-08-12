@@ -1,6 +1,6 @@
-import LabelSection from "../../Components/LabelSection";
-import TableData from "../../Components/TableData";
-import { useState } from "react";
+import LabelSection from "@/Components/LabelSection";
+import TableData from "@/Components/TableData";
+
 const AllTrainingEventTable = ({ dataTable, columns }) => {
   return (
     <div className="site-card-wrapper">

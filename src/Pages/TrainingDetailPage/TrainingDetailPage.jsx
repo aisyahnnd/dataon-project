@@ -23,8 +23,8 @@ import {
   useParams,
   useLocation,
 } from "react-router-dom";
-import { Avatar, ButtonIcon, SectionHeader } from "../../Components";
-import { AppContext } from "../../Context";
+import { Avatar, ButtonIcon, SectionHeader } from "@/Components";
+import { AppContext } from "@/Context/";
 import "./TrainingDetailPage.css";
 const { confirm } = Modal;
 const { Text, Title } = Typography;

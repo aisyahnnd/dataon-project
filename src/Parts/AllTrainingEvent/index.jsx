@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Badge, Col, Row, List } from "antd";
 import { SingleTrainingEvent } from "./SingleTrainingEvent";
 import { useContext } from "react";
-import { AppContext } from "../../Context";
+import { AppContext } from "@/Context/";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./AllTrainingEvent.css";
 

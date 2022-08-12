@@ -1,20 +1,20 @@
 import "./App.css";
-import { TrainingEditPage } from "./Pages/TrainingEditPage/TrainingEditPage";
-import { TrainingDetailPage } from "./Pages/TrainingDetailPage/TrainingDetailPage";
-import { TrainingCreatePage } from "./Pages/TrainingCreatePage /TrainingCreatePage";
+import { TrainingEditPage } from "@/Pages/TrainingEditPage/TrainingEditPage";
+import { TrainingDetailPage } from "@/Pages/TrainingDetailPage/TrainingDetailPage";
+import { TrainingCreatePage } from "@/Pages/TrainingCreatePage /TrainingCreatePage";
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import { MissingPage } from "./Pages/MissingPage/MissingPage";
-import { LoginPage } from "./Pages/LoginPage/LoginPage";
-import { RegisterPage } from "./Pages/RegisterPage/RegisterPage";
-import Dashboard from "./Pages/Dashboard";
+import { MissingPage } from "@/Pages/MissingPage/MissingPage";
+import { LoginPage } from "@/Pages/LoginPage/LoginPage";
+import { RegisterPage } from "@/Pages/RegisterPage/RegisterPage";
+import Dashboard from "@/Pages/Dashboard";
 import { Navigate, Outlet } from "react-router-dom";
-import Role from "./Utils/Role";
-import Token from "./Utils/Token";
+import Role from "@/Utils/Role";
+import Token from "@/Utils/Token";
 
 const setToken = (userToken) => {
   sessionStorage.setItem("token", JSON.stringify(userToken));

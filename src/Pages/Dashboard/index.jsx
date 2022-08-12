@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
-import { SectionHeader } from "../../Components";
-import { AppContext } from "../../Context";
+import { SectionHeader } from "@/Components";
+import { AppContext } from "@/Context";
 import {
   FilterTrainingEvent,
   MyTrainingCard,
   AllTrainingEventTable,
   MyTrainingEventTable,
   AllTrainingEvent,
-} from "../../Parts";
+} from "@/Parts";
 
 const Dashboard = () => {
   const {

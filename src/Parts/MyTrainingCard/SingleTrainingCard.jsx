@@ -1,16 +1,27 @@
-import { Image, Card, Col, Row, Button, Space, Typography, Modal } from "antd";
-import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
+import {
+  Image,
+  Card,
+  Col,
+  Row,
+  Button,
+  Space,
+  Typography,
+  Modal,
+} from "antd";
+import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import "./MyTrainingCard.css";
-import PropTypes from "prop-types";
-const { Text } = Typography;
 import { Rate } from "antd";
 import { useEffect } from "react";
-import Axios from "../../Utils/Axios";
+import Axios from "@/Utils/Axios";
+import PropTypes from "prop-types";
 import "./SingleTrainingCard.css";
+import "./MyTrainingCard.css";
 import "antd/dist/antd.css";
-export const SingleTrainingCard = props => {
+
+const { Text } = Typography;
+
+export const SingleTrainingCard = (props) => {
   const { item, id, location } = props;
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
@@ -32,7 +43,7 @@ export const SingleTrainingCard = props => {
   const showModal = () => {
     setVisible(true);
   };
-  const onChangeRatings = value => {
+  const onChangeRatings = (value) => {
     setRate(value);
   };
 
@@ -43,7 +54,10 @@ export const SingleTrainingCard = props => {
       ratings: item.ratings,
     };
 
-    const response = await Axios.put(`/users/1/trainings/${id}`, updateRatings);
+    const response = await Axios.put(
+      `/users/1/trainings/${id}`,
+      updateRatings
+    );
 
     if (response.status === 200) {
       console.log("Ratings Updated Successfully");
@@ -75,7 +89,7 @@ export const SingleTrainingCard = props => {
       style={{
         maxWidth: 400,
         borderRadius: 10,
-        margin: '0px auto',
+        margin: "0px auto",
       }}
       bodyStyle={{ padding: "0" }}
       hoverable
@@ -95,7 +109,11 @@ export const SingleTrainingCard = props => {
           />
         </Col>
         <Col className="row-top-detail">
-          <Space direction="vertical" size={3} style={{ display: "flex" }}>
+          <Space
+            direction="vertical"
+            size={3}
+            style={{ display: "flex" }}
+          >
             <Text style={{ fontSize: "11px" }}>
               <EnvironmentOutlined /> {item.trainer}
             </Text>
@@ -146,7 +164,11 @@ export const SingleTrainingCard = props => {
             onCancel={handleCancel}
             className="modal"
           >
-            <Space direction="vertical" size={3} style={{ display: "flex" }}>
+            <Space
+              direction="vertical"
+              size={3}
+              style={{ display: "flex" }}
+            >
               <Text strong>{item.eventName}</Text>
               <Text type="secondary">{item.trainer}</Text>
               <Text type="secondary" style={{ fontSize: "11px" }}>
@@ -156,7 +178,7 @@ export const SingleTrainingCard = props => {
                 <Rate
                   defaultValue={item.ratings}
                   value={rate}
-                  onChange={value => onChangeRatings(value)}
+                  onChange={(value) => onChangeRatings(value)}
                 ></Rate>
               </div>
             </Space>
