@@ -16,13 +16,13 @@ import "./LoginPage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Image1 from "../../assets/Images/example-3.svg";
-import Image2 from "../../assets/Images/example-25.svg";
-import Image3 from "../../assets/Images/example-29.svg";
-import Image4 from "../../assets/Images/example-30.svg";
-import Logo from "../../assets/Images/logo.png";
+import Image1 from "@/assets/Images/example-3.svg";
+import Image2 from "@/assets/Images/example-25.svg";
+import Image3 from "@/assets/Images/example-29.svg";
+import Image4 from "@/assets/Images/example-30.svg";
+import Logo from "@/assets/Images/logo.png";
 import PropTypes from "prop-types";
-import { Notification } from "../../Components";
+import { Notification } from "@/Components";
 
 const { Text } = Typography;
 

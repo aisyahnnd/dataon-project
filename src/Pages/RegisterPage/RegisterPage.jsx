@@ -15,12 +15,11 @@ import "./RegisterPage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Image1 from "../../assets/Images/example-3.svg";
-import Image2 from "../../assets/Images/example-25.svg";
-import Image3 from "../../assets/Images/example-29.svg";
-import Image4 from "../../assets/Images/example-30.svg";
-import Logo from "../../assets/Images/logo.png";
-import { SectionHeader } from "../../Components";
+import Image1 from "@/assets/Images/example-3.svg";
+import Image2 from "@/assets/Images/example-25.svg";
+import Image3 from "@/assets/Images/example-29.svg";
+import Image4 from "@/assets/Images/example-30.svg";
+import Logo from "@/assets/Images/logo.png";
 
 const { Text } = Typography;
 

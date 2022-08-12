@@ -1,5 +1,5 @@
 import { Rate } from "antd";
-import CoverDate from "../CoverDate";
+import CoverDate from "@/Utils/CoverDate";
 export const columnsAllTraining = [
   {
     title: "#",
@@ -17,7 +17,7 @@ export const columnsAllTraining = [
     dataIndex: "isOnlineClass",
     key: "isOnlineClass",
 
-    render: text => {
+    render: (text) => {
       return <span>{text ? "Online Class" : "Offline Class"}</span>;
     },
   },
@@ -39,22 +39,28 @@ export const columnsAllTraining = [
     dataIndex: "ratings",
     key: "ratings",
     sorter: (a, b) => a.ratings - b.ratings,
-    render: ratings => (
-      <Rate disabled allowHalf defaultValue={0} value={ratings}></Rate>
+    render: (ratings) => (
+      <Rate
+        disabled
+        allowHalf
+        defaultValue={0}
+        value={ratings}
+      ></Rate>
     ),
   },
   {
     title: "Additional Info",
     dataIndex: "additionalInfo",
     key: "additionalInfo",
-    sorter: (a, b) => a.additionalInfo.localeCompare(b.additionalInfo),
+    sorter: (a, b) =>
+      a.additionalInfo.localeCompare(b.additionalInfo),
   },
   {
     title: "Training Status",
     dataIndex: "isComplete",
     key: "isComplete",
 
-    render: text => {
+    render: (text) => {
       return <span>{text ? "Finish" : "On Going"}</span>;
     },
   },

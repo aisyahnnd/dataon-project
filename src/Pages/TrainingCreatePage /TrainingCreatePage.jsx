@@ -12,12 +12,12 @@ import {
   Col,
 } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
-import { SectionHeader } from "../../Components";
+import { SectionHeader } from "@/Components";
 import { useContext } from "react";
-import { AppContext } from "../../Context";
+import { AppContext } from "@/Context";
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
-const normFile = e => {
+const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -50,7 +50,7 @@ export const TrainingCreatePage = () => {
     ],
   };
   //post data
-  const onFinish = values => {
+  const onFinish = (values) => {
     const starDate = values.date[0].format("YYYY-MM-DD");
     const endDate = values.date[1].format("YYYY-MM-DD");
     const data = {
@@ -132,8 +132,14 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            <Upload
+              name="logo"
+              action="/upload.do"
+              listType="picture"
+            >
+              <Button icon={<UploadOutlined />}>
+                Click to Upload
+              </Button>
             </Upload>
           </Form.Item>
           <Form.Item
@@ -159,8 +165,12 @@ export const TrainingCreatePage = () => {
             ]}
           >
             <Radio.Group>
-              <Radio.Button value={true}>Open for Registration</Radio.Button>
-              <Radio.Button value={false}>Closed Registration</Radio.Button>
+              <Radio.Button value={true}>
+                Open for Registration
+              </Radio.Button>
+              <Radio.Button value={false}>
+                Closed Registration
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
           <Form.Item

@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import LabelSection from "../../Components/LabelSection";
-import TableData from "../../Components/TableData";
+import LabelSection from "@/Components/LabelSection";
+import TableData from "@/Components/TableData";
+
 const MyTrainingEventTable = ({ dataTable, columns }) => {
   return (
     <div className="site-card-wrapper">

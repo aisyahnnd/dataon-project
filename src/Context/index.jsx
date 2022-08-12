@@ -1,15 +1,17 @@
 import { createContext } from "react";
-import dataJson from "../Dummy/DataTable.json";
-import { columnsAllTraining } from "../Utils/ColumnsAllTraining";
-import { columnsMyTraining } from "../Utils/ColumnsMyTraining";
+import dataJson from "@/Dummy/DataTable.json";
+import { columnsAllTraining } from "@/Utils/ColumnsAllTraining";
+import { columnsMyTraining } from "@/Utils/ColumnsMyTraining";
 import { useState } from "react";
-import Axios from "../Utils/Axios";
-import { Notification } from "../Components";
+import Axios from "@/Utils/Axios";
+import { Notification } from "@/Components";
 export const AppContext = createContext(null);
 
-export const ContextWrapper = props => {
+export const ContextWrapper = (props) => {
   const [AllTrainingTableDataContext] = useState(dataJson);
-  const [AllTrainingTableColumnContext] = useState(columnsAllTraining);
+  const [AllTrainingTableColumnContext] = useState(
+    columnsAllTraining
+  );
   const [MyTrainingTableDataContext] = useState(dataJson);
   const [MyTrainingTableColumnContext] = useState(columnsMyTraining);
   // for toggle switch view
@@ -30,7 +32,7 @@ export const ContextWrapper = props => {
   };
 
   //for create data training
-  const CreateDataTraining = async data => {
+  const CreateDataTraining = async (data) => {
     try {
       var messages = "Event successfully created";
       const response = await Axios.post("/trainings", data);
@@ -61,12 +63,14 @@ export const ContextWrapper = props => {
   //for filter event status
   const [eventType, setEventType] = useState("");
   //get data searching
-  const GetDataSearching = async valueInputSearching => {
+  const GetDataSearching = async (valueInputSearching) => {
     let endpoints = [
       `/users/1/trainings?search=${valueInputSearching}/`,
       `/trainings?search=${valueInputSearching}`,
     ];
-    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+    await Promise.all(
+      endpoints.map((endpoint) => Axios.get(endpoint))
+    ).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
@@ -74,24 +78,28 @@ export const ContextWrapper = props => {
     );
   };
   //for filter select type event
-  const GetDataSelectEventType = async eventType => {
+  const GetDataSelectEventType = async (eventType) => {
     let endpoints = [
       `/users/1/trainings?isOnlineClass=${eventType}`,
       `/trainings?isOnlineClass=${eventType}`,
     ];
-    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+    await Promise.all(
+      endpoints.map((endpoint) => Axios.get(endpoint))
+    ).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
       }
     );
   };
-  const GetDataSelectEventStatus = async eventStatus => {
+  const GetDataSelectEventStatus = async (eventStatus) => {
     let endpoints = [
       `/users/1/trainings?isComplete=${eventStatus}`,
       `/trainings?isComplete=${eventStatus}`,
     ];
-    await Promise.all(endpoints.map(endpoint => Axios.get(endpoint))).then(
+    await Promise.all(
+      endpoints.map((endpoint) => Axios.get(endpoint))
+    ).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
@@ -100,20 +108,20 @@ export const ContextWrapper = props => {
   };
   //for delete data my training
   const [deleteStatus, setDeleteStatus] = useState(false);
-  const DeleteDataMyTraining = async id => {
+  const DeleteDataMyTraining = async (id) => {
     await Axios.delete(`/users/1/trainings/${id}`)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         setDeleteStatus(true);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
 
   //for search card training
   const [valueCardTraining, setValueCardTraining] = useState("");
-  const SearchCardTraining = async valueCardTraining => {
+  const SearchCardTraining = async (valueCardTraining) => {
     const myTraining = await Axios.get(
       `/users/1/trainings?search=${valueCardTraining}`
     );
