@@ -22,7 +22,7 @@ const MyTrainingCard = () => {
 
   return (
     <>
-      <div className="site-card-wrapper">
+      <div className="bg-card rounded-[10px] p-5 m-5">
         <div className="title-event">
           <p className="title">
             My Training Event

@@ -71,7 +71,7 @@ export const TrainingCreatePage = () => {
     <>
       <SectionHeader></SectionHeader>
 
-      <div className="site-card-wrapper">
+      <div className="bg-card rounded-[10px] p-5 m-5">
         <Form
           onFinish={onFinish}
           labelCol={{
