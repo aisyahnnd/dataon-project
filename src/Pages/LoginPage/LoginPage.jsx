@@ -45,10 +45,12 @@ export const LoginPage = ({ setToken }) => {
 
     if (username && password) {
       try {
-        let result = await fetch("../../../api/login.post.json", {
-          method: "POST",
-          body: JSON.stringify(item),
-        });
+        let result = await fetch(
+          "https://gist.githubusercontent.com/aisyahnnd/c168969ed7dca3cd92f0e54298078e00/raw/d918a4df3f1c5d87dc057ee299d1e460e9d834b5/login-api",
+          {
+            method: "GET",
+          }
+        );
         result = await result.json();
         let data = result.find((item) => {
           if (
