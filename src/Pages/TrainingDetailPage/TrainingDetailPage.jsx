@@ -7,9 +7,22 @@ import {
   SolutionOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Col, Image, Modal, Row, Space, Typography, Card } from "antd";
+import {
+  Button,
+  Col,
+  Image,
+  Modal,
+  Row,
+  Space,
+  Typography,
+  Card,
+} from "antd";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import {
+  useNavigate,
+  useParams,
+  useLocation,
+} from "react-router-dom";
 import { Avatar, ButtonIcon, SectionHeader } from "@/Components";
 import { AppContext } from "@/Context/";
 import "./TrainingDetailPage.css";
@@ -64,8 +77,8 @@ export const TrainingDetailPage = () => {
   return (
     <>
       <SectionHeader></SectionHeader>
-      <div className="bg-card rounded-[10px] p-5 m-5 sm:flex sm:flex-wrap">
-        <div className="grow 0">
+      <div className="container-grid">
+        <div className="content">
           <Row>
             <Col span={24}>
               <Row>
@@ -80,11 +93,11 @@ export const TrainingDetailPage = () => {
               </Row>
             </Col>
           </Row>
-          <div className="flex flex-row sm:flex sm:flex-wrap">
-            <div className="basis-1/4">
+          <div className="row">
+            <div className="column-1">
               <Image
                 style={{
-                  width: 600,
+                  width: 500,
                   paddingLeft: 0,
                   marginBottom: 20,
                   marginTop: 20,
@@ -99,7 +112,8 @@ export const TrainingDetailPage = () => {
                   width: "100%",
                   borderRadius: "16px",
                   marginRight: "24px",
-                  boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
+                  boxShadow:
+                    "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                 }}
               >
                 <Row>
@@ -151,7 +165,11 @@ export const TrainingDetailPage = () => {
                           paddingTop: "5px",
                         }}
                       ></PlusOutlined>
-                      <Text className="textInvite" strong type="secondary">
+                      <Text
+                        className="textInvite"
+                        strong
+                        type="secondary"
+                      >
                         Invite Others
                       </Text>
                     </div>
@@ -159,7 +177,7 @@ export const TrainingDetailPage = () => {
                 </Row>
               </Card>
             </div>
-            <div className="basis-1/2">
+            <div className="column-2">
               <Col span={24} className="training-detail">
                 <Space
                   direction="vertical"
@@ -177,7 +195,8 @@ export const TrainingDetailPage = () => {
                     {location.state.isOnlineClass === true
                       ? "Online Class"
                       : "Offline Class"}
-                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5 Person
+                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5
+                    Person
                   </Text>
                   <Text
                     style={{
@@ -194,7 +213,9 @@ export const TrainingDetailPage = () => {
                       style={{ marginTop: "15px" }}
                     />
                     <Space direction="vertical" size={-5}>
-                      <Text style={{ fontWeight: 700, paddingLeft: 10 }}>
+                      <Text
+                        style={{ fontWeight: 700, paddingLeft: 10 }}
+                      >
                         {location.state.trainer}
                       </Text>
                       <Text
@@ -236,8 +257,12 @@ export const TrainingDetailPage = () => {
                       size={6}
                       style={{ display: "flex", padding: 10 }}
                     >
-                      <Text style={{ fontSize: "16px", fontWeight: 700 }}>
-                        <SolutionOutlined style={{ marginRight: 5 }} />
+                      <Text
+                        style={{ fontSize: "16px", fontWeight: 700 }}
+                      >
+                        <SolutionOutlined
+                          style={{ marginRight: 5 }}
+                        />
                         {location.state.isOnlineClass === true
                           ? "Online Class "
                           : "Offline Class "}
@@ -259,7 +284,9 @@ export const TrainingDetailPage = () => {
                       >
                         TREV-YYMM-XXXX
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Date
                       </Text>
                       <Text
@@ -270,7 +297,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.startDate}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Location
                       </Text>
                       <Text
@@ -281,7 +310,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.trainer}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Status
                       </Text>
                       <Text
@@ -294,7 +325,9 @@ export const TrainingDetailPage = () => {
                           ? "Close Registration"
                           : "Open for Registration"}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         End Date
                       </Text>
                       <Text
@@ -305,7 +338,9 @@ export const TrainingDetailPage = () => {
                       >
                         {location.state.endDate}
                       </Text>
-                      <Text style={{ fontSize: "14px", fontWeight: 700 }}>
+                      <Text
+                        style={{ fontSize: "14px", fontWeight: 700 }}
+                      >
                         Trainer
                       </Text>
                       <Text
@@ -322,58 +357,58 @@ export const TrainingDetailPage = () => {
               </Col>
             </div>
           </div>
-          <Row style={{ paddingTop: 100 }}>
-            <Col
-              span={24}
+        </div>
+        <Row style={{ paddingTop: 20 }}>
+          <Col
+            span={24}
+            style={{
+              textAlign: "right",
+              padding: 20,
+              borderTop: "1px #dddddd solid",
+            }}
+          >
+            <Button
+              onClick={handleBack}
+              type="secondary"
+              htmlType="submit"
               style={{
-                textAlign: "right",
-                padding: 20,
-                borderTop: "1px #dddddd solid",
+                borderRadius: 5,
+                width: 100,
+                marginRight: 10,
               }}
             >
-              <Button
-                onClick={handleBack}
-                type="secondary"
-                htmlType="submit"
-                style={{
-                  borderRadius: 5,
-                  width: 100,
-                  marginRight: 10,
-                }}
-              >
-                Back
-              </Button>
-              {location.pathname === `/mytraining/${params.id}` &&
-              user.role === "admin" ? (
-                <>
-                  <Button
-                    onClick={handleEdit}
-                    type="primary"
-                    htmlType="submit"
-                    style={{
-                      borderRadius: 5,
-                      width: 100,
-                      marginRight: 10,
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={showDeleteConfirm}
-                    type="primary"
-                    danger
-                    style={{
-                      borderRadius: 5,
-                      width: 100,
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </>
-              ) : null}
-            </Col>
-          </Row>
-        </div>
+              Back
+            </Button>
+            {location.pathname === `/mytraining/${params.id}` &&
+            user.role === "admin" ? (
+              <>
+                <Button
+                  onClick={handleEdit}
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    borderRadius: 5,
+                    width: 100,
+                    marginRight: 10,
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={showDeleteConfirm}
+                  type="primary"
+                  danger
+                  style={{
+                    borderRadius: 5,
+                    width: 100,
+                  }}
+                >
+                  Delete
+                </Button>
+              </>
+            ) : null}
+          </Col>
+        </Row>
       </div>
     </>
   );
