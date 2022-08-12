@@ -10,7 +10,9 @@ const AllTrainingEvent = () => {
   let x = window.matchMedia("(max-width: 1024px)");
   const { DataAllTrainings } = useContext(AppContext);
   const [data, setData] = useState([]);
-  const [item, setItem] = useState(Array.from({ length: x.matches ? 4 : 5 }));
+  const [item, setItem] = useState(
+    Array.from({ length: x.matches ? 4 : 5 })
+  );
 
   const getData = async () => {
     try {
@@ -30,7 +32,7 @@ const AllTrainingEvent = () => {
 
   return (
     <>
-      <div className="bg-card rounded-[10px] p-5 m-5">
+      <div className="site-card-wrapper">
         <div className="title-event">
           <p>
             All Training Event

@@ -32,7 +32,7 @@ export const LoginPage = ({ setToken }) => {
   const [flag, setFlag] = useState(false);
   let navigate = useNavigate();
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
@@ -52,7 +52,7 @@ export const LoginPage = ({ setToken }) => {
           }
         );
         result = await result.json();
-        let data = result.find(item => {
+        let data = result.find((item) => {
           if (
             username === item.data.username &&
             password === item.data.password
@@ -86,7 +86,10 @@ export const LoginPage = ({ setToken }) => {
         }}
         style={{ borderRadius: 10 }}
       >
-        <Row className="header" style={{ borderBottom: "1px #dddddd solid" }}>
+        <Row
+          className="header"
+          style={{ borderBottom: "1px #dddddd solid" }}
+        >
           <Col span={3}>
             <img alt="logo" src={Logo} width={150} />
           </Col>
@@ -172,7 +175,10 @@ export const LoginPage = ({ setToken }) => {
           </Col>
 
           <Col span={10} style={{ padding: 20 }}>
-            <Space size={3} style={{ paddingRight: 30, paddingBottom: 30 }}>
+            <Space
+              size={3}
+              style={{ paddingRight: 30, paddingBottom: 30 }}
+            >
               <Text
                 style={{
                   fontSize: "36px",
@@ -210,14 +216,17 @@ export const LoginPage = ({ setToken }) => {
                   },
                   {
                     pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
-                    message: "Username must be alphabets and numbers only",
+                    message:
+                      "Username must be alphabets and numbers only",
                   },
                 ]}
               >
                 <Input
                   style={{ width: 400 }}
                   placeholder="Enter your username here"
-                  onChange={event => setUsername(event.target.value)}
+                  onChange={(event) =>
+                    setUsername(event.target.value)
+                  }
                 />
               </Form.Item>
               <Form.Item
@@ -231,14 +240,17 @@ export const LoginPage = ({ setToken }) => {
                   },
                   {
                     min: 8,
-                    message: "Passwords must be at least 8 characters",
+                    message:
+                      "Passwords must be at least 8 characters",
                   },
                 ]}
               >
                 <Input.Password
                   style={{ width: 400 }}
                   placeholder="Password"
-                  onChange={event => setPassword(event.target.value)}
+                  onChange={(event) =>
+                    setPassword(event.target.value)
+                  }
                 />
               </Form.Item>
               <Form.Item
@@ -269,7 +281,8 @@ export const LoginPage = ({ setToken }) => {
                 <Row>
                   <Col span={24}>
                     <p>
-                      Haven't account? <Link to="/register">Register</Link>
+                      Haven't account?{" "}
+                      <Link to="/register">Register</Link>
                     </p>
                   </Col>
                 </Row>
@@ -283,20 +296,30 @@ export const LoginPage = ({ setToken }) => {
                 </Button>
               </Form.Item>
               {flag && (
-                <Alert message="Wrong username/password!" type="warning" />
+                <Alert
+                  message="Wrong username/password!"
+                  type="warning"
+                />
               )}
             </Form>
           </Col>
         </Row>
         <Row className="footer">
-          <Col span={24} style={{ textAlign: "center", paddingTop: 20 }}>
+          <Col
+            span={24}
+            style={{ textAlign: "center", paddingTop: 20 }}
+          >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
               This product is licensed for Dataon Corporation
             </Text>
           </Col>
-          <Col span={24} style={{ textAlign: "center", paddingBottom: 20 }}>
+          <Col
+            span={24}
+            style={{ textAlign: "center", paddingBottom: 20 }}
+          >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
-              &copy; 1999 - 2022 DataOn Technology. All Rights Reserved
+              &copy; 1999 - 2022 DataOn Technology. All Rights
+              Reserved
             </Text>
           </Col>
         </Row>

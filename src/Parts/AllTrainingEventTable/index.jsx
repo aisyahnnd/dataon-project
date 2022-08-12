@@ -3,7 +3,7 @@ import TableData from "@/Components/TableData";
 
 const AllTrainingEventTable = ({ dataTable, columns }) => {
   return (
-    <div className="bg-card rounded-[10px] p-5 m-5">
+    <div className="site-card-wrapper">
       <LabelSection
         label="All Training Event"
         dataBadge={5}
@@ -13,13 +13,11 @@ const AllTrainingEventTable = ({ dataTable, columns }) => {
           fontWeight: "bold",
         }}
       ></LabelSection>
-      <div className="overflow-x-auto">
-        <TableData
-          dataTable={dataTable}
-          pagination={{ defaultPageSize: 10 }}
-          columns={columns}
-        ></TableData>
-      </div>
+      <TableData
+        dataTable={dataTable}
+        pagination={{ defaultPageSize: 10 }}
+        columns={columns}
+      ></TableData>
     </div>
   );
 };
