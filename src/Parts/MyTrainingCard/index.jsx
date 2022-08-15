@@ -22,7 +22,10 @@ const MyTrainingCard = () => {
 
   return (
     <>
-      <div className="site-card-wrapper">
+      <div
+        className="site-card-wrapper"
+        data-testId="site-card-wrapper"
+      >
         <div className="title-event">
           <p className="title">
             My Training Event
@@ -46,6 +49,7 @@ const MyTrainingCard = () => {
           slidesToScroll={1}
           prevArrow={<SlickButtonLeft />}
           nextArrow={<SlickButtonRight />}
+          data-testId="carousel"
         >
           {data.map((item, id) => {
             return (

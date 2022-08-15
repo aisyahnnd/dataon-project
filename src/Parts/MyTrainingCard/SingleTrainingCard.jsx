@@ -24,8 +24,8 @@ const { Text } = Typography;
 export const SingleTrainingCard = (props) => {
   const { item, id, location } = props;
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
   // convert rate to range 1-5 not 0-100
   const [rate, setRate] = useState(item.ratings / 20);
 
@@ -93,8 +93,13 @@ export const SingleTrainingCard = (props) => {
       }}
       bodyStyle={{ padding: "0" }}
       hoverable
+      data-testid="card"
     >
-      <Row onClick={showDetail} className="row-top">
+      <Row
+        onClick={showDetail}
+        className="row-top"
+        data-testid="mytraining-card"
+      >
         <Col>
           <Image
             alt="example"
@@ -142,6 +147,7 @@ export const SingleTrainingCard = (props) => {
               size="small"
               style={{ fontSize: 12 }}
               onClick={showModal}
+              data-testid="btn-feedback"
             >
               Give Feedback
             </Button>
@@ -152,6 +158,7 @@ export const SingleTrainingCard = (props) => {
               style={{ fontSize: 12 }}
               onClick={openLocation}
               icon={<EnvironmentOutlined />}
+              data-testid="btn-location"
             >
               View Location
             </Button>
@@ -163,6 +170,7 @@ export const SingleTrainingCard = (props) => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
             className="modal"
+            data-testid="modal"
           >
             <Space
               direction="vertical"
