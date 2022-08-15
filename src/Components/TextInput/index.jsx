@@ -11,6 +11,7 @@ const TextInput = ({ id, label, placeholder, style, onChange, value }) => {
         placeholder={placeholder}
         onChange={onChange}
         value={value}
+        data-testid="inputSearch"
       ></Input>
     </div>
   );

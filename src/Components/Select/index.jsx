@@ -24,16 +24,17 @@ const SelectBox = ({ type, style, onChange, value, defaultValue }) => {
               ? `Select ${label.status}`
               : `Select ${label.event}`
           }
+          data-testid="selectBox"
         >
           {type === "status" ? (
             <>
-              <Option value="true">Finish</Option>
-              <Option value="false">On Going</Option>
+              <Select.Option value="true">Finish</Select.Option>
+              <Select.Option value="false">On Going</Select.Option>
             </>
           ) : (
             <>
-              <Option value="true">Online</Option>
-              <Option value="false">Offline</Option>
+              <Select.Option value="true">Online</Select.Option>
+              <Select.Option value="false">Offline</Select.Option>
             </>
           )}
         </Select>
