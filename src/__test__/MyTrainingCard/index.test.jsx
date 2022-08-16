@@ -1,21 +1,30 @@
 import React from "react";
-import { describe, test, expect, beforeEach } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { render } from "@testing-library/react";
 import { MyTrainingCard } from "@/Parts";
-import { BrowserRouter as Router } from "react-router-dom";
+import { ContextWrapper } from "@/Context";
 import userEvent from "@testing-library/user-event";
 
-describe("MyTrainingCard test", () => {
-  test("Carousel", () => {
-    beforeEach(() => {
-      render(
-        <Router>
-          <MyTrainingCard />
-        </Router>
-      );
-    });
+it("Renders my training card correctly", () => {
+  const { queryByTestId } = render(
+    <ContextWrapper>
+      <MyTrainingCard />
+    </ContextWrapper>
+  );
+  expect(queryByTestId("site-card-wrapper")).toBeTruthy();
+  expect(queryByTestId("badge-mytraining")).toBeTruthy();
+  expect(queryByTestId("carousel")).toBeDefined();
+});
 
-    userEvent.click(screen.queryByTestId("carousel"));
-    expect(screen.queryByTestId("site-card-wrapper")).toBeDefined();
+describe("MyTrainingCard test", () => {
+  it("Should display carousel", () => {
+    const { queryByTestId } = render(
+      <ContextWrapper>
+        <MyTrainingCard />
+      </ContextWrapper>
+    );
+
+    userEvent.click(queryByTestId("carousel"));
+    expect(queryByTestId("site-card-wrapper")).toBeDefined();
   });
 });

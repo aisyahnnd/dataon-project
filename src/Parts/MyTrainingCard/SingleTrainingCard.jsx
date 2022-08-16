@@ -27,7 +27,7 @@ export const SingleTrainingCard = (props) => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   // convert rate to range 1-5 not 0-100
-  const [rate, setRate] = useState(item.ratings / 20);
+  const [rate, setRate] = useState(item?.ratings / 20);
 
   const openLocation = () => {
     window.open(
@@ -75,8 +75,8 @@ export const SingleTrainingCard = (props) => {
 
   //rate will update on modal if value ratings update on db
   useEffect(() => {
-    setRate(item.ratings);
-  }, [item.ratings]);
+    setRate(item?.ratings);
+  }, [item?.ratings]);
 
   const handleCancel = () => {
     setRate(item.ratings);
@@ -103,7 +103,7 @@ export const SingleTrainingCard = (props) => {
         <Col>
           <Image
             alt="example"
-            src={item.thumbnail}
+            src={item?.thumbnail}
             width={100}
             height={140}
             style={{
@@ -120,28 +120,28 @@ export const SingleTrainingCard = (props) => {
             style={{ display: "flex" }}
           >
             <Text style={{ fontSize: "11px" }}>
-              <EnvironmentOutlined /> {item.trainer}
+              <EnvironmentOutlined /> {item?.trainer}
             </Text>
             <Text style={{ fontSize: "16px" }} strong>
-              {item.eventName}
+              {item?.eventName}
             </Text>
-            <Text type="secondary">{item.startDate}</Text>
+            <Text type="secondary">{item?.startDate}</Text>
             <Text type="secondary" style={{ fontSize: "11px" }}>
-              <UserOutlined /> {item.trainer}
+              <UserOutlined /> {item?.trainer}
             </Text>
           </Space>
         </Col>
       </Row>
       <Row className="row-bottom" justify="space-between">
         <Col>
-          {item.isComplete ? (
+          {item?.isComplete ? (
             <p className="row-bottom-detail">Event Completed</p>
           ) : (
             <p className="row-bottom-detail">Event Started</p>
           )}
         </Col>
         <Col>
-          {item.isComplete ? (
+          {item?.isComplete ? (
             <Button
               type="primary"
               size="small"
@@ -177,14 +177,14 @@ export const SingleTrainingCard = (props) => {
               size={3}
               style={{ display: "flex" }}
             >
-              <Text strong>{item.eventName}</Text>
-              <Text type="secondary">{item.trainer}</Text>
+              <Text strong>{item?.eventName}</Text>
+              <Text type="secondary">{item?.trainer}</Text>
               <Text type="secondary" style={{ fontSize: "11px" }}>
-                <UserOutlined /> {item.trainer}
+                <UserOutlined /> {item?.trainer}
               </Text>
               <div className="rating">
                 <Rate
-                  defaultValue={item.ratings}
+                  defaultValue={item?.ratings}
                   value={rate}
                   onChange={(value) => onChangeRatings(value)}
                 ></Rate>

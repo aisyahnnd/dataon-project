@@ -24,7 +24,7 @@ const MyTrainingCard = () => {
     <>
       <div
         className="site-card-wrapper"
-        data-testId="site-card-wrapper"
+        data-testid="site-card-wrapper"
       >
         <div className="title-event">
           <p className="title">
@@ -37,21 +37,22 @@ const MyTrainingCard = () => {
                 color: "#2db7f5",
                 fontWeight: "bold",
               }}
-              count={data.length}
+              count={data?.length}
+              data-testid="badge-mytraining"
             />
           </p>
         </div>
         <Carousel
           arrows
           dots={false}
-          infinite={data.length > 3 ? true : false}
+          infinite={data?.length > 3 ? true : false}
           slidesToShow={3}
           slidesToScroll={1}
           prevArrow={<SlickButtonLeft />}
           nextArrow={<SlickButtonRight />}
-          data-testId="carousel"
+          data-testid="carousel"
         >
-          {data.map((item, id) => {
+          {data?.map((item, id) => {
             return (
               <Row
                 key={item.id}
@@ -68,7 +69,7 @@ const MyTrainingCard = () => {
             );
           })}
         </Carousel>
-        {data.length === 0 && (
+        {data?.length === 0 && (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         )}
       </div>
