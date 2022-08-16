@@ -17,7 +17,7 @@ import { useContext } from "react";
 import { AppContext } from "@/Context";
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
-const normFile = (e) => {
+const normFile = e => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -50,7 +50,7 @@ export const TrainingCreatePage = () => {
     ],
   };
   //post data
-  const onFinish = (values) => {
+  const onFinish = values => {
     const starDate = values.date[0].format("YYYY-MM-DD");
     const endDate = values.date[1].format("YYYY-MM-DD");
     const data = {
@@ -73,6 +73,7 @@ export const TrainingCreatePage = () => {
 
       <div className="site-card-wrapper">
         <Form
+          data-testid="form"
           onFinish={onFinish}
           labelCol={{
             span: 7,
@@ -96,11 +97,13 @@ export const TrainingCreatePage = () => {
                 required: true,
               },
             ]}
+            data-testid="isOnlineClass"
           >
             <Select
               placeholder="Select Event Type"
               optionFilterProp="children"
               allowClear
+              data-testid="eventType"
             >
               <OptGroup label="Type">
                 <Option value={true}>Online Class</Option>
@@ -117,7 +120,7 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Input placeholder="Input Event Name" />
+            <Input data-testid="eventName" placeholder="Input Event Name" />
           </Form.Item>
 
           <Form.Item
@@ -132,14 +135,8 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Upload
-              name="logo"
-              action="/upload.do"
-              listType="picture"
-            >
-              <Button icon={<UploadOutlined />}>
-                Click to Upload
-              </Button>
+            <Upload name="logo" action="/upload.do" listType="picture">
+              <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
           </Form.Item>
           <Form.Item
@@ -152,11 +149,12 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <RangePicker />
+            <RangePicker data-testid="date" />
           </Form.Item>
           <Form.Item
             name="status"
             label="Status"
+            data-testid="status"
             rules={[
               {
                 required: true,
@@ -165,12 +163,8 @@ export const TrainingCreatePage = () => {
             ]}
           >
             <Radio.Group>
-              <Radio.Button value={true}>
-                Open for Registration
-              </Radio.Button>
-              <Radio.Button value={false}>
-                Closed Registration
-              </Radio.Button>
+              <Radio.Button value={true}>Open for Registration</Radio.Button>
+              <Radio.Button value={false}>Closed Registration</Radio.Button>
             </Radio.Group>
           </Form.Item>
           <Form.Item
@@ -182,7 +176,7 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Input placeholder="Input Trainer Name" />
+            <Input data-testid="trainer" placeholder="Input Trainer Name" />
           </Form.Item>
 
           <Form.Item label="Location based Latitude and Longitude">
@@ -211,6 +205,7 @@ export const TrainingCreatePage = () => {
           <Form.Item
             name="additionalInfo"
             label="Infromation"
+            data-testid="additionalInfo"
             rules={[
               {
                 required: true,
@@ -243,6 +238,7 @@ export const TrainingCreatePage = () => {
               <Button
                 type="primary"
                 htmlType="submit"
+                data-testid="submitButton"
                 style={{ borderRadius: 5, width: 100 }}
               >
                 Submit

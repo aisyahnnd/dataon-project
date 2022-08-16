@@ -24,10 +24,10 @@ const { Text } = Typography;
 export const SingleTrainingCard = (props) => {
   const { item, id, location } = props;
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
   // convert rate to range 1-5 not 0-100
-  const [rate, setRate] = useState(item.ratings / 20);
+  const [rate, setRate] = useState(item?.ratings / 20);
 
   const openLocation = () => {
     window.open(
@@ -75,8 +75,8 @@ export const SingleTrainingCard = (props) => {
 
   //rate will update on modal if value ratings update on db
   useEffect(() => {
-    setRate(item.ratings);
-  }, [item.ratings]);
+    setRate(item?.ratings);
+  }, [item?.ratings]);
 
   const handleCancel = () => {
     setRate(item.ratings);
@@ -93,12 +93,17 @@ export const SingleTrainingCard = (props) => {
       }}
       bodyStyle={{ padding: "0" }}
       hoverable
+      data-testid="card"
     >
-      <Row onClick={showDetail} className="row-top">
+      <Row
+        onClick={showDetail}
+        className="row-top"
+        data-testid="mytraining-card"
+      >
         <Col>
           <Image
             alt="example"
-            src={item.thumbnail}
+            src={item?.thumbnail}
             width={100}
             height={140}
             style={{
@@ -115,33 +120,34 @@ export const SingleTrainingCard = (props) => {
             style={{ display: "flex" }}
           >
             <Text style={{ fontSize: "11px" }}>
-              <EnvironmentOutlined /> {item.trainer}
+              <EnvironmentOutlined /> {item?.trainer}
             </Text>
             <Text style={{ fontSize: "16px" }} strong>
-              {item.eventName}
+              {item?.eventName}
             </Text>
-            <Text type="secondary">{item.startDate}</Text>
+            <Text type="secondary">{item?.startDate}</Text>
             <Text type="secondary" style={{ fontSize: "11px" }}>
-              <UserOutlined /> {item.trainer}
+              <UserOutlined /> {item?.trainer}
             </Text>
           </Space>
         </Col>
       </Row>
       <Row className="row-bottom" justify="space-between">
         <Col>
-          {item.isComplete ? (
+          {item?.isComplete ? (
             <p className="row-bottom-detail">Event Completed</p>
           ) : (
             <p className="row-bottom-detail">Event Started</p>
           )}
         </Col>
         <Col>
-          {item.isComplete ? (
+          {item?.isComplete ? (
             <Button
               type="primary"
               size="small"
               style={{ fontSize: 12 }}
               onClick={showModal}
+              data-testid="btn-feedback"
             >
               Give Feedback
             </Button>
@@ -152,6 +158,7 @@ export const SingleTrainingCard = (props) => {
               style={{ fontSize: 12 }}
               onClick={openLocation}
               icon={<EnvironmentOutlined />}
+              data-testid="btn-location"
             >
               View Location
             </Button>
@@ -163,20 +170,21 @@ export const SingleTrainingCard = (props) => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
             className="modal"
+            data-testid="modal"
           >
             <Space
               direction="vertical"
               size={3}
               style={{ display: "flex" }}
             >
-              <Text strong>{item.eventName}</Text>
-              <Text type="secondary">{item.trainer}</Text>
+              <Text strong>{item?.eventName}</Text>
+              <Text type="secondary">{item?.trainer}</Text>
               <Text type="secondary" style={{ fontSize: "11px" }}>
-                <UserOutlined /> {item.trainer}
+                <UserOutlined /> {item?.trainer}
               </Text>
               <div className="rating">
                 <Rate
-                  defaultValue={item.ratings}
+                  defaultValue={item?.ratings}
                   value={rate}
                   onChange={(value) => onChangeRatings(value)}
                 ></Rate>
