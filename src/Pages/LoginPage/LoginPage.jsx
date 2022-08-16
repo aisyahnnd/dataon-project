@@ -85,10 +85,12 @@ export const LoginPage = ({ setToken }) => {
           padding: "0px",
         }}
         style={{ borderRadius: 10 }}
+        data-testid="card-login"
       >
         <Row
           className="header"
           style={{ borderBottom: "1px #dddddd solid" }}
+          data-testid="header"
         >
           <Col span={3}>
             <img alt="logo" src={Logo} width={150} />
@@ -125,8 +127,12 @@ export const LoginPage = ({ setToken }) => {
               }}
               bordered={false}
             >
-              <Option value="english">English (EN)</Option>
-              <Option value="indoensia">Indonesia (IDN)</Option>
+              <Select.Option value="english">
+                English (EN)
+              </Select.Option>
+              <Select.Option value="indoensia">
+                Indonesia (IDN)
+              </Select.Option>
             </Select>
           </Col>
         </Row>
@@ -139,6 +145,7 @@ export const LoginPage = ({ setToken }) => {
                 paddingLeft: 100,
               }}
               autoplay
+              data-testid="carousel-login"
             >
               <div>
                 <img
@@ -200,6 +207,7 @@ export const LoginPage = ({ setToken }) => {
               onFinishFailed={onFinishFailed}
               autoComplete="off"
               layout="vertical"
+              data-testid="form-login"
             >
               <Form.Item
                 style={{ fontWeight: "bold" }}
@@ -227,6 +235,7 @@ export const LoginPage = ({ setToken }) => {
                   onChange={(event) =>
                     setUsername(event.target.value)
                   }
+                  data-testid="username"
                 />
               </Form.Item>
               <Form.Item
@@ -251,6 +260,7 @@ export const LoginPage = ({ setToken }) => {
                   onChange={(event) =>
                     setPassword(event.target.value)
                   }
+                  data-testid="password"
                 />
               </Form.Item>
               <Form.Item
@@ -291,6 +301,7 @@ export const LoginPage = ({ setToken }) => {
                   type="primary"
                   htmlType="submit"
                   onClick={handleSubmit}
+                  data-testid="login-button"
                 >
                   Login
                 </Button>
@@ -304,7 +315,7 @@ export const LoginPage = ({ setToken }) => {
             </Form>
           </Col>
         </Row>
-        <Row className="footer">
+        <Row className="footer" data-testid="footer">
           <Col
             span={24}
             style={{ textAlign: "center", paddingTop: 20 }}
