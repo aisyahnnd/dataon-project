@@ -1,7 +1,6 @@
 import ButtonIcon from "../../Components/ButtonIcon";
 import { describe, expect, test } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { UnorderedListOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { render, screen } from "@testing-library/react";
 describe("should be run button", () => {
   test("will be render", () => {
     const type = "button";

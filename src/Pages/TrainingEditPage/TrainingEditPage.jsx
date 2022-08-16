@@ -129,7 +129,11 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Select placeholder="Select Event Type" value={data.isOnlineClass}>
+            <Select
+              placeholder="Select Event Type"
+              data-testid="isOnlineClass"
+              value={data.isOnlineClass}
+            >
               <Select.Option name="true" value="Online Class">
                 Online Class
               </Select.Option>
@@ -148,7 +152,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Input />
+            <Input data-testid="eventName" />
           </Form.Item>
           <Form.Item
             name="trainer"
@@ -160,7 +164,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Input />
+            <Input data-testid="trainer" />
           </Form.Item>
           <Form.Item
             name="location"
@@ -172,7 +176,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Input />
+            <Input data-testid="location" />
           </Form.Item>
           <Form.Item
             name="date"
@@ -181,6 +185,7 @@ export const TrainingEditPage = () => {
             rules={[{ required: true, message: "Please select date!" }]}
           >
             <RangePicker
+              data-testid="date"
               format="YYYY-MM-DD HH:mm"
               defaultPickerValue={[
                 moment(data.startDate),
@@ -199,7 +204,7 @@ export const TrainingEditPage = () => {
               },
             ]}
           >
-            <Radio.Group value={value}>
+            <Radio.Group data-testid="status" value={value}>
               <Radio.Button value={false}>Open for Registration</Radio.Button>
               <Radio.Button value={true}>Closed Registration</Radio.Button>
             </Radio.Group>
@@ -239,7 +244,7 @@ export const TrainingEditPage = () => {
             label="information"
             value={data.additionalInfo}
           >
-            <Input />
+            <Input data-testid="additionalInfo" />
           </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
@@ -251,6 +256,7 @@ export const TrainingEditPage = () => {
               }}
             >
               <Button
+                data-testid="button"
                 type="primary"
                 htmlType="submit"
                 style={{ borderRadius: 5, width: 100 }}
