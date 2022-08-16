@@ -1,3 +1,4 @@
 import Axios from "./Axios";
 import CoverDate from "./CoverDate";
-export { Axios, CoverDate };
+import MatchMediaConfig from "./MatchMediaConfig";
+export { Axios, CoverDate, MatchMediaConfig };

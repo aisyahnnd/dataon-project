@@ -1,4 +1,4 @@
-export const MatchMediaConfig = () => {
+const MatchMediaConfig = () => {
   window.matchMedia =
     window.matchMedia ||
     function () {
@@ -9,3 +9,5 @@ export const MatchMediaConfig = () => {
       };
     };
 };
+
+export default MatchMediaConfig;
