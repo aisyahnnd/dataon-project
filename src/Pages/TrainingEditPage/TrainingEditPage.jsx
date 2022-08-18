@@ -10,14 +10,20 @@ import {
   Col,
   InputNumber,
 } from "antd";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import {
+  useNavigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import dayjs from "dayjs";
 import moment from "moment";
 import { SectionHeader } from "@/Components";
 import { useContext } from "react";
 import { AppContext } from "@/Context";
+import { useTranslation } from "react-i18next";
 const { RangePicker } = DatePicker;
 export const TrainingEditPage = () => {
+  const { t } = useTranslation(["content"]);
   const { EditDataTraining } = useContext(AppContext);
   const [componentSize, setComponentSize] = useState("default");
   const [data, setData] = useState({
@@ -45,11 +51,17 @@ export const TrainingEditPage = () => {
     try {
       setData({
         eventName: location.state.eventName,
-        startDate: dayjs(location.state.startDate).format("YYYY-MM-DD HH:mm"),
-        endDate: dayjs(location.state.endDate).format("YYYY-MM-DD HH:mm"),
+        startDate: dayjs(location.state.startDate).format(
+          "YYYY-MM-DD HH:mm"
+        ),
+        endDate: dayjs(location.state.endDate).format(
+          "YYYY-MM-DD HH:mm"
+        ),
         image: location.state.thumbnail,
         isOnlineClass:
-          location.isOnlineClass === true ? "Online Class" : "Offline Class",
+          location.isOnlineClass === true
+            ? t("trainingCreateEditDetail.eventType.option1")
+            : t("trainingCreateEditDetail.eventType.option2"),
         location: location.state.trainer,
         trainer: location.state.trainer,
         ratings: location.state.ratings,
@@ -76,13 +88,17 @@ export const TrainingEditPage = () => {
   });
   //update data to database
   const params = useParams();
-  const onFinish = values => {
+  const onFinish = (values) => {
     var user = JSON.parse(localStorage.getItem("user-info"));
     const starDate = values.date[0].format("YYYY-MM-DD");
     const endDate = values.date[1].format("YYYY-MM-DD");
     const dataEdit = {
       eventName: values.eventName,
-      isOnlineClass: values.isOnlineClass === "Online Class" ? true : false,
+      isOnlineClass:
+        values.isOnlineClass ===
+        t("trainingCreateEditDetail.eventType.option1")
+          ? true
+          : false,
       startDate: starDate,
       endDate: endDate,
       location: { lat: values.latitude, long: values.longitude },
@@ -93,7 +109,7 @@ export const TrainingEditPage = () => {
     };
     EditDataTraining(dataEdit, params.id, user.id);
   };
-  const onChangeRatings = value => {
+  const onChangeRatings = (value) => {
     form.setFieldsValue({
       ratings: value,
     });
@@ -122,25 +138,30 @@ export const TrainingEditPage = () => {
         >
           <Form.Item
             name="isOnlineClass"
-            label="Event Type:"
+            label={t("trainingCreateEditDetail.eventType.label")}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select placeholder="Select Event Type" value={data.isOnlineClass}>
+            <Select
+              placeholder={t(
+                "trainingCreateEditDetail.eventType.placeholder"
+              )}
+              value={data.isOnlineClass}
+            >
               <Select.Option name="true" value="Online Class">
-                Online Class
+                {t("trainingCreateEditDetail.eventType.option1")}
               </Select.Option>
               <Select.Option name="false" value="Offline Class">
-                Offline Class
+                {t("trainingCreateEditDetail.eventType.option2")}
               </Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
             name="eventName"
-            label="Event Name"
+            label={t("trainingCreateEditDetail.eventName.label")}
             value={data.eventName}
             rules={[
               {
@@ -152,7 +173,7 @@ export const TrainingEditPage = () => {
           </Form.Item>
           <Form.Item
             name="trainer"
-            label="Trainer Name"
+            label={t("trainingCreateEditDetail.trainer.label")}
             value={data.trainer}
             rules={[
               {
@@ -164,7 +185,7 @@ export const TrainingEditPage = () => {
           </Form.Item>
           <Form.Item
             name="location"
-            label="Location"
+            label={t("trainingCreateEditDetail.location")}
             value={data.location}
             rules={[
               {
@@ -176,9 +197,14 @@ export const TrainingEditPage = () => {
           </Form.Item>
           <Form.Item
             name="date"
-            label="Date"
+            label={t("trainingCreateEditDetail.date")}
             value={data.date}
-            rules={[{ required: true, message: "Please select date!" }]}
+            rules={[
+              {
+                required: true,
+                message: t("trainingCreateEditDetail.messageDate"),
+              },
+            ]}
           >
             <RangePicker
               format="YYYY-MM-DD HH:mm"
@@ -191,28 +217,36 @@ export const TrainingEditPage = () => {
           </Form.Item>
           <Form.Item
             name="isComplete"
-            label="Status"
+            label={t("trainingCreateEditDetail.status.label")}
             rules={[
               {
                 required: true,
-                message: "Please pick an item!",
+                message: t("trainingCreateEditDetail.status.message"),
               },
             ]}
           >
             <Radio.Group value={value}>
-              <Radio.Button value={false}>Open for Registration</Radio.Button>
-              <Radio.Button value={true}>Closed Registration</Radio.Button>
+              <Radio.Button value={false}>
+                {t("trainingCreateEditDetail.status.radio1")}
+              </Radio.Button>
+              <Radio.Button value={true}>
+                {t("trainingCreateEditDetail.status.radio2")}
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
-          <Form.Item name="ratings" label="Ratings" value={data.ratings}>
+          <Form.Item
+            name="ratings"
+            label={t("trainingTable.title5")}
+            value={data.ratings}
+          >
             <InputNumber
               min={1}
-              onChange={value => onChangeRatings(value)}
+              onChange={(value) => onChangeRatings(value)}
               max={100}
               type="number"
             />
           </Form.Item>
-          <Form.Item label="Location based Latitude and Longitude">
+          <Form.Item label={t("trainingCreateEditDetail.location")}>
             <Form.Item
               name="latitude"
               rules={[
@@ -236,7 +270,7 @@ export const TrainingEditPage = () => {
           </Form.Item>
           <Form.Item
             name="additionalInfo"
-            label="information"
+            label={t("trainingCreateEditDetail.information.label")}
             value={data.additionalInfo}
           >
             <Input />
@@ -255,7 +289,7 @@ export const TrainingEditPage = () => {
                 htmlType="submit"
                 style={{ borderRadius: 5, width: 100 }}
               >
-                Submit
+                {t("trainingCreateEditDetail.button.submit")}
               </Button>
             </Col>
           </Row>

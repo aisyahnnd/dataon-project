@@ -1,26 +1,28 @@
-import { Button, Result } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Button, Result } from "antd";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export const MissingPage = () => {
+  const { t } = useTranslation(["content"]);
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <Result
       style={{
-        backgroundColor: '#fff',
-        height: '55vw',
+        backgroundColor: "#fff",
+        height: "55vw",
         paddingTop: 100,
       }}
       status="404"
       title="404"
-      subTitle="Sorry, the page you visited does not exist."
+      subTitle={t("missingPage")}
       extra={
         <Button type="primary" onClick={onClick}>
-          Back Home
+          {t("missingPageBtn")}
         </Button>
       }
     />

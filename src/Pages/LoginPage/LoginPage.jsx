@@ -23,10 +23,14 @@ import Image4 from "@/assets/Images/example-30.svg";
 import Logo from "@/assets/Images/logo.png";
 import PropTypes from "prop-types";
 import { Notification } from "@/Components";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import i18next from "i18next";
 
 const { Text } = Typography;
 
 export const LoginPage = ({ setToken }) => {
+  const { t, i18n } = useTranslation(["login"]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [flag, setFlag] = useState(false);
@@ -66,7 +70,7 @@ export const LoginPage = ({ setToken }) => {
         localStorage.setItem("role", JSON.stringify(data.data.role));
         localStorage.setItem("token", JSON.stringify(data.token));
         setToken(JSON.stringify(data.token));
-        var messages = "Login success";
+        var messages = t("notification");
         Notification(messages, "success");
         navigate("/");
       } catch (error) {
@@ -76,6 +80,17 @@ export const LoginPage = ({ setToken }) => {
       setFlag(true);
       return false;
     }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng"?.length > 2)) {
+      i18next.changeLanguage("en");
+    }
+  }, []);
+
+  const onChangeLanguages = (event) => {
+    i18n.changeLanguage(event);
+    console.log({ event });
   };
 
   return (
@@ -105,7 +120,7 @@ export const LoginPage = ({ setToken }) => {
           >
             <Space size={-5} direction="vertical">
               <Text style={{ fontSize: "16px", fontWeight: 500 }}>
-                Human Resources Information System
+                {t("header")}
               </Text>
               <Text style={{ fontSize: "24px", fontWeight: 900 }}>
                 SunFish 7
@@ -122,15 +137,16 @@ export const LoginPage = ({ setToken }) => {
           >
             <Select
               defaultValue="English (EN)"
+              // value={localStorage.getItem("i18nextLng")}
               style={{
                 width: 150,
               }}
               bordered={false}
+              name="language"
+              onChange={onChangeLanguages}
             >
-              <Select.Option value="english">
-                English (EN)
-              </Select.Option>
-              <Select.Option value="indoensia">
+              <Select.Option value="en">English (EN)</Select.Option>
+              <Select.Option value="id">
                 Indonesia (IDN)
               </Select.Option>
             </Select>
@@ -193,7 +209,7 @@ export const LoginPage = ({ setToken }) => {
                   color: "#1890ff",
                 }}
               >
-                Please enter your credential to access the system
+                {t("content")}
               </Text>
             </Space>
             <Form
@@ -211,27 +227,26 @@ export const LoginPage = ({ setToken }) => {
             >
               <Form.Item
                 style={{ fontWeight: "bold" }}
-                label="Username"
+                label={t("username.label")}
                 name="username"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your username!",
+                    message: `${t("username.messages.part1")}`,
                   },
                   {
                     max: 20,
-                    message: "Username must be less than 20",
+                    message: `${t("username.messages.part2")}`,
                   },
                   {
                     pattern: new RegExp(/^[a-zA-Z 0-9]+$/i),
-                    message:
-                      "Username must be alphabets and numbers only",
+                    message: `${t("username.messages.part3")}`,
                   },
                 ]}
               >
                 <Input
                   style={{ width: 400 }}
-                  placeholder="Enter your username here"
+                  placeholder={t("username.placeholder")}
                   onChange={(event) =>
                     setUsername(event.target.value)
                   }
@@ -240,23 +255,22 @@ export const LoginPage = ({ setToken }) => {
               </Form.Item>
               <Form.Item
                 style={{ fontWeight: "bold" }}
-                label="Password"
+                label={t("password.label")}
                 name="password"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: `${t("password.messages.part1")}`,
                   },
                   {
                     min: 8,
-                    message:
-                      "Passwords must be at least 8 characters",
+                    message: `${t("password.messages.part2")}`,
                   },
                 ]}
               >
                 <Input.Password
                   style={{ width: 400 }}
-                  placeholder="Password"
+                  placeholder={t("password.placeholder")}
                   onChange={(event) =>
                     setPassword(event.target.value)
                   }
@@ -273,11 +287,11 @@ export const LoginPage = ({ setToken }) => {
               >
                 <Row>
                   <Col span={12}>
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>{t("checkbox")}</Checkbox>
                   </Col>
                   <Col span={12}>
                     <p>
-                      <a href="#">Forgot password?</a>
+                      <a href="#">{t("password.forgotPassword")}</a>
                     </p>
                   </Col>
                 </Row>
@@ -291,8 +305,8 @@ export const LoginPage = ({ setToken }) => {
                 <Row>
                   <Col span={24}>
                     <p>
-                      Haven't account?{" "}
-                      <Link to="/register">Register</Link>
+                      {t("account.part1")}{" "}
+                      <Link to="/register">{t("account.part2")}</Link>
                     </p>
                   </Col>
                 </Row>
@@ -303,15 +317,10 @@ export const LoginPage = ({ setToken }) => {
                   onClick={handleSubmit}
                   data-testid="login-button"
                 >
-                  Login
+                  {t("button")}
                 </Button>
               </Form.Item>
-              {flag && (
-                <Alert
-                  message="Wrong username/password!"
-                  type="warning"
-                />
-              )}
+              {flag && <Alert message={t("alert")} type="warning" />}
             </Form>
           </Col>
         </Row>
@@ -321,7 +330,7 @@ export const LoginPage = ({ setToken }) => {
             style={{ textAlign: "center", paddingTop: 20 }}
           >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
-              This product is licensed for Dataon Corporation
+              {t("footer.line1")}
             </Text>
           </Col>
           <Col
@@ -329,8 +338,7 @@ export const LoginPage = ({ setToken }) => {
             style={{ textAlign: "center", paddingBottom: 20 }}
           >
             <Text style={{ fontSize: "16px", color: "#888888" }}>
-              &copy; 1999 - 2022 DataOn Technology. All Rights
-              Reserved
+              {t("footer.line2")}
             </Text>
           </Col>
         </Row>

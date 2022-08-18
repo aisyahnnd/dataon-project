@@ -1,5 +1,6 @@
 import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Col, Dropdown, Menu, Row } from "antd";
+import { useTranslation } from "react-i18next";
 import {
   useNavigate,
   Link,
@@ -8,6 +9,7 @@ import {
 } from "react-router-dom";
 
 const SectionHeader = ({ viewButton }) => {
+  const { t } = useTranslation(["common", "dashboard"]);
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
@@ -18,15 +20,21 @@ const SectionHeader = ({ viewButton }) => {
   //breadcumb
   const pathSnippets = location.pathname.split("/").filter((i) => i);
   const breadcrumbNameMaps = {
-    "/": "Dashboard",
-    "/register": "Register",
-    "/training": "Training",
-    ["/training/" + params.id]: "Training Event Detail",
-    "/training/create": "Create Training",
-    ["/mytraining/" + params.id]: "Detail Page",
-    "/mytraining/edit": "Edit",
-    ["/mytraining/edit/" + params.id]: "Edit Detail",
-    "/mytraining": "My Training",
+    "/": t("dashboard:dashboard"),
+    "/register": t("dashboard:breadcrumb.register"),
+    "/training": t("dashboard:breadcrumb.training"),
+    ["/training/" + params.id]: t(
+      "dashboard:breadcrumb.trainingEvent"
+    ),
+    "/training/create": t("dashboard:breadcrumb.trainingCreate"),
+    ["/mytraining/" + params.id]: t(
+      "dashboard:breadcrumb.mytrainingDetail"
+    ),
+    "/mytraining/edit": t("dashboard:breadcrumb.mytrainingEdit"),
+    ["/mytraining/edit/" + params.id]: t(
+      "dashboard:breadcrumb.mytrainingEditDetail"
+    ),
+    "/mytraining": t("dashboard:breadcrumb.mytraining"),
   };
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
@@ -38,7 +46,7 @@ const SectionHeader = ({ viewButton }) => {
   });
   const breadcrumbItems = [
     <Breadcrumb.Item key={"/"}>
-      <Link to="/">Dashboard</Link>
+      <Link to="/">{t("dashboard:dashboard")}</Link>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems);
 
@@ -57,7 +65,7 @@ const SectionHeader = ({ viewButton }) => {
       onClick={handleLogout}
       items={[
         {
-          label: "Logout",
+          label: `${t("common:logout")}`,
           key: "1",
         },
       ]}
@@ -69,7 +77,7 @@ const SectionHeader = ({ viewButton }) => {
       onClick={handleLogin}
       items={[
         {
-          label: "Login",
+          label: `${t("common:login")}`,
           key: "1",
         },
       ]}
@@ -106,7 +114,7 @@ const SectionHeader = ({ viewButton }) => {
                     htmlType="submit"
                     style={{ borderRadius: 5, fontWeight: "bold" }}
                   >
-                    <PlusOutlined /> Create Training Event
+                    <PlusOutlined /> {t("dashboard:buttonCreate")}
                   </Button>
                 ) : null}
                 <Dropdown.Button
@@ -125,7 +133,9 @@ const SectionHeader = ({ viewButton }) => {
                   trigger={["click"]}
                   icon={<MoreOutlined />}
                 >
-                  {user ? `Hi, ${user.username}` : "More"}
+                  {user
+                    ? `${t("common:greeting")}, ${user.username}`
+                    : "More"}
                 </Dropdown.Button>
               </>
             )}

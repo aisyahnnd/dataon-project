@@ -15,10 +15,12 @@ import {
   Typography,
 } from "antd";
 import "./AllTrainingEvent.css";
+import { useTranslation } from "react-i18next";
 
 const { Text } = Typography;
 
 export const SingleTrainingEvent = (props) => {
+  const { t } = useTranslation(["content"]);
   const { item, id } = props;
   const navigate = useNavigate();
 
@@ -40,20 +42,20 @@ export const SingleTrainingEvent = (props) => {
         <div className="tooltip-card">
           <h2>{item.eventName}</h2>
           <div className="tooltip-star">
-            <StarFilled /> Recommended Training
+            <StarFilled /> {t("alltrainingCard.tooltip.label")}
           </div>
 
           <Row justify="center" style={{ marginTop: "20px" }}>
             <Col align="center">
               <Button size="large" className="tooltip-btn">
-                <p>You've joined the class</p>
+                <p>{t("alltrainingCard.tooltip.sub1")}</p>
               </Button>
             </Col>
           </Row>
           <Row justify="center" style={{ marginTop: "20px" }}>
             <Col>
               <Button className="tooltip-btn-other">
-                <p>Invite Others</p>
+                <p>{t("alltrainingCard.tooltip.sub2")}</p>
               </Button>
             </Col>
           </Row>

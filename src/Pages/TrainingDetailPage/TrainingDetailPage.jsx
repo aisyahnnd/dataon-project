@@ -26,10 +26,12 @@ import {
 import { Avatar, ButtonIcon, SectionHeader } from "@/Components";
 import { AppContext } from "@/Context/";
 import "./TrainingDetailPage.css";
+import { useTranslation } from "react-i18next";
 const { confirm } = Modal;
 const { Text, Title } = Typography;
 
 export const TrainingDetailPage = () => {
+  const { t } = useTranslation(["content"]);
   const { deleteStatus, setDeleteStatus, DeleteDataMyTraining } =
     useContext(AppContext);
   const navigate = useNavigate();
@@ -56,12 +58,12 @@ export const TrainingDetailPage = () => {
 
   const showDeleteConfirm = () => {
     confirm({
-      title: "Are you sure to delete this training?",
+      title: t("deleteConfirm.title"),
       icon: <ExclamationCircleOutlined />,
-      content: "When clicked the OK button, data will be deleted",
-      okText: "Yes",
+      content: t("deleteConfirm.content"),
+      okText: t("deleteConfirm.okText"),
       okType: "danger",
-      cancelText: "Cancel",
+      cancelText: t("deleteConfirm.cancelText"),
 
       onOk() {
         return new Promise((resolve, reject) => {
@@ -88,7 +90,7 @@ export const TrainingDetailPage = () => {
               </Row>
               <Row>
                 <Title strong level={4} type="secondary">
-                  Footbal Course
+                  {t("trainingCreateEditDetail.subTitle")}
                 </Title>
               </Row>
             </Col>
@@ -119,7 +121,9 @@ export const TrainingDetailPage = () => {
                 <Row>
                   <Col span={24}>
                     <ButtonIcon
-                      textButton="Join Class"
+                      textButton={t(
+                        "trainingCreateEditDetail.button.join"
+                      )}
                       style={{ borderRadius: 5, width: "100%" }}
                       type={"primary"}
                     ></ButtonIcon>
@@ -129,7 +133,7 @@ export const TrainingDetailPage = () => {
                   <Col span={12}>
                     <div className="joinedTeamWrapper">
                       <Text className="textJoined" strong>
-                        Joined Team
+                        {t("trainingCreateEditDetail.joinedTeam")}
                       </Text>
                       <Avatar
                         className="avatar"
@@ -170,7 +174,7 @@ export const TrainingDetailPage = () => {
                         strong
                         type="secondary"
                       >
-                        Invite Others
+                        {t("trainingCreateEditDetail.button.invite")}
                       </Text>
                     </div>
                   </Col>
@@ -185,7 +189,8 @@ export const TrainingDetailPage = () => {
                   style={{ display: "flex" }}
                 >
                   <Text style={{ fontSize: "16px", fontWeight: 700 }}>
-                    <SolutionOutlined /> Overview
+                    <SolutionOutlined />{" "}
+                    {t("trainingCreateEditDetail.overview")}
                   </Text>
                   <Text style={{ fontSize: "14px", fontWeight: 700 }}>
                     <CalendarOutlined /> {location.state.startDate}
@@ -193,10 +198,14 @@ export const TrainingDetailPage = () => {
                       style={{ marginLeft: 20, marginRight: 5 }}
                     />
                     {location.state.isOnlineClass === true
-                      ? "Online Class"
-                      : "Offline Class"}
+                      ? t(
+                          "trainingCreateEditDetail.eventType.option1"
+                        )
+                      : t(
+                          "trainingCreateEditDetail.eventType.option2"
+                        )}
                     <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5
-                    Person
+                    {t("trainingCreateEditDetail.person")}
                   </Text>
                   <Text
                     style={{
@@ -204,7 +213,7 @@ export const TrainingDetailPage = () => {
                       fontWeight: 700,
                     }}
                   >
-                    Instructor
+                    {t("trainingCreateEditDetail.instructor")}
                   </Text>
                   <div>
                     <Avatar
@@ -249,7 +258,7 @@ export const TrainingDetailPage = () => {
                           fontWeight: 700,
                         }}
                       >
-                        Resources
+                        {t("trainingCreateEditDetail.resources")}
                       </Col>
                     </Row>
                     <Space
@@ -264,8 +273,12 @@ export const TrainingDetailPage = () => {
                           style={{ marginRight: 5 }}
                         />
                         {location.state.isOnlineClass === true
-                          ? "Online Class "
-                          : "Offline Class "}
+                          ? t(
+                              "trainingCreateEditDetail.eventType.option1"
+                            )
+                          : t(
+                              "trainingCreateEditDetail.eventType.option2"
+                            )}{" "}
                         Detail
                       </Text>
                       <Text
@@ -274,7 +287,7 @@ export const TrainingDetailPage = () => {
                           fontWeight: 700,
                         }}
                       >
-                        Event Number
+                        {t("trainingCreateEditDetail.number")}
                       </Text>
                       <Text
                         style={{
@@ -287,7 +300,7 @@ export const TrainingDetailPage = () => {
                       <Text
                         style={{ fontSize: "14px", fontWeight: 700 }}
                       >
-                        Date
+                        {t("trainingCreateEditDetail.date")}
                       </Text>
                       <Text
                         style={{
@@ -300,7 +313,7 @@ export const TrainingDetailPage = () => {
                       <Text
                         style={{ fontSize: "14px", fontWeight: 700 }}
                       >
-                        Location
+                        {t("trainingCreateEditDetail.location")}
                       </Text>
                       <Text
                         style={{
@@ -313,7 +326,7 @@ export const TrainingDetailPage = () => {
                       <Text
                         style={{ fontSize: "14px", fontWeight: 700 }}
                       >
-                        Status
+                        {t("trainingCreateEditDetail.status.label")}
                       </Text>
                       <Text
                         style={{
@@ -322,13 +335,17 @@ export const TrainingDetailPage = () => {
                         }}
                       >
                         {location.state.isComplete === true
-                          ? "Close Registration"
-                          : "Open for Registration"}
+                          ? t(
+                              "trainingCreateEditDetail.status.radio2"
+                            )
+                          : t(
+                              "trainingCreateEditDetail.status.radio1"
+                            )}
                       </Text>
                       <Text
                         style={{ fontSize: "14px", fontWeight: 700 }}
                       >
-                        End Date
+                        {t("trainingCreateEditDetail.endDate")}
                       </Text>
                       <Text
                         style={{
@@ -341,7 +358,7 @@ export const TrainingDetailPage = () => {
                       <Text
                         style={{ fontSize: "14px", fontWeight: 700 }}
                       >
-                        Trainer
+                        {t("trainingCreateEditDetail.trainer.label")}
                       </Text>
                       <Text
                         style={{
@@ -377,7 +394,7 @@ export const TrainingDetailPage = () => {
                 marginRight: 10,
               }}
             >
-              Back
+              {t("trainingCreateEditDetail.button.back")}
             </Button>
             {location.pathname === `/mytraining/${params.id}` &&
             user.role === "admin" ? (
@@ -392,7 +409,7 @@ export const TrainingDetailPage = () => {
                     marginRight: 10,
                   }}
                 >
-                  Edit
+                  {t("trainingCreateEditDetail.button.edit")}
                 </Button>
                 <Button
                   onClick={showDeleteConfirm}
@@ -403,7 +420,7 @@ export const TrainingDetailPage = () => {
                     width: 100,
                   }}
                 >
-                  Delete
+                  {t("trainingCreateEditDetail.button.delete")}
                 </Button>
               </>
             ) : null}

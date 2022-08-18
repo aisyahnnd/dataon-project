@@ -5,8 +5,10 @@ import { useContext } from "react";
 import { AppContext } from "@/Context/";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./AllTrainingEvent.css";
+import { useTranslation } from "react-i18next";
 
 const AllTrainingEvent = () => {
+  const { t } = useTranslation(["dashboard"]);
   let x = window.matchMedia("(max-width: 1024px)");
   const { DataAllTrainings } = useContext(AppContext);
   const [data, setData] = useState([]);
@@ -35,7 +37,7 @@ const AllTrainingEvent = () => {
       <div className="site-card-wrapper">
         <div className="title-event">
           <p>
-            All Training Event
+            {t("allTrainingEvent")}
             <Badge
               style={{
                 marginLeft: 5,
