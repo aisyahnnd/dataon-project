@@ -6,6 +6,7 @@ const MyTrainingEventTable = ({ dataTable, columns }) => {
     <div className="site-card-wrapper">
       <LabelSection
         label="My Training Event"
+        data-testid="label"
         dataBadge={50}
         style={{
           backgroundColor: "#e7e7e7",
@@ -14,8 +15,8 @@ const MyTrainingEventTable = ({ dataTable, columns }) => {
         }}
       />
       <TableData
-        key={dataTable.id}
-        dataTable={dataTable.data}
+        data-testid="table"
+        dataTable={dataTable}
         pagination={{ defaultPageSize: 2 }}
         columns={columns}
       />

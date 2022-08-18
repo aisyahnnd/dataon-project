@@ -15,6 +15,18 @@ describe("should be run edit page", () => {
       </ContextWrapper>
     );
     const form = screen.getByTestId("form");
+    const isOnlineClass = screen.getByTestId("isOnlineClass");
+    const date = screen.getByTestId("date");
+    const status = screen.getByTestId("status");
+    const trainer = screen.getByTestId("trainer");
+    const additionalInfo = screen.getByTestId("additionalInfo");
     expect(form).toBeDefined;
+    expect(isOnlineClass).toBeDefined;
+    expect(date).toBeDefined;
+    expect(status).toBeDefined;
+    expect(trainer).toBeDefined;
+    expect(additionalInfo).toBeDefined;
+    const response = fireEvent.click(screen.getByTestId("button"));
+    expect(response).toBeTruthy();
   });
 });

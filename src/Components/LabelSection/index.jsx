@@ -3,7 +3,7 @@ import "./label.css";
 import PropTypes from "prop-types";
 const LabelSection = ({ dataBadge, style, label }) => {
   return (
-    <div className="title-event">
+    <div data-testid="label" className="title-event">
       <p>
         {label} <Badge style={style} count={dataBadge} />
       </p>

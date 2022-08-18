@@ -45,7 +45,7 @@ const Dashboard = () => {
       ) : (
         <>
           <MyTrainingEventTable
-            dataTable={DataMyTraining}
+            dataTable={DataMyTraining.data}
             columns={MyTrainingTableColumnContext}
           />
           <AllTrainingEventTable
