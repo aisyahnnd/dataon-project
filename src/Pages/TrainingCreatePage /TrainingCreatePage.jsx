@@ -15,9 +15,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { SectionHeader } from "@/Components";
 import { useContext } from "react";
 import { AppContext } from "@/Context";
+import { useTranslation } from "react-i18next";
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
-const normFile = e => {
+const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -26,6 +27,7 @@ const normFile = e => {
 };
 
 export const TrainingCreatePage = () => {
+  const { t } = useTranslation(["content"]);
   const [form] = Form.useForm();
   const { CreateDataTraining } = useContext(AppContext);
   const [componentSize, setComponentSize] = useState("default");
@@ -45,12 +47,12 @@ export const TrainingCreatePage = () => {
       {
         type: "array",
         required: true,
-        message: "Please select time!",
+        message: t("trainingCreateEditDetail.messageDate"),
       },
     ],
   };
   //post data
-  const onFinish = values => {
+  const onFinish = (values) => {
     const starDate = values.date[0].format("YYYY-MM-DD");
     const endDate = values.date[1].format("YYYY-MM-DD");
     const data = {
@@ -91,7 +93,7 @@ export const TrainingCreatePage = () => {
         >
           <Form.Item
             name="isOnlineClass"
-            label="Event Type:"
+            label={t("trainingCreateEditDetail.eventType.label")}
             rules={[
               {
                 required: true,
@@ -100,48 +102,67 @@ export const TrainingCreatePage = () => {
             data-testid="isOnlineClass"
           >
             <Select
-              placeholder="Select Event Type"
+              placeholder={t(
+                "trainingCreateEditDetail.eventType.placeholder"
+              )}
               optionFilterProp="children"
               allowClear
               data-testid="eventType"
             >
-              <OptGroup label="Type">
-                <Option value={true}>Online Class</Option>
-                <Option value={false}>Offline Class</Option>
+              <OptGroup
+                label={t("trainingCreateEditDetail.eventType.label")}
+              >
+                <Option value={true}>
+                  {t("trainingCreateEditDetail.eventType.option1")}
+                </Option>
+                <Option value={false}>
+                  {t("trainingCreateEditDetail.eventType.option2")}
+                </Option>
               </OptGroup>
             </Select>
           </Form.Item>
           <Form.Item
             name="eventName"
-            label="Event Name"
+            label={t("trainingCreateEditDetail.eventName.label")}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input data-testid="eventName" placeholder="Input Event Name" />
+            <Input
+              data-testid="eventName"
+              placeholder={t(
+                "trainingCreateEditDetail.eventName.placeholder"
+              )}
+            />
           </Form.Item>
 
           <Form.Item
             name="event-thumbnail"
-            label="Event Thumbnail"
+            label={t("trainingCreateEditDetail.eventThumbnail.label")}
             valuePropName="fileList"
             getValueFromEvent={normFile}
-            extra="Recommended image resolution is 500x300 (5:3 aspect ratio, max. 2MB, jpg/jpeg)"
+            extra={t("trainingCreateEditDetail.eventThumbnail.extra")}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            <Upload
+              name="logo"
+              action="/upload.do"
+              listType="picture"
+            >
+              <Button icon={<UploadOutlined />}>
+                {t("trainingCreateEditDetail.eventThumbnail.button")}
+              </Button>
             </Upload>
           </Form.Item>
           <Form.Item
             name="date"
-            label="Date"
+            label={t("trainingCreateEditDetail.date")}
             {...rangeConfig}
             rules={[
               {
@@ -153,33 +174,42 @@ export const TrainingCreatePage = () => {
           </Form.Item>
           <Form.Item
             name="status"
-            label="Status"
+            label={t("trainingCreateEditDetail.status.label")}
             data-testid="status"
             rules={[
               {
                 required: true,
-                message: "Please pick an item!",
+                message: t("trainingCreateEditDetail.status.message"),
               },
             ]}
           >
             <Radio.Group>
-              <Radio.Button value={true}>Open for Registration</Radio.Button>
-              <Radio.Button value={false}>Closed Registration</Radio.Button>
+              <Radio.Button value={true}>
+                {t("trainingCreateEditDetail.status.radio1")}
+              </Radio.Button>
+              <Radio.Button value={false}>
+                {t("trainingCreateEditDetail.status.radio2")}
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
           <Form.Item
             name="trainer"
-            label="Trainer Name"
+            label={t("trainingCreateEditDetail.trainer.label")}
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input data-testid="trainer" placeholder="Input Trainer Name" />
+            <Input
+              data-testid="trainer"
+              placeholder={t(
+                "trainingCreateEditDetail.trainer.placeholder"
+              )}
+            />
           </Form.Item>
 
-          <Form.Item label="Location based Latitude and Longitude">
+          <Form.Item label={t("trainingCreateEditDetail.location")}>
             <Form.Item
               name="latitude"
               rules={[
@@ -204,7 +234,7 @@ export const TrainingCreatePage = () => {
 
           <Form.Item
             name="additionalInfo"
-            label="Infromation"
+            label={t("trainingCreateEditDetail.information.label")}
             data-testid="additionalInfo"
             rules={[
               {
@@ -212,7 +242,11 @@ export const TrainingCreatePage = () => {
               },
             ]}
           >
-            <Input placeholder="Input Information Event" />
+            <Input
+              placeholder={t(
+                "trainingCreateEditDetail.information.placeholder"
+              )}
+            />
           </Form.Item>
           <Row style={{ paddingTop: 100 }}>
             <Col
@@ -233,7 +267,7 @@ export const TrainingCreatePage = () => {
                   marginRight: 10,
                 }}
               >
-                Back
+                {t("trainingCreateEditDetail.button.back")}
               </Button>
               <Button
                 type="primary"
@@ -241,7 +275,7 @@ export const TrainingCreatePage = () => {
                 data-testid="submitButton"
                 style={{ borderRadius: 5, width: 100 }}
               >
-                Submit
+                {t("trainingCreateEditDetail.button.submit")}
               </Button>
             </Col>
           </Row>

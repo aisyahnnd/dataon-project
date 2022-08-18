@@ -18,10 +18,12 @@ import PropTypes from "prop-types";
 import "./SingleTrainingCard.css";
 import "./MyTrainingCard.css";
 import "antd/dist/antd.css";
+import { useTranslation } from "react-i18next";
 
 const { Text } = Typography;
 
 export const SingleTrainingCard = (props) => {
+  const { t } = useTranslation(["content"]);
   const { item, id, location } = props;
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
@@ -135,9 +137,13 @@ export const SingleTrainingCard = (props) => {
       <Row className="row-bottom" justify="space-between">
         <Col>
           {item?.isComplete ? (
-            <p className="row-bottom-detail">Event Completed</p>
+            <p className="row-bottom-detail">
+              {t("mytrainingCard.isComplete.part1")}
+            </p>
           ) : (
-            <p className="row-bottom-detail">Event Started</p>
+            <p className="row-bottom-detail">
+              {t("mytrainingCard.isComplete.part2")}
+            </p>
           )}
         </Col>
         <Col>
@@ -149,7 +155,7 @@ export const SingleTrainingCard = (props) => {
               onClick={showModal}
               data-testid="btn-feedback"
             >
-              Give Feedback
+              {t("mytrainingCard.button.part1")}
             </Button>
           ) : (
             <Button
@@ -160,11 +166,11 @@ export const SingleTrainingCard = (props) => {
               icon={<EnvironmentOutlined />}
               data-testid="btn-location"
             >
-              View Location
+              {t("mytrainingCard.button.part2")}
             </Button>
           )}
           <Modal
-            title="Give Feedback Rating"
+            title={t("mytrainingCard.modal")}
             visible={visible}
             onOk={handleOk}
             confirmLoading={confirmLoading}

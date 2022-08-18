@@ -1,16 +1,26 @@
 import { Select } from "antd";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import "./Select.css";
-const SelectBox = ({ type, style, onChange, value, defaultValue }) => {
+const SelectBox = ({
+  type,
+  style,
+  onChange,
+  value,
+  defaultValue,
+}) => {
+  const { t } = useTranslation(["dashboard"]);
   const { Option } = Select;
   const label = {
-    event: "Event Type",
-    status: "Status",
+    event: t("type"),
+    status: t("status.label"),
   };
 
   return (
     <div>
-      <p className="label">{type === "status" ? label.status : label.event}</p>
+      <p className="label">
+        {type === "status" ? label.status : label.event}
+      </p>
       <div>
         <Select
           onChange={onChange}
@@ -28,8 +38,12 @@ const SelectBox = ({ type, style, onChange, value, defaultValue }) => {
         >
           {type === "status" ? (
             <>
-              <Select.Option value="true">Finish</Select.Option>
-              <Select.Option value="false">On Going</Select.Option>
+              <Select.Option value="true">
+                {t("status.option.part1")}
+              </Select.Option>
+              <Select.Option value="false">
+                {t("status.option.part2")}
+              </Select.Option>
             </>
           ) : (
             <>

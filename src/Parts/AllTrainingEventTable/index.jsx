@@ -1,11 +1,13 @@
 import LabelSection from "@/Components/LabelSection";
 import TableData from "@/Components/TableData";
+import { useTranslation } from "react-i18next";
 
 const AllTrainingEventTable = ({ dataTable, columns }) => {
+  const { t } = useTranslation(["dashboard"]);
   return (
     <div className="site-card-wrapper">
       <LabelSection
-        label="All Training Event"
+        label={t("allTrainingEvent")}
         dataBadge={5}
         style={{
           backgroundColor: "#e7e7e7",

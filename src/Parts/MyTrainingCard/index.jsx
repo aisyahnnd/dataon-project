@@ -4,8 +4,10 @@ import { SingleTrainingCard } from "./SingleTrainingCard";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@/Context";
 import "./MyTrainingCard.css";
+import { useTranslation } from "react-i18next";
 
 const MyTrainingCard = () => {
+  const { t } = useTranslation(["dashboard"]);
   const { DataMyTraining, valueCardTraining } =
     useContext(AppContext);
   const [data, setData] = useState([]);
@@ -28,7 +30,7 @@ const MyTrainingCard = () => {
       >
         <div className="title-event">
           <p className="title">
-            My Training Event
+            {t("myTrainingEvent")}
             <Badge
               offset={20}
               style={{
